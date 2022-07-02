@@ -27,6 +27,7 @@ def get_standings(count=None, admin=False, fields=None):
             db.func.sum(Challenges.value).label("score"),
             db.func.max(Solves.id).label("id"),
             db.func.max(Solves.date).label("date"),
+            db.func.count(Solves.id).label("count"),
         )
         .join(Challenges)
         .filter(Challenges.value != 0)
@@ -39,6 +40,7 @@ def get_standings(count=None, admin=False, fields=None):
             db.func.sum(Awards.value).label("score"),
             db.func.max(Awards.id).label("id"),
             db.func.max(Awards.date).label("date"),
+            db.func.count(Awards.id).label("count"),
         )
         .filter(Awards.value != 0)
         .group_by(Awards.account_id)
@@ -66,6 +68,7 @@ def get_standings(count=None, admin=False, fields=None):
             db.func.sum(results.columns.score).label("score"),
             db.func.max(results.columns.id).label("id"),
             db.func.max(results.columns.date).label("date"),
+            db.func.max(results.columns.count).label("count"),
         )
         .group_by(results.columns.account_id)
         .subquery()
@@ -88,6 +91,7 @@ def get_standings(count=None, admin=False, fields=None):
                 Model.hidden,
                 Model.banned,
                 sumscores.columns.score,
+                sumscores.columns.count,
                 *fields,
             )
             .join(sumscores, Model.id == sumscores.columns.account_id)
@@ -100,6 +104,7 @@ def get_standings(count=None, admin=False, fields=None):
                 Model.oauth_id.label("oauth_id"),
                 Model.name.label("name"),
                 sumscores.columns.score,
+                sumscores.columns.count,
                 *fields,
             )
             .join(sumscores, Model.id == sumscores.columns.account_id)
