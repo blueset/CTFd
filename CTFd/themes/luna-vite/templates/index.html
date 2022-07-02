@@ -32,10 +32,12 @@
                 <span>Challenges</span>
             </a>
             {% else %}
+            {% if registration_visible() %}
             <a href="{{ url_for('auth.register') }}" class="button textButton shade homeCTAButton">
                 <iconify-icon icon="mdi:account-plus" style="transform: translate(4px, -10px) scale(1.1);"></iconify-icon>
                 <span>Register</span>
             </a>
+            {% endif %}
             <a href="{{ url_for('auth.login') }}" class="button textButton shade primary homeCTAButton">
                 <iconify-icon icon="mdi:login-variant" style="transform: translateY(-13px) scale(1.25);"></iconify-icon>
                 <span>Log in</span>
