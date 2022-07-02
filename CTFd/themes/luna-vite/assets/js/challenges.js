@@ -189,6 +189,7 @@ Alpine.data("ChallengeBoard", () => ({
 
     async init() {
         // console.log("Init...");
+        const initHash = window.location.hash;
         window.lastClick = 0;
         await this.loadChallenges();
         this.loaded = true;
@@ -198,8 +199,8 @@ Alpine.data("ChallengeBoard", () => ({
             window.requestAnimationFrame(scrollUpdate);
         }, false);
 
-        if (window.location.hash.length > 0) {
-            await this.loadChalByName(decodeURIComponent(window.location.hash.substring(1)));
+        if (initHash.length > 0) {
+            await this.loadChalByName(decodeURIComponent(initHash.substring(1)));
         }
     },
 
@@ -320,6 +321,7 @@ Alpine.data("ChallengeBoard", () => ({
         if (this.category === categoryName && this.filteredChallenges.length > 0) return;
         this.category = categoryName;
         this.selectedId = null;
+        window.location.hash = "";
         this.loadChallenge(null);
         this.filteredChallenges = this.getChallenges(categoryName);
         this.repeatTimes = this.filteredChallenges.length === 0 ? 0 : Math.ceil(
@@ -338,6 +340,7 @@ Alpine.data("ChallengeBoard", () => ({
         }
         
         this.selectedId = challenge.id;
+        window.location.hash = `#${challenge.name.replace(/ /g, "-")}-${challenge.id}`;
         // Pseudo centering transition.
         this.centerNode(idx, tgt);
         await this.loadChallenge(challenge.id);
@@ -363,6 +366,7 @@ Alpine.data("ChallengeBoard", () => ({
 
     collapseChallengeEvt() {
         this.selectedId = null;
+        window.location.hash = "";
         setTimeout(() => this.loadChallenge(null), 500);
     },
 
