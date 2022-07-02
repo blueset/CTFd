@@ -1,0 +1,177 @@
+{%- set info = {"labels": [], "difficulty": 1} -%}
+{%- set difficultyMapping = {
+  Configs.theme_settings["tag_difficulty_1"]: 1,
+  Configs.theme_settings["tag_difficulty_2"]: 2,
+  Configs.theme_settings["tag_difficulty_3"]: 3,
+  Configs.theme_settings["tag_difficulty_4"]: 4,
+  Configs.theme_settings["tag_difficulty_5"]: 5,
+} -%}
+{%- for tag in tags -%}
+{%- if tag in difficultyMapping -%}
+  {%- set _ = info.update(difficulty=difficultyMapping[tag]) -%}
+{%- else -%}
+  {%- set _ = info['labels'].append(tag) -%}
+{%- endif -%}
+{%- endfor -%}
+<div id="challengeContent" x-data="Challenge" x-init="id = {{ challenge.id }}">
+<button class="button iconButton small" id="collapseButton" @click="collapse()">
+  <iconify-icon icon="fa6-solid:chevron-left"></iconify-icon>
+</button>
+<div class="currentChallengeInfoRow">
+  <div class="currentChallengeScore">
+    {{ challenge.value }}
+  </div>
+  <div class="currentChallengeInfo">
+    <h2 class="currentChallengeName">{{ challenge.name }}</h2>
+    <h3 class="currentChallengeCategory">{{ challenge.category }}</h3>
+  </div>
+</div>
+<div class="currentChallengeMeta">
+  {% for label in info['labels'] %}
+    <span class="chip">{{ label }}</span>
+  {% endfor %}
+  <div class="challengeIndicators">
+    {% for i in range(info['difficulty']) %}
+      <span class="challengeIndicator {{'first' if is_first_solver else 'solved' if solved_by_me else 'unsolved'}}"></span>
+    {% endfor %}
+  </div>
+</div>
+<div class="challenge-desc">{% block description %}{{ challenge.html }}{% endblock %}</div>
+
+{% if challenge.connection_info %}
+<div class="inputFrame copyableConnection" x-ref="connectionBox">
+  {% block connection_info %}
+  {% set conn = challenge.connection_info %}
+      {% if not conn %}
+      {% elif conn.startswith("http") %}
+        <code class="connectionValue">{{ conn | urlize(target="_blank") }}</code>
+      {% else %}
+        <code class="connectionValue">{{ conn }}</code>
+      {% endif %}
+        <button class="inputIcon" type="button" @click="copyText({{ conn | tojson | forceescape }})">
+    <iconify-icon icon="material-symbols:content-copy" inline class=""></iconify-icon>
+  </button>
+  {% endblock %}
+</div>
+{% endif %}
+
+{% if hints %}
+<div class="buttonRow">
+  {% for hint in hints %}
+    {% if hint.content %}
+    <button class="button textButton shade small" @click="showHint({{ hint.id }}, false)">
+      <span>View hint {{ loop.index }}</span>
+    </button>
+    {% else %}
+    <button class="button textButton shade small" @click="showHint({{ hint.id }}, true)">
+      {% if hint.cost == 0 %}
+      <span>View hint {{ loop.index }}</span>
+      {% else %}
+      <span>Unlock hint {{ loop.index }} for {{ hint.cost }} points</span>
+      {% endif %}
+    </details>
+    {% endif %}
+  {% endfor %}
+</div>
+{% endif %}
+
+
+{% if files %}
+<div class="buttonRow">
+  {% for file in files %}
+  <a href="{{ file }}" target="_blank" class="button textButton shade small">
+    <iconify-icon icon="material-symbols:download"></iconify-icon>
+    <span>
+        {% set segments = file.split('/') %}
+        {% set file = segments | last %}
+        {% set token = file.split('?') | last %}
+        {% if token %}
+          {{ file | replace("?" + token, "") }}
+        {% else %}
+          {{ file }}
+        {% endif %}
+    </span>
+  </a>
+  {% endfor %}
+</div>
+{% endif %}
+
+{% if max_attempts > 0 %}
+<div class="info" role="alert">
+  <iconify-icon icon="material-symbols:info"></iconify-icon>
+  <span>{{ attempts }}/{{ max_attempts }} attempt</span>
+</div>
+{% endif %}
+
+<div class="filler"></div>
+
+{% block solves %}
+<div class="solvers">
+  <button class="button textButton shade small" {{ 'disabled' if solves == 0 else '' }} @click="showSolves()"><span>
+    {% if solves != None %}
+      {{ solves }} solve{{ solves|pluralize }}
+    {% endif %}
+  </span></button>
+</div>
+{% endblock %}
+
+<div class="flagSubmissionRow">
+  {% block input %}
+  <input id="challenge-id" type="hidden" value="{{ challenge.id }}">
+  <div class="inputFrame flag">
+    <input type="text" name="submission" id="challenge-input"
+      @keyup.enter="submitChallenge()"
+      x-model="submission"
+      placeholder="{{ 'Already solved.' if solved_by_me else (Configs.theme_settings['flag_placeholder'] or 'SEKAI{…}') }}">
+    <iconify-icon icon="ic:baseline-edit" class="inputIcon"></iconify-icon>
+  </div>
+  {% endblock %}
+  {% block submit %}
+  <button class="button iconButton small" @click.debounce.500ms="submitChallenge()" :disabled="{{ solved_by_me | tojson }} || submitting">
+    <iconify-icon icon="material-symbols:send"></iconify-icon>
+  </button>
+  {% endblock %}
+</div>
+
+<dialog class="modal fit" id="solvers" x-ref="solversModal">
+  <div class="modalHeader"><span x-text="solves.length"></span> solves of {{ challenge.name }}</div>
+  <div class="modalBody">
+    <template x-for="(solve, idx) in solves">
+      <a :href="solve.account_url" :class="{'listItem': true, 'active': solve.account_id == (window.init.userMode == 'teams' ? window.init.teamId : window.init.userId)}">
+        <div class="listItemNumber">
+              <img :src="window.rankIcons[idx]" :alt="idx + 1" x-show="idx < 3">
+              <span x-text="idx + 1" x-show="idx >= 3"></span>
+            </div>
+            <div class="listItemDetails solversItemDetails">
+              <div class="listItemDetailsPrimary" x-text="solve.name"></div>
+              <div x-text="solve.date"></div>
+            </div>
+          </a>
+    </template>
+  </div>
+  <div class="modalFooter">
+      <button class="button textButton shade" x-ref="solversModalClose">
+          <span>Close</span>
+      </button>
+  </div>
+</dialog>
+
+{% for hint in hints %}
+<dialog class="modal fit hintModal" x-ref="hintDialog{{ hint.id }}" data-hint-id="{{ hint.id }}">
+  <div class="modalHeader">Hint {{ loop.index }}</div>
+  <div class="modalBody">
+    {% if hint.content %}
+    {{ hint.html | safe }}
+    {% else %}
+    <div x-html="hints[{{ hint.id }}].html"></div>
+    {% endif %}
+  </div>
+  <div class="modalFooter">
+      <button class="button textButton shade">
+          <span>Close</span>
+      </button>
+  </div>
+</dialog>
+{% endfor %}
+
+</div>

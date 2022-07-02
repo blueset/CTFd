@@ -1,0 +1,30 @@
+{% extends "templates/plain.html" %}
+
+{% block plainContent %}
+{% with form = Forms.teams.TeamInviteJoinForm() %}
+
+<form method="POST" class="modal centered fit">
+  <div class="modalHeader">Join team</div>
+
+  <div class="modalBody">
+    <p>
+      Welcome to <strong>{{ team.name }}</strong>!
+    </p>
+    <p>
+      Click “Join” to join the team, or click “Create team” if you’d prefer to create your own team.
+    </p>
+  </div>
+  <div class="modalFooter">
+    <a href="{{ url_for('teams.new') }}" class="button textButton shade">
+      <span>Create team</span>
+    </a>
+    <button href="{{ url_for('teams.new') }}" class="button textButton primary shade" type="submit">
+      <span>Join</span>
+    </a>
+  </div>
+  {{ form.nonce() }}
+</form>
+
+{% endwith %}
+{% endblock %}
+

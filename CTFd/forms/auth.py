@@ -32,7 +32,7 @@ def RegistrationForm(*args, **kwargs):
 
 
 class LoginForm(BaseForm):
-    name = StringField("User Name or Email", validators=[InputRequired()])
+    name = StringField("Name / Email", validators=[InputRequired()])
     password = PasswordField("Password", validators=[InputRequired()])
     submit = SubmitField("Submit")
 

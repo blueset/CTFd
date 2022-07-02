@@ -1,0 +1,103 @@
+<button class="button shade iconButton menuButton buttonNotification" id="mainMenuButton">
+    <iconify-icon icon="ic:baseline-menu"></iconify-icon>
+</button>
+<dialog class="modal fit" id="mainMenuModal">
+    <div class="modalHeader">Menu</div>
+    <div class="modalBody">
+        {% for page in Plugins.user_menu_pages %}
+            <a class="button textButton shade primaryIcon" href="{{ page.route }}">
+                <iconify-icon icon="ic:baseline-contact-page"></iconify-icon>
+                <span>{{ page.title }}</span>
+            </a>
+        {% endfor %}
+
+        {% if Configs.account_visibility != 'admins' %}
+            {% if Configs.user_mode == 'teams' %}
+                <a class="button textButton shade primaryIcon" href="{{ url_for('teams.listing') }}">
+                    <iconify-icon icon="ic:baseline-people-alt"></iconify-icon>
+                    <span>Teams</span>
+                </a>
+            {% endif %}
+
+            <a class="button textButton shade primaryIcon" href="{{ url_for('users.listing') }}">
+                <iconify-icon icon="ic:baseline-person"></iconify-icon>
+                <span>Users</span>
+            </a>
+        {% endif %}
+
+        {% if Configs.score_visibility != 'admins' %}
+            <a class="button textButton shade primaryIcon" href="{{ url_for('scoreboard.listing') }}">
+                <iconify-icon icon="mdi:podium"></iconify-icon>
+                <span>Ranking</span>
+            </a>
+        {% endif %}
+
+        <a class="button textButton alternate" href="/">
+            <iconify-icon icon="ic:baseline-home"></iconify-icon>
+            <span>Home</span>
+        </a>
+
+        <a class="button textButton alternate" id="mainMenuTitleBtn" href="/">
+            <iconify-icon icon="icon-park-solid:back"></iconify-icon>
+            <span>Title</span>
+        </a>
+
+        {% if authed() %}
+            <a class="button textButton alternate" href="{{ url_for('challenges.listing') }}">
+                <iconify-icon icon="fluent:music-note-2-24-filled"></iconify-icon>
+                <span>Challenges</span>
+            </a>
+            <a class="button textButton alternate buttonNotification" id="mainMenuTitleBtn" href="{{ url_for('views.notifications') }}">
+                <iconify-icon icon="ic:baseline-notifications"></iconify-icon>
+                <span>Notifications</span>
+            </a>
+
+            {% if Configs.user_mode == "teams" %}
+                <a class="button textButton small" id="mainMenuTitleBtn" href="{{ url_for('teams.private') }}">
+                    <iconify-icon icon="mdi:account-multiple-check"></iconify-icon>
+                    <span>Your team</span>
+                </a>
+            {% endif %}
+
+
+            <a class="button textButton small" id="mainMenuTitleBtn" href="{{ url_for('users.private') }}">
+                <iconify-icon icon="mdi:account-check"></iconify-icon>
+                <span>Profile</span>
+            </a>
+            <a class="button textButton small" id="mainMenuTitleBtn" href="{{ url_for('views.settings') }}">
+                <iconify-icon icon="mdi:cog"></iconify-icon>
+                <span>Settings</span>
+            </a>
+            <a class="button textButton small" id="mainMenuTitleBtn" href="{{ url_for('auth.logout') }}">
+                <iconify-icon icon="mdi:logout-variant"></iconify-icon>
+                <span>Log out</span>
+            </a>
+
+            {% if is_admin() %}
+                <a class="button textButton small" href="{{ url_for('admin.view') }}">
+                    <iconify-icon icon="ic:baseline-admin-panel-settings"></iconify-icon>
+                    <span>Admin panel</span>
+                </a>
+            {% endif %}
+
+        {% else %}
+
+            {% if registration_visible() %}
+                <a class="button textButton alternate" id="mainMenuTitleBtn" href="{{ url_for('auth.register') }}">
+                    <iconify-icon icon="mdi:account-plus"></iconify-icon>
+                    <span>Register</span>
+                </a>
+            {% endif %}
+
+            <a class="button textButton alternate" id="mainMenuTitleBtn" href="{{ url_for('auth.login') }}">
+                <iconify-icon icon="mdi:login-variant"></iconify-icon>
+                <span>Log in</span>
+            </a>
+        {% endif %}
+    </div>
+    <div class="modalFooter">
+        <button class="button textButton shade" id="mainMenuClose">
+            <span>Close</span>
+        </button>
+    </div>
+</dialog>

@@ -1,0 +1,184 @@
+{% extends "templates/tabbed.html" %}
+{% from "macros/input.html" import wtf_input_field %}
+{% from "macros/forms.html" import render_extra_fields %}
+
+{% block title %}Settings{% endblock %}
+{% block subtitle %}User Settings{% endblock %}
+
+{% block tabbedContent %}
+<button class="tab active" data-target="tabProfile">Profile</button>
+<button class="tab" data-target="tabAccessTokens">Access tokens</button>
+{% endblock %}
+
+{% block framedContent %}
+<div class="frameContentWrapper">
+
+  <div class="tabPane" id="tabProfile">
+    
+    {% with form = Forms.self.SettingsForm(country=country) %}
+      <form
+          method="post" accept-charset="utf-8" autocomplete="off" role="form"
+          x-data="SettingsForm"
+          @submit.prevent="updateProfile()"
+          class="formFields"
+      >
+        {% include "components/errors.html" %}
+
+        {{ form.name.label(class="chip") }}
+        {{ wtf_input_field(form.name(class="", value=name)) }}
+
+        {{ form.email.label(class="chip") }}
+        {{ wtf_input_field(form.email(class="", value=email)) }}
+
+        <hr class="formHint">
+        
+        {{ form.confirm.label(class="chip") }}
+        {{ wtf_input_field(form.confirm(class="")) }}
+        
+        {{ form.password.label(class="chip") }}
+        {{ wtf_input_field(form.password(class="")) }}
+
+        {#
+        <hr>
+
+        <div class="mb-3">
+          <b>{{ form.affiliation.label(class="form-label") }}</b>
+          {{ form.affiliation(class="form-control", value=affiliation or "") }}
+        </div>
+        <div class="mb-3">
+          <b>{{ form.website.label(class="form-label") }}</b>
+          {{ form.website(class="form-control", value=website or "") }}
+        </div>
+        <div class="mb-3">
+          <b>{{ form.country.label(class="form-label") }}</b>
+          {{ form.country(class="form-control form-select", value=country) }}
+        </div>
+
+        <hr>
+        #}
+
+        {{ render_extra_fields(form.extra) }}
+        <div class="info" role="alert"
+            x-cloak="success" x-show="success">
+          <iconify-icon icon="material-symbols:info"></iconify-icon>
+          <span>
+            <strong>Success!</strong>
+            Your profile has been updated
+          </span>
+        </div>
+
+        <template x-for="(msg, idx) in errors" :key="idx">
+          <div class="warning" role="alert">
+            <iconify-icon icon="material-symbols:warning"></iconify-icon>
+            <span>
+              <span class="sr-only">Error:</span>
+              <span x-text="msg"></span>
+            </span>
+          </div>
+        </template>
+
+        <div class="formButtons">
+          <button class="button textButton shade" type="submit">
+            <span>Update</span>
+          </button>
+        </div>
+      </form>
+    {% endwith %}
+  </div>
+
+  <div class="hidden tabPane" id="tabAccessTokens">
+    <h3 class="sectionTitle">Generate token</h3>
+
+    {% with form = Forms.self.TokensForm() %}
+      <form method="POST" x-data="TokensForm" @submit.prevent="generateToken()" class="formFields">
+
+        {{ form.expiration.label(class="chip") }}
+        {{ wtf_input_field(form.expiration(class="")) }}
+
+        <div class="formButtons">
+          <button class="button textButton shade" type="submit">
+            <span>Genreate</span>
+          </button>
+        </div>
+
+        <dialog class="modal fit" x-ref="tokenModal">
+          <div class="modalHeader">API Key Generated</div>
+
+          <div class="modalBody formFields">
+            <div class="warning">Please copy your API Key, it won't be shown again!</div>
+
+            <label for="token" class="chip">API Key</label>
+            <div class="inputFrame">
+              <input type="text" x-ref="token"
+                x-model="token" readonly placeholder="API Key goes here">
+                <button class="inputIcon" type="button"
+                    @click="copyToken()">
+                  <iconify-icon icon="material-symbols:content-copy" inline class=""></iconify-icon>
+                </button>
+            </div>
+            
+          </div>
+
+          <div class="modalFooter">
+            <button class="button textButton shade" id="apiModalClose" x-ref="tokenModalClose">
+                <span>Close</span>
+            </button>
+          </div>
+        </dialog>
+      </form>
+      
+    {% endwith %}
+
+    {% if tokens %}
+
+    <h3 class="sectionTitle">Active tokens</h3>
+
+      {# This has to be wrapping the table modal, because div with modal will get pushed out
+          of the table and alpine ref will not work #}
+      <div x-data="Tokens">
+        
+        {% for token in tokens %}
+          <div class="listItem" x-ref="token-{{ token.id }}">
+            <div class="listItemNumber">
+              {{ loop.index }}
+            </div>
+            <div class="listItemDetails">
+              <div>Created on <time data-time="{{ token.created | isoformat }}"></time></div>
+              <div>Expires on <time data-time="{{ token.expiration | isoformat }}"></time></div>
+            </div>
+            <div class="listItemScore">
+              <button class="button roundIconButton" role="button"
+                  @click="deleteTokenModal({{ token.id }})">
+                  <iconify-icon icon="material-symbols:delete"></iconify-icon>
+              </button>
+            </div>
+          </div>
+        {% endfor %}
+
+        <dialog class="modal fit" x-ref="deleteModal">
+          <div class="modalHeader">Delete token</div>
+
+          <div class="modalBody">
+            <div class="warning">Are you sure you want to delete this token?</div>
+          </div>
+
+          <div class="modalFooter">
+            <button class="button textButton primary shade" id="apiModalClose" x-ref="deleteModalClose">
+                <span>Keep</span>
+            </button>
+            <button class="button textButton shade" id="apiModalClose" @click="deleteSelectedToken()">
+                <span>Delete</span>
+            </button>
+          </div>
+        </dialog>
+      </div>
+    {% endif %}
+
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+  {{ super() }}
+  {{ Assets.js("assets/js/settings.js") }}
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "templates/plain.html" %}
+
+{% block plainContent %}
+
+<div class="modal centered fit">
+  <div class="modalHeader">Team</div>
+
+  <div class="modalBody">
+    <p>
+      Welcome to <b>{{ Configs.ctf_name }}</b>!
+    </p>
+    <p>
+      In order to participate you must either join or create a team.
+    </p>
+
+  </div>
+  <div class="modalFooter">
+    {% if integrations.mlc() %}
+      <a href="{{ url_for('auth.oauth_login') }}" class="button textButton alternate primary shade">
+        <span>Play with Official Team</span>
+      </a>
+      <a href="{{ url_for('teams.join') }}" class="button textButton alternate shade">
+        <span>Join Unofficial Team</span>
+      </a>
+      <a href="{{ url_for('teams.new') }}" class="button textButton alternate shade">
+        <span>Create Unofficial Team</span>
+      </a>
+    {% else %}
+      <a href="{{ url_for('teams.join') }}" class="button textButton shade">
+        <span>Join Team</span>
+      </a>
+      <a href="{{ url_for('teams.new') }}" class="button textButton primary shade">
+        <span>Create Team</span>
+      </a>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

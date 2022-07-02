@@ -1,0 +1,64 @@
+{% extends "templates/tabbed.html" %}
+{% from "macros/rank.html" import get_rank_int %}
+
+{% block title %}Ranking{% endblock %}
+{% block subtitle %}Scoreboard{% endblock %}
+
+{% block tabbedContent %}
+<button class="tab active" data-target="tabScoreboard">Scoreboard</button>
+<button class="tab" data-target="tabTimeline">Timeline</button>
+{% endblock %}
+
+
+{% block framedContent %}
+<div class="tabPane" id="tabScoreboard">
+  <div class="frameContentWrapper">
+    {% include "components/errors.html" %}
+    
+    {% cache 60, CacheKeys.PUBLIC_SCOREBOARD_TABLE %}
+    {% if standings %}
+      {% for standing in standings %}
+        <a class="listItem scoreboardListItem" href="{{ generate_account_url(standing.account_id) }}" data-{{ get_config('user_mode')[:-1] }}-id="{{ standing.account_id }}">
+          <div class="listItemNumber">
+            {{ get_rank_int(loop.index) }}
+          </div>
+          <div class="listItemDetails">
+            <div class="listItemDetailsPrimary">
+              {{ standing.name | truncate(50) }}
+              {% if standing.oauth_id %}
+                {% if Configs.user_mode == 'teams' %}
+                  <a href="https://majorleaguecyber.org/t/{{ standing.name }}" class="chip">Official</a>
+                {% elif Configs.user_mode == 'users' %}
+                  <a href="https://majorleaguecyber.org/u/{{ standing.name }}" class="chip">Official</a>
+                {% endif %}
+              {% endif %}
+            </div>
+            <div>Team ID: {{ standing.account_id }}</div>
+          </div>
+          <div class="listItemScore digits5">
+            <span>
+              <span class="listItemScoreValue">{{ standing.score }}</span>&nbsp;<span class="listItemScoreP">P</span>
+            </span>
+          </div>
+        </a>
+      {% endfor %}
+    {% else %}
+      <div class="info" style="justify-content: center;">Scoreboard is unavailable.</div>
+    {% endif %}
+    {% endcache %}
+
+  </div>
+</div>
+<div class="hidden tabPane" id="tabTimeline">
+  <div class="chartContainer">
+    <div id="score-graph" style="width: 800px; height: 500px;" x-data="ScoreboardDetail" x-ref="scoregraph">
+      Loading...
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+  {{ Assets.js("assets/js/scoreboard.js") }}
+{% endblock %}

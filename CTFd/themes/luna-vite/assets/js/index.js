@@ -1,0 +1,141 @@
+import dayjs from 'dayjs';
+import duration from 'dayjs/plugin/duration';
+dayjs.extend(duration);
+
+import tdcip from '2d-canvas-image-particles/';
+import tippy from 'tippy.js';
+
+const canvas = document.getElementById('particlesCanvas');
+const titleScreen = document.getElementById('titleScreen');
+
+function initHomeCountdown() {
+    const countdown = document.getElementById('homeCountdown');
+
+    var now = dayjs();
+    var start = window.init.start && dayjs.unix(window.init.start);
+    var end = window.init.end && dayjs.unix(window.init.end);
+    var target = null;
+    var prompt = "";
+    if (start && now.isBefore(start)) {
+        target = start;
+        prompt = " to start.";
+    }
+    else if (end && now.isBefore(end)) {
+        target = end;
+        prompt = " to end.";
+    }
+    // console.log(now, start, end, now.isBefore(start), now.isBefore(end));
+
+    if (target === null) {
+        if (start === null) countdown.style.display = "none";
+        else if (end === null) countdown.innerText = "The CTF has started.";
+        else countdown.innerText = "The CTF has ended.";
+    } else {
+        var countdownInterval = null;
+        var countdownIntervalFn = () => {
+            var diffVal = target.diff(dayjs());
+            if (diffVal > 0) {
+                var diff = dayjs.duration(diffVal);
+                var diffDay = Math.floor(diff.asDays());
+                var diffHours = Math.floor(diff.asHours());
+                var diffStr = 
+                    diffDay >= 3 ?
+                    `${diffDay}d ${diff.format(`HH[h] mm[m] ss[s]`)}` : 
+                    diff.asHours() >= 1 ?
+                    `${diffHours}h ${diff.format(`mm[m] ss[s]`)}` :
+                    diff.format(`mm[m] ss's'`);
+                countdown.innerText = diffStr + prompt;
+            } else {
+                clearInterval(countdownInterval);
+                CountdownInit();
+            }
+        };
+        countdownIntervalFn();
+        countdownInterval = setInterval(countdownIntervalFn, 1000);
+    }
+}
+
+function showTitleScreen() {
+    document.body.classList.add("titleScreenVisible");
+    titleScreen.classList.remove("hidden");
+    window.localStorage.setItem("luna_showTitleScreen", "true");
+
+    const options = {
+        width: [40, 100],
+        height: [20, 50],
+        density: 0.1,
+        speed: [60, 80],
+        cursorMode: null,
+        rotationMode: RotationMode.Random,
+        velocityAngle: [180 + 40, 180 + 50],
+        rotationSpeed: [30, 100],
+        tints: [
+            new Tint('#F5C0F3', 1),
+            new Tint('#C3F5FD', 1),
+            new Tint('#FEF79F', 1),
+        ],
+        addOnClickNb: 0,
+    };
+
+    const ps = [
+        new ParticleSystem(canvas, PartileAssets.pattern1, options),
+        new ParticleSystem(canvas, PartileAssets.pattern2, options),
+        new ParticleSystem(canvas, PartileAssets.pattern3, {...options, 
+            width: [150, 200],
+            height: [75, 100],
+            tints: [
+                new Tint('#F5C0F3', 0.5),
+                new Tint('#C3F5FD', 0.5),
+                new Tint('#FEF79F', 0.5),
+                new Tint('#F5C0F3', 0.25),
+                new Tint('#C3F5FD', 0.25),
+                new Tint('#FEF79F', 0.25),
+            ],}),
+    ];
+}
+
+function hideTitleScreen(withAnimation = false) {
+    window.localStorage.setItem("luna_showTitleScreen", "false");
+    if (withAnimation) {
+        if (titleScreen.classList.contains("splash-exit")) return;
+        titleScreen.classList.add("splash-exit");
+        setTimeout(() => {
+            document.body.classList.remove("titleScreenVisible");
+            titleScreen.classList.add("hidden");
+            titleScreen.classList.remove("splash-exit");
+            ParticleSystem.destroyAll();
+        }, 2000);
+    } else {
+        document.body.classList.remove("titleScreenVisible");
+        titleScreen.classList.add("hidden");
+        ParticleSystem.destroyAll();
+    }
+}
+
+function initTitleScreen() {
+    var shouldShowTitleScreen = window.localStorage.getItem("luna_showTitleScreen");
+    if (shouldShowTitleScreen === null) {
+        shouldShowTitleScreen = "true";
+        window.localStorage.setItem("luna_showTitleScreen", "true");
+    }
+    if (shouldShowTitleScreen === "true") {
+        showTitleScreen();
+    } else {
+        hideTitleScreen(false);
+    }
+
+    titleScreen.addEventListener("click", () => hideTitleScreen(true));
+}
+
+(() => {
+    initTitleScreen();
+    initHomeCountdown();
+
+    tippy(document.querySelectorAll("[data-tippy-lyrics]"), {
+        content: LyricsContent,
+        theme: "lunaDefault",
+        allowHTML: true,
+        placement: "bottom-start",
+        arrow: false,
+    })
+})();

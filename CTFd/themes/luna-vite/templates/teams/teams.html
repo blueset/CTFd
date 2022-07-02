@@ -1,0 +1,68 @@
+{% extends "templates/framed.html" %}
+{% from "macros/input.html" import wtf_input_field %}
+
+{% block title %}Teams{% endblock %}
+{% block subtitle %}{% if q and field %}Search result{% else %}Teams list{% endif %}{% endblock %}
+
+{% block framedContent %}
+<div class="frameContentWrapper">
+  
+  {% with form = Forms.teams.PublicTeamSearchForm(field=field, q=q) %}
+    <form method="GET" class="searchForm">
+      <input type="hidden" name="field" value="name">
+      {{ wtf_input_field(form.q(class="form-control w-100", placeholder="Search")) }}
+      <button type="submit" class="button roundIconButton">
+        <iconify-icon icon="material-symbols:search" class=""></iconify-icon>
+      </button>
+    </form>
+  {% endwith %}
+
+  {% if teams.total == 0 %}
+    <div class="warning" style="justify-content: center;">No team found.</div>
+  {% else %}
+    <div class="grid">
+      {% for team in teams.items %}
+        {% if scores_visible() %}
+        <a href="{{ url_for('teams.public', team_id=team.id) }}" class="gridCell">
+        {% else %}
+        <div class="gridItem">
+        {% endif %}
+          <div class="cellHeader">{{ team.name | truncate(50) }}</div>
+          <div class="cellBody">
+            <img src="https://ui-avatars.com/api/?background=random&name={{ team.name | urlencode }}" class="cellBodyIcon">
+          </div>
+          <div class="cellFooter">
+            {{ team.members | length }} {{ team.members | length | pluralize('member', 'members') }}
+          </div>
+        {% if scores_visible() %}</a>{% else %}</div>{% endif %}
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  {% if teams.pages > 1 %}
+  <div class="pageCounter">
+    {% for page in range(1, teams.pages + 1) %}
+    <span class="pageCounterDot {% if teams.page == page %}active{% endif %}"></span>
+    {% endfor %}
+  </div>
+  {% endif %}
+</div>
+
+{% if teams.pages > 1 %}
+  {% if teams.page != 1 %}
+  <a class="pageIndicator previousPage" href="{{ prev_page }}">
+      <img src="{{ url_for('views.themes', path='img/left-chevron.svg') }}" alt="Previous page" />
+    </a>
+  {% endif %}
+
+  {% if teams.next_num %}
+    <a class="pageIndicator nextPage" href="{{ next_page }}">
+      <img src="{{ url_for('views.themes', path='img/right-chevron.svg') }}" alt="Next page" />
+    </a>
+  {% endif %}
+{% endif %}
+{% endblock %}
+
+{% block scripts %}
+  {{ super() }}
+{% endblock %}

@@ -4,6 +4,7 @@ from typing import List
 from flask import abort, render_template, request, url_for
 from flask_restx import Namespace, Resource
 from sqlalchemy import func as sa_func
+from sqlalchemy import asc
 from sqlalchemy.sql import and_, false, true
 
 from CTFd.api.v1.helpers.request import validate_args
@@ -55,7 +56,7 @@ challenges_namespace = Namespace(
 )
 
 ChallengeModel = sqlalchemy_to_pydantic(
-    Challenges, include={"solves": int, "solved_by_me": bool}
+    Challenges, include={"solves": int, "solved_by_me": bool, "is_first_solver": bool}
 )
 TransientChallengeModel = sqlalchemy_to_pydantic(Challenges, exclude=["id"])
 
@@ -108,10 +109,13 @@ def _build_solves_query(extra_filters=(), admin_view=False):
     # of correct solves made by the current user per the condition above (which
     # should probably only be 0 or 1!)
     solves_q = (
-        db.session.query(Solves.challenge_id, sa_func.count(Solves.challenge_id),)
+        db.session.query(Solves.challenge_id,
+            sa_func.count(Solves.challenge_id).over(partition_by=Solves.challenge_id),
+            sa_func.first_value(Solves.team_id).over(partition_by=Solves.challenge_id, order_by=asc(Solves.date)),)
         .join(AccountModel)
         .filter(*extra_filters, freeze_cond, exclude_solves_cond)
-        .group_by(Solves.challenge_id)
+        .distinct()
+        # .group_by(Solves.challenge_id)
     )
     # Also gather the user's solve items which can be different from above query
     # For example, even if we are a hidden user, we should see that we have solved a challenge
@@ -182,6 +186,8 @@ class ChallengeList(Resource):
                 if config.is_teams_mode() and get_current_team_attrs() is None:
                     abort(403)
 
+        team = get_current_team()
+
         # Build filtering queries
         q = query_args.pop("q", None)
         field = str(query_args.pop("field", None))
@@ -191,6 +197,7 @@ class ChallengeList(Resource):
         admin_view = is_admin() and request.args.get("view") == "admin"
 
         solve_counts = {}
+        first_solvers = {}
         # Build a query for to show challenge solve information. We only
         # give an admin view if the request argument has been provided.
         #
@@ -198,15 +205,18 @@ class ChallengeList(Resource):
         # endpoint which only needs the current user to be an admin rather
         # than also also having to provide `view=admin` as a query arg.
         solves_q, user_solves = _build_solves_query(admin_view=admin_view)
+        # print("SOLVES_Q", solves_q)
         # Aggregate the query results into the hashes defined at the top of
         # this block for later use
-        for chal_id, solve_count in solves_q:
+        for chal_id, solve_count, first_solver in solves_q:
             solve_counts[chal_id] = solve_count
+            first_solvers[chal_id] = first_solver
         if scores_visible() and accounts_visible():
             solve_count_dfl = 0
         else:
             # Empty out the solves_count if we're hiding scores/accounts
             solve_counts = {}
+            first_solvers = {}
             # This is necessary to match the challenge detail API which returns
             # `None` for the solve count if visiblity checks fail
             solve_count_dfl = None
@@ -250,6 +260,7 @@ class ChallengeList(Resource):
                                 "value": 0,
                                 "solves": None,
                                 "solved_by_me": False,
+                                "is_first_solver": False,
                                 "category": "???",
                                 "tags": [],
                                 "template": "",
@@ -274,6 +285,7 @@ class ChallengeList(Resource):
                     "value": challenge.value,
                     "solves": solve_counts.get(challenge.id, solve_count_dfl),
                     "solved_by_me": challenge.id in user_solves,
+                    "is_first_solver": team and first_solvers.get(challenge.id, None) == team.id,
                     "category": challenge.category,
                     "tags": tag_schema.dump(challenge.tags).data,
                     "template": challenge_type.templates["view"],
@@ -413,6 +425,7 @@ class Challenge(Resource):
 
         unlocked_hints = set()
         hints = []
+        team = None
         if authed():
             user = get_current_user()
             team = get_current_team()
@@ -456,13 +469,15 @@ class Challenge(Resource):
         solves_q, user_solves = _build_solves_query(
             extra_filters=(Solves.challenge_id == chal.id,)
         )
+        # print("SOLVES Q", solves_q)
         # If there are no solves for this challenge ID then we have 0 rows
         maybe_row = solves_q.first()
         if maybe_row:
-            challenge_id, solve_count = maybe_row
+            challenge_id, solve_count, first_solver = maybe_row
             solved_by_user = challenge_id in user_solves
+            is_first_solver = team and first_solver == team.id
         else:
-            solve_count, solved_by_user = 0, False
+            solve_count, solved_by_user, is_first_solver = 0, False, False
 
         # Hide solve counts if we are hiding solves/accounts
         if scores_visible() is False or accounts_visible() is False:
@@ -478,6 +493,7 @@ class Challenge(Resource):
 
         response["solves"] = solve_count
         response["solved_by_me"] = solved_by_user
+        response["is_first_solver"] = is_first_solver
         response["attempts"] = attempts
         response["files"] = files
         response["tags"] = tags
@@ -487,6 +503,7 @@ class Challenge(Resource):
             chal_class.templates["view"].lstrip("/"),
             solves=solve_count,
             solved_by_me=solved_by_user,
+            is_first_solver=is_first_solver,
             files=files,
             tags=tags,
             hints=[Hints(**h) for h in hints],

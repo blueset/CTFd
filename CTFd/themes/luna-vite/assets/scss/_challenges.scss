@@ -1,0 +1,437 @@
+$challenges-width: max(30vw, calc((100vw - $tab-width) / 5 * 2));
+
+.page-challenges-listing {
+    #mainMenuButton {
+        z-index: 10;
+    }
+}
+
+@mixin challengeScore {
+    margin: 1rem;
+    color: $accent-color-bright;
+    font-weight: 600;
+    background-color: $primary-fg;
+    font-size: 1.4rem;
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    position: relative;
+    text-align: center;
+}
+
+@mixin challengeScoreLabel {
+    content: "Points";
+    position: absolute;
+    bottom: 0;
+    font-size: 0.8rem;
+    filter: 
+        drop-shadow(0 1px 0 $primary-fg) 
+        drop-shadow(-1px 1px 0 $primary-fg) 
+        drop-shadow(1px 1px 0 $primary-fg) 
+        drop-shadow(2px 1px 0 $primary-fg) 
+        drop-shadow(-2px 1px 0 $primary-fg);
+}
+
+@mixin challengeIndicator {
+    display: inline-block;
+    width: 0.7rem;
+    height: 0.7rem;
+    background: #444463;
+    border: 2px solid #444463;
+    border-radius: 3px;
+    transform: rotate(45deg) translate(2px, 1px);
+    margin-right: 0.4rem;
+    
+    &.solved {
+        background: linear-gradient(135deg, #FFEFB5, #FFD642);
+        box-shadow: inset -1px -1px 0px 0px rgb(0 0 0 / 30%), inset 1px 1px 0px 0px rgb(255 255 255 / 75%);
+    }
+    
+    &.first {
+        background: linear-gradient(135deg, #FB9CF7, #9CBFFF, #00FCBB);
+        box-shadow: inset -1px -1px 0px 0px rgb(0 0 0 / 30%), inset 1px 1px 0px 0px rgb(255 255 255 / 75%);
+    }
+}
+
+#challengesWrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+
+    .titleContainer {
+        position: fixed;
+        top: 1.5rem;
+        left: 1.5rem;
+    }
+    @include media-lg {
+        flex-direction: row;
+
+        .tabs {
+            position: unset;
+        }
+        #challengesList {
+            width: $challenges-width;
+        }
+    }
+
+    #challengesListWrapper {
+        background-color: color.scale($primary-fg, $alpha: -20%);
+        height: 100%;
+        position: relative;
+        
+        #challengeContentErrors {
+            background-color: #fff;
+            border-radius: 1rem;
+            padding: 1rem;
+            margin: 1rem;
+
+            position: fixed;
+            left: 1rem;
+            @include media-lg {
+                top: 6rem;
+            }
+            @include media-sm {
+                bottom: 1rem;
+                right: 1rem;
+            }
+        }
+
+        &.expanded #challengeContentErrorsWrapper {
+            display: none;
+        }
+
+        @include media-sm {
+            position: absolute;
+            top: calc(12rem + 5px);
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: auto;
+        }
+    }
+
+    #challengesList {
+        height: 100%;
+        overflow-y: auto;
+
+        mask-image: linear-gradient(to bottom, #00000000 4rem, #000000ff 6rem, #000000ff 100%);
+        -webkit-mask-image: linear-gradient(to bottom, #00000000 4rem, #000000ff 6rem, #000000ff 100%);
+        
+        scrollbar-width: none;
+        &::-webkit-scrollbar {
+          display: none;
+        }
+
+        @include media-sm {
+            mask-image: none;
+            -webkit-mask-image: none;    
+        }
+    }
+
+    .noChallenge {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        box-sizing: border-box;
+
+        @include media-lg {
+            padding-top: 7rem;
+        }
+    }
+    
+    .challengeItem {
+        height: 6rem;
+        box-sizing: border-box;
+        border-bottom: 2px solid #858390;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        position: relative;
+    
+        .challengeScore {
+            @include challengeScore;
+        }
+
+        &.selected {
+            margin-top: -2px;
+            padding: 2px 0;
+            background-color: $warning-color;
+            border-bottom: none;
+            margin-bottom: 2px;
+
+            .challengeScore::after {
+                @include challengeScoreLabel;
+            }
+        }
+
+        .challengeDetails {
+            color: white;
+            font-size: 1rem;
+            width: 0;
+            flex-grow: 1;
+        }
+        
+        .challengeTitle {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .challengeTitle, .challengeCategory {
+            margin-bottom: 0.2rem;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .challengeIndicator {
+            @include challengeIndicator;
+        }
+
+        &.selected .challengeLabel {
+            display: block;
+        }
+
+        .challengeLabel {
+            display: none;
+            position: absolute;
+            top: -1rem;
+            background-color: #953D74;
+            padding: 0.25rem 0.75rem;
+            left: 0;
+            border-radius: 5px;
+            white-space: nowrap;
+            height: 28px;
+            box-sizing: border-box;
+            
+            &::after {
+                position: absolute;
+                content: "";
+                right: -20px;
+                top: 0;
+                height: 0;
+                width: 0;
+                font-size: 0;
+                line-height: 0;
+                border-top: 14px solid #953D74;
+                border-bottom: 14px solid #953D74;
+                border-left: 14px solid #953D74;
+                border-right: 14px solid transparent;
+            }
+        }
+    }
+    .loadingWrapper {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+        padding: 0 1rem 1rem 0;
+        box-sizing: border-box;
+        z-index: 10;
+    }
+    #challengesContentWrapper {
+        height: 100%;
+        position: relative;
+        z-index: 5;
+        transition: width 0.5s;
+
+        @include media-lg {
+            flex-grow: 1;
+            width: 0;
+        }
+
+        @include media-sm {
+            position: fixed;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+
+            &:not(.expanded) {
+                width: 0;
+
+                .loadingWrapper {
+                    display: none;
+                }
+            }
+        }
+
+        #challengeContent {
+            box-sizing: border-box;
+            padding: 1.5rem;
+            max-height: 100%;
+            overflow-y: auto;
+            @include subtle-scroll;
+
+            .currentChallengeInfoRow {
+                display: flex;
+                flex-direction: row;
+                gap: 1rem;
+            }
+
+            .currentChallengeScore {
+                @include challengeScore;
+                margin: 0;
+
+                &::after {
+                    @include challengeScoreLabel;
+                }
+            }
+            
+            .currentChallengeInfo {
+                flex-grow: 1;
+                width: 0;
+            }
+
+            .currentChallengeName {
+                padding-right: 5rem;
+                margin: 0.25rem 0;
+            }
+
+            .currentChallengeCategory {
+                margin: 0.25rem 0;
+            }
+            
+            .currentChallengeMeta {
+                display: flex;
+                flex-direction: row;
+                gap: 0.5rem;
+                font-size: 1rem;
+                align-items: center;
+                flex-wrap: wrap;
+                margin: 1rem 0;
+            }
+
+            .challengeIndicator {
+                @include challengeIndicator;
+
+                width: 0.8rem;
+                height: 0.8rem;
+            }
+
+            .solvers {
+                background: white;
+            }
+            
+            .flagSubmissionRow {
+                display: flex;
+                gap: 0.5rem;
+            }
+            
+            .flagSubmissionRow .inputFrame {
+                flex-grow: 1;
+                width: 0;
+            }
+
+            .flagSubmissionRow input {
+                font-family: $monospace-font;
+            }
+
+            .copyableConnection {
+                padding-left: 0.5rem;
+            }
+
+            .copyableConnection, .hints {
+                margin: 1em 0;
+            }
+
+            .connectionValue {
+                font-size: 1.2rem;
+                flex-grow: 1;
+            }
+
+            .buttonRow {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 1rem;
+                margin-bottom: 1rem;
+            }
+
+            .challenge-desc {
+                blockquote {
+                    border-left: 5px solid $accent-color;
+                    margin: 0;
+                    padding-left: 1em;
+                }
+
+                code {
+                    color: $warning-color;
+                }
+            }
+
+            .solversItemDetails {
+                margin-right: 1rem;
+            }
+            
+            @include media-lg {
+                padding-bottom: 6rem;
+
+                .solvers {
+                    position: fixed;
+                    left: $tab-width;
+                    bottom: 0;
+                    right: 0;
+                    padding: 0.5rem 1.5rem;
+                }
+            
+                .flagSubmissionRow {
+                    position: fixed;
+                    right: 1rem;
+                    left: calc($challenges-width + 13rem);
+                    bottom: 1rem;
+                }
+
+                #collapseButton {
+                    display: none;
+                }
+            }
+
+            @include media-sm {
+                background-image: var(--triangular-bg), var(--background-gradient);
+                background-size: 3.5rem, auto;
+                padding-bottom: 0;
+                min-height: 100%;
+                display: flex;
+                flex-direction: column;
+                box-sizing: border-box;
+
+                .filler {
+                    flex-grow: 1;
+                }
+
+                .currentChallengeInfoRow {
+                    margin-top: 0.5rem;
+                }
+
+                .solvers {
+                    position: sticky;
+                    left: 0;
+                    bottom: 4.5rem;
+                    right: 0;
+                    padding: 0.5rem 1rem;
+                    text-align: right;
+                    margin: 0 -1.5rem;
+                    background: linear-gradient(to bottom, transparent 50%, white 50.1%);
+                }
+            
+                .flagSubmissionRow {
+                    position: sticky;
+                    bottom: 0;
+                    background: white;
+                    padding: 0 1rem 1rem;
+                    margin: 0 -1.5rem;
+                }
+            }
+        }
+    }
+} 

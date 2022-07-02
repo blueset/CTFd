@@ -1,0 +1,50 @@
+{% extends "templates/plain.html" %}
+{% from "macros/input.html" import wtf_input_field %}
+{% from "macros/forms.html" import render_extra_fields %}
+
+{% block plainContent %}
+
+{% with form = Forms.auth.RegistrationForm() %}
+<form method="post" accept-charset="utf-8" autocomplete="off" role="form" class="modal centered fit">
+  <div class="modalHeader">Register</div>
+  <div class="modalBody formFields">
+
+    {{ form.name.label(class="chip") }}
+    {{ wtf_input_field(form.name(class="", value=name)) }}
+    <p class="formHint fieldHint">
+      Your username on the site
+    </p>
+
+    {{ form.email.label(class="chip") }}
+    {{ wtf_input_field(form.email(class="", value=email)) }}
+    <p class="formHint fieldHint">
+      Never shown to the public
+    </p>
+
+    {{ form.password.label(class="chip") }}
+    {{ wtf_input_field(form.password(class="", value=password)) }}
+    <p class="formHint fieldHint">
+      Password used to log into your account
+    </p>
+    {{ render_extra_fields(form.extra) }}
+
+    {{ form.nonce() }}
+    {% include "components/errors.html" %}
+
+    {% if Configs.tos_or_privacy %}
+    <p class="formHint">
+        By registering, you agree to the
+        <a href="{{ Configs.privacy_link }}" rel="noopener" target="_blank">privacy policy</a>
+        and <a href="{{ Configs.tos_link }}" rel="noopener" target="_blank">terms of service</a>
+    </p>
+    {% endif %}
+
+  </div>
+  <div class="modalFooter">
+    <button class="button textButton shade" type="submit">
+      <span>Register</span>
+    </button>
+  </div>
+  </form>
+{% endwith %}
+{% endblock %}

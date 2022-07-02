@@ -1,0 +1,11 @@
+<div class="challengeScore" x-text="ch.value"></div>
+<div class="challengeDetails">
+    <div class="challengeLabel" x-show="ch.label" x-text="ch.label"></div>
+    <div class="challengeTitle" x-text="ch.name"></div>
+    <div class="challengeCategory" x-text="ch.category"></div>
+    <div class="challengeDifficulty">
+        <template x-for="_ in Array(ch.difficulty)">
+            <span :class="{'challengeIndicator': true, 'first': ch.is_first_solver, 'solved': ch.solved_by_me && !ch.is_first_solver}"></span>
+        </template>
+    </div>
+</div>
