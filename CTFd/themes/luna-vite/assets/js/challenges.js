@@ -321,7 +321,7 @@ Alpine.data("ChallengeBoard", () => ({
         if (this.category === categoryName && this.filteredChallenges.length > 0) return;
         this.category = categoryName;
         this.selectedId = null;
-        window.location.hash = "";
+        history.replaceState(undefined, undefined, "#");
         this.loadChallenge(null);
         this.filteredChallenges = this.getChallenges(categoryName);
         this.repeatTimes = this.filteredChallenges.length === 0 ? 0 : Math.ceil(
@@ -340,7 +340,7 @@ Alpine.data("ChallengeBoard", () => ({
         }
         
         this.selectedId = challenge.id;
-        window.location.hash = `#${challenge.name.replace(/ /g, "-")}-${challenge.id}`;
+        history.replaceState(undefined, undefined, `#${challenge.name.replace(/ /g, "-")}-${challenge.id}`);
         // Pseudo centering transition.
         this.centerNode(idx, tgt);
         await this.loadChallenge(challenge.id);
@@ -366,7 +366,7 @@ Alpine.data("ChallengeBoard", () => ({
 
     collapseChallengeEvt() {
         this.selectedId = null;
-        window.location.hash = "";
+        history.replaceState(undefined, undefined, "#");
         setTimeout(() => this.loadChallenge(null), 500);
     },
 
