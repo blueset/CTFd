@@ -1,37 +1,26 @@
 import tippy from 'tippy.js';
 
 export function copyToClipboard($input) {
-  const tooltip = tippy($input, {
-    content: "Copied!",
-    trigger: "manual",
-    theme: "lunaDefault",
-    appendTo: "parent",
-    arrow: false,
-  });
-
-  navigator.clipboard.writeText($input.value).then(() => {
-    tooltip.show();
-    setTimeout(() => {
-      tooltip.hide();
-      tooltip.destroy();
-    }, 1500);
-  });
+  copyTextToClipboard($input.value, $input);
 }
 
 export function copyTextToClipboard(text, $input) {
   const tooltip = tippy($input, {
-    content: "Copied!",
+    content: navigator.clipboard === undefined ? "Clipboard is not available." : "Copied!",
     trigger: "manual",
     theme: "lunaDefault",
     appendTo: "parent",
     arrow: false,
   });
 
-  navigator.clipboard.writeText(text).then(() => {
+  const showTooltip = () => {
     tooltip.show();
     setTimeout(() => {
       tooltip.hide();
       tooltip.destroy();
     }, 1500);
-  });
+  };
+
+  if (navigator.clipboard === undefined) showTooltip();
+  else navigator.clipboard.writeText(text).then(showTooltip);
 }

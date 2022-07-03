@@ -18,14 +18,14 @@
     ]
   },
   "assets/js/settings.js": {
-    "file": "assets/settings.920faabe.js",
+    "file": "assets/settings.08fc3cba.js",
     "src": "assets/js/settings.js",
     "isEntry": true,
     "imports": [
       "_module.esm.860ebcbd.js",
       "_forms.8e7f478f.js",
       "assets/js/base.js",
-      "_clipboard.15f3db56.js",
+      "_clipboard.f5fd11cd.js",
       "_duration.0f45fb32.js",
       "_notificationCounter.4f4e1e9f.js",
       "_tippy.esm.6ff6f36c.js"
@@ -60,14 +60,14 @@
     ]
   },
   "assets/js/teamAdmin.js": {
-    "file": "assets/team_admin.adc5e838.js",
+    "file": "assets/team_admin.40d01119.js",
     "src": "assets/js/teamAdmin.js",
     "isEntry": true,
     "imports": [
       "_module.esm.860ebcbd.js",
       "assets/js/base.js",
       "_forms.8e7f478f.js",
-      "_clipboard.15f3db56.js",
+      "_clipboard.f5fd11cd.js",
       "_duration.0f45fb32.js",
       "_notificationCounter.4f4e1e9f.js",
       "_tippy.esm.6ff6f36c.js"
@@ -95,14 +95,14 @@
     ]
   },
   "assets/js/challenges.js": {
-    "file": "assets/challenges.622d0b33.js",
+    "file": "assets/challenges.da58ea03.js",
     "src": "assets/js/challenges.js",
     "isEntry": true,
     "imports": [
       "_module.esm.860ebcbd.js",
       "assets/js/base.js",
       "_duration.0f45fb32.js",
-      "_clipboard.15f3db56.js",
+      "_clipboard.f5fd11cd.js",
       "_notificationCounter.4f4e1e9f.js",
       "_tippy.esm.6ff6f36c.js"
     ]
@@ -145,6 +145,12 @@
       "assets/js/base.js",
       "_duration.0f45fb32.js",
       "_echarts.6b45afba.js"
+    ]
+  },
+  "_clipboard.f5fd11cd.js": {
+    "file": "assets/clipboard.f5fd11cd.js",
+    "imports": [
+      "_tippy.esm.6ff6f36c.js"
     ]
   }
 }

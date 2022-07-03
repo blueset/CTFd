@@ -108,14 +108,14 @@
             fill: url('#primaryGradient');
         }
 
-        span {
+        & > span {
             flex-grow: 1;
             flex-basis: 0;
             text-align: center;
             padding: 0.5rem 1.25rem;
         }
 
-        &.alternate span {
+        &.alternate > span {
             font-size: 1.1rem;
         }
 
@@ -125,7 +125,7 @@
             background-position-y: -20px;        
         }
 
-        &.small span {
+        &.small > span {
             padding: 0.25rem 0.5rem;
         }
     }
