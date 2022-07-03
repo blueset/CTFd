@@ -79,6 +79,10 @@ dialog.modal:not([open]) {
         padding: 2px 10px;
         @include modal-scroll;
 
+        &.text {
+            max-width: 800px;
+        }
+
         & > p:first-child {
             margin-top: 0;
         }

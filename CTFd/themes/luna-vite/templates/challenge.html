@@ -159,7 +159,7 @@
 {% for hint in hints %}
 <dialog class="modal fit hintModal" x-ref="hintDialog{{ hint.id }}" data-hint-id="{{ hint.id }}">
   <div class="modalHeader">Hint {{ loop.index }}</div>
-  <div class="modalBody">
+  <div class="modalBody text">
     {% if hint.content %}
     {{ hint.html | safe }}
     {% else %}

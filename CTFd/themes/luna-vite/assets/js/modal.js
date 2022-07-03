@@ -46,7 +46,7 @@ export function generateModal(title, content, closeCallback = () => {}) {
     modalTitle.innerHTML = title;
     modal.appendChild(modalTitle);
     const modalBody = document.createElement("div");
-    modalBody.className = "modalBody";
+    modalBody.className = "modalBody text";
     modalBody.innerHTML = content;
     modal.appendChild(modalBody);
     const modalFooter = document.createElement("div");
