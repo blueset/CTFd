@@ -1,4 +1,4 @@
-<div class="challengeScore" x-text="ch.value"></div>
+<div :class="{challengeScore: true, solves: sortOrder === 'Solves'}" x-text="sortOrder === 'Solves' ? ch.solves : ch.value"></div>
 <div class="challengeDetails">
     <div class="challengeLabel" x-show="ch.label" x-text="ch.label"></div>
     <div class="challengeTitle" x-text="ch.name"></div>

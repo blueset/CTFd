@@ -4,14 +4,17 @@
 <div id="challengesWrapper" x-data="ChallengeBoard" @load-challenges.window="loadChallengesEvt()"
 @load-challenge.window="loadChallengeEvt($event.detail)" @collapse-challenge.window="collapseChallengeEvt()">
   <div class="titleContainer">
-      <button class="button iconButton" id="backButton">
+      <button class="button iconButton shade" id="backButton">
           <iconify-icon icon="icon-park-solid:back"></iconify-icon>
       </button>
       <div class="titleGroup">
           <h1 class="title">Challenges</h1>
           <h2 class="subtitle"><span>Challenges list</span></h2>
       </div>
-  </div>
+    </div>
+    <button class="button iconButton tiny" id="settingsButton" @click="$refs.settingsModal.showModal()">
+      <iconify-icon icon="material-symbols:settings"></iconify-icon>
+    </button>
   <div class="tabs">
       <div class="filler"></div>
       <button :class="{'tab': true, 'active': category === null}" @click="setCategory(null)">All</button>
@@ -25,23 +28,25 @@
   </div>
 
   <div id="challengesListWrapper">
-    <div id="challengesList" x-ref="listNode">
+    <div id="challengesList" :class="{'scrollLoopOff': !scrollLoop, 'highContrast': highContrast}" x-ref="listNode">
       <div x-show="challenges.length < 1" class="noChallenge">No challenges found.</div>
+      <div class="nonScrollFiller" x-show="!scrollLoop"></div>
       <template x-for="(ch, idx) in repeatArray(filteredChallenges, repeatTimes)" :key="`a${idx}`">
-        <div class="challengeItem" @click="selectChallenge(idx % filteredChallenges.length, $event.target)">
+        <div :class="{'challengeItem': true, 'solved': ch.solved_by_me, 'solvedFirst': ch.is_first_solver, }" @click="selectChallenge(idx % filteredChallenges.length, $event.target)">
         {% include 'components/challengeListEntry.html' %}
         </div>
       </template>
       <template x-for="(ch, idx) in filteredChallenges" :key="`c${idx}`">
-        <div :data-is-center="idx" :data-index="idx" :class="{ 'challengeItem': true, 'selected': ch.id === selectedId }" @click="selectChallenge(idx, $event.target)">
+        <div :data-is-center="idx" :data-index="idx" :class="{ 'challengeItem': true, 'solved': ch.solved_by_me, 'solvedFirst': ch.is_first_solver, 'selected': ch.id === selectedId }" @click="selectChallenge(idx, $event.target)">
         {% include 'components/challengeListEntry.html' %}
         </div>
       </template>
       <template x-for="(ch, idx) in repeatArray(filteredChallenges, repeatTimes)" :key="`b${idx}`">
-        <div class="challengeItem" @click="selectChallenge(idx % filteredChallenges.length, $event.target)">
+        <div :class="{'challengeItem': true, 'solved': ch.solved_by_me, 'solvedFirst': ch.is_first_solver, }" @click="selectChallenge(idx % filteredChallenges.length, $event.target)">
         {% include 'components/challengeListEntry.html' %}
         </div>
       </template>
+      <div class="nonScrollFiller" x-show="!scrollLoop"></div>
     </div>
     <div x-show="!loaded" class="loadingWrapper">{% include "components/loading.html" %}</div>
     {% if infos or errors %}
@@ -54,6 +59,72 @@
   <div id="challengesContentWrapper" :class="{'expanded': selectedId !== null}" x-html="$store.challenge.data.view">
   </div>
   <div class="loadingWrapper" x-show="$store.challenge.loading">{% include "components/loading.html" %}</div>
+
+  <dialog class="modal fit" id="solvers" x-ref="settingsModal">
+    <div class="modalHeader">Challenges settings</div>
+    <div class="modalBody">
+      <h3 class="sectionTitle">Sort order</h3>
+      <div class="challengeSettings2">
+        <div class="radioGroup">
+          <input type="radio" @change="refreshSortFilter()" name="sortOrder" x-model="sortOrder" id="sortOrederDifficulty" value="Difficulty">
+          <label for="sortOrederDifficulty">Difficulty</label>
+        </div>
+        <div class="radioGroup">
+          <input type="radio" @change="refreshSortFilter()" name="sortOrder" x-model="sortOrder" id="sortOrederScore" value="Score">
+          <label for="sortOrederScore">Score</label>
+        </div>
+        <div class="radioGroup">
+          <input type="radio" @change="refreshSortFilter()" name="sortOrder" x-model="sortOrder" id="sortOrederSolves" value="Solves">
+          <label for="sortOrederSolves">Solves</label>
+        </div>
+        <div class="radioGroup">
+          <input type="radio" @change="refreshSortFilter()" name="sortOrder" x-model="sortOrder" id="sortOrederName" value="Name">
+          <label for="sortOrederName">Name</label>
+        </div>
+      </div>
+      <h3 class="sectionTitle">Filter challenges</h3>
+      <div class="challengeSettings3">
+        <div class="radioGroup">
+          <input type="radio" @change="refreshSortFilter()" name="filterCondition" x-model="filterCondition" id="filterConditionAll" value="All">
+          <label for="filterConditionAll">All</label>
+        </div>
+        <div class="radioGroup">
+          <input type="radio" @change="refreshSortFilter()" name="filterCondition" x-model="filterCondition" id="filterConditionUnsolved" value="Unsolved">
+          <label for="filterConditionUnsolved">Unsolved</label>
+        </div>
+        <div class="radioGroup">
+          <input type="radio" @change="refreshSortFilter()" name="filterCondition" x-model="filterCondition" id="filterConditionSolved" value="Solved">
+          <label for="filterConditionSolved">Solved</label>
+        </div>
+      </div>
+      <h3 class="sectionTitle">Accessibility</h3>
+      <div class="challengeSettings3">
+        <div class="chip">Scroll loop</div>
+        <div class="radioGroup">
+          <input type="radio" name="scrollLoop" x-model.number="scrollLoop" id="scrollLoopOn" value="1">
+          <label for="scrollLoopOn">On</label>
+        </div>
+        <div class="radioGroup">
+          <input type="radio" name="scrollLoop" x-model.number="scrollLoop" id="scrollLoopOff" value="0">
+          <label for="scrollLoopOff">Off</label>
+        </div>
+        <div class="chip">High contrast</div>
+        <div class="radioGroup">
+          <input type="radio" name="highContrast" x-model.number="highContrast" id="highContrastOn" value="1">
+          <label for="highContrastOn">On</label>
+        </div>
+        <div class="radioGroup">
+          <input type="radio" name="highContrast" x-model.number="highContrast" id="highContrastOff" value="0">
+          <label for="highContrastOff">Off</label>
+        </div>
+      </div>
+    </div>
+    <div class="modalFooter">
+        <button class="button textButton shade" x-ref="settingsModalClose">
+            <span>Close</span>
+        </button>
+    </div>
+  </dialog>
 </div>
 {% endblock %}
 

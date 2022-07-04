@@ -23,6 +23,21 @@ const colorMapping = {
     [window.init.themeSettings.cat_name_web]: "#c6cbfd",
 }
 
+const sortFunctions = {
+    Difficulty(a, b) {
+        return ((a.difficulty || 1) - (b.difficulty || 1)) || a.name.localeCompare(b.name);
+    },
+    Score(a, b) {
+        return ((a.value || 1) - (b.value || 1)) || a.name.localeCompare(b.name);
+    },
+    Solves(a, b) {
+        return ((a.solves || 1) - (b.solves || 1)) || a.name.localeCompare(b.name);
+    },
+    Name(a, b) {
+        return a.name.localeCompare(b.name);
+    },
+};
+
 const escapeHtml = (unsafe) => {
     return unsafe.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#039;');
 }
@@ -183,12 +198,17 @@ Alpine.data("ChallengeBoard", () => ({
     filteredChallenges: [],
     selectedId: null,
     category: null,
+    sortOrder: "Difficulty",
+    filterCondition: "All",
+    scrollLoop: 1,
+    highContrast: 0,
 
     // Infinite scroll attributes
     repeatTimes: 1,
 
     async init() {
         // console.log("Init...");
+        initModal(this.$refs.settingsModal, [], [this.$refs.settingsModalClose]);
         const initHash = window.location.hash;
         window.lastClick = 0;
         await this.loadChallenges();
@@ -260,12 +280,21 @@ Alpine.data("ChallengeBoard", () => ({
             );
         }
 
+        if (this.filterCondition === "Unsolved") {
+            challenges = challenges.filter(c => !c.solved_by_me);
+        } else if (this.filterCondition === "Solved") {
+            challenges = challenges.filter(c => c.solved_by_me);
+        }
+
         try {
-            const f = CTFd.config.themeSettings.challenge_order;
-            if (f) {
-                const getSort = new Function(`return (${f})`);
-                challenges.sort(getSort());
-            }
+            // const f = CTFd.config.themeSettings.challenge_order;
+            // if (f) {
+            //     const getSort = new Function(`return (${f})`);
+            //     challenges.sort(getSort());
+            // }
+            // console.log("Sort order", this.sortOrder);
+            challenges.sort(sortFunctions[this.sortOrder]);
+            // console.log("Sorted result", challenges.map(a => a.name));
         } catch (error) {
             // Ignore errors with theme challenge sorting
             console.log("Error running challenge_order function");
@@ -368,6 +397,20 @@ Alpine.data("ChallengeBoard", () => ({
         this.selectedId = null;
         history.replaceState(undefined, undefined, "#");
         setTimeout(() => this.loadChallenge(null), 500);
+    },
+
+    async refreshSortFilter() {
+        this.filteredChallenges = this.getChallenges(this.category);
+        var centerIdx = null;
+        if (this.selectedId !== null) {
+            centerIdx = this.filteredChallenges.findIndex((v) => v.id === this.selectedId);
+            if (centerIdx < 0) centerIdx = null;
+        }
+        this.repeatTimes = this.filteredChallenges.length === 0 ? 0 : Math.ceil(
+            window.screen.height / (this.filteredChallenges.length * itemHeight)
+        );
+        await Alpine.nextTick();
+        if (centerIdx !== null) this.centerNode(centerIdx);  
     },
 
     // Utility functions

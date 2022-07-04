@@ -109,7 +109,7 @@
   {% if solves != None %}
   <button class="button textButton shade small" {{ 'disabled' if solves == 0 else '' }} @click="showSolves()"><span>
       <span x-show="solves === null">{{ solves }} solve{{ solves|pluralize }}</span>
-      <span x-show="solves !== null"><span x-text="solves.length"></span> solve<span x-text="solves.length !== 1 ? 's' : ''"></span></span>
+      <span x-show="solves !== null"><span x-text="(solves && solves.length)"></span> solve<span x-text="(solves && solves.length !== 1) ? 's' : ''"></span></span>
   </span></button>
   {% endif %}
 </div>
@@ -134,7 +134,7 @@
 </div>
 
 <dialog class="modal fit" id="solvers" x-ref="solversModal">
-  <div class="modalHeader"><span x-text="solves.length"></span> solve<span x-text="solves.length !== 1 ? 's' : ''"></span> of {{ challenge.name }}</div>
+  <div class="modalHeader"><span x-text="solves && solves.length"></span> solve<span x-text="(solves && solves.length !== 1) ? 's' : ''"></span> of {{ challenge.name }}</div>
   <div class="modalBody">
     <template x-for="(solve, idx) in solves">
       <a :href="solve.account_url" :class="{'listItem': true, 'active': solve.account_id == (window.init.userMode == 'teams' ? window.init.teamId : window.init.userId)}">

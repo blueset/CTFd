@@ -67,6 +67,14 @@ $challenges-width: max(30vw, calc((100vw - $tab-width) / 5 * 2));
         top: 1.5rem;
         left: 1.5rem;
     }
+
+    #settingsButton {
+        position: fixed;
+        top: 1.5rem;
+        right: 6.5rem;
+        z-index: 6;
+    }
+
     @include media-lg {
         flex-direction: row;
 
@@ -130,6 +138,55 @@ $challenges-width: max(30vw, calc((100vw - $tab-width) / 5 * 2));
             mask-image: none;
             -webkit-mask-image: none;    
         }
+
+        @include media-lg {
+            .nonScrollFiller {
+                height: 6rem;
+            }
+        }
+
+        &.scrollLoopOff > .challengeItem:not([data-is-center]) {
+            display: none;
+        }
+
+        &.highContrast {
+            .challengeItem.solved {
+                background: linear-gradient(to bottom, #FFEFB5, #FFD642);
+                .challengeDetails {
+                    color: $primary-fg;
+                }
+            }
+
+            .challengeItem.solved.solvedFirst {
+                background: linear-gradient(to bottom, #FB9CF7, #9CBFFF, #00FCBB);
+                .challengeDetails {
+                    color: $primary-fg;
+                }
+            }
+        }
+
+        &, &.highContrast {
+            .challengeItem.selected {
+                &, &.solved, &.solved.solvedFirst {
+                    margin-top: -2px;
+                    padding: 2px 0;
+                    background: $warning-color;
+                    border-bottom: none;
+                    margin-bottom: 2px;
+
+                    .challengeDetails {
+                        color: #fff;
+                    }
+
+                    .challengeScore::after {
+                        @include challengeScoreLabel;
+                    }
+                    .challengeScore.solves::after {
+                        content: "Solves";
+                    }
+                }
+            }
+        }
     }
 
     .noChallenge {
@@ -146,6 +203,22 @@ $challenges-width: max(30vw, calc((100vw - $tab-width) / 5 * 2));
         }
     }
     
+    .challengeSettings2, .challengeSettings3 {
+        display: grid;
+        gap: 1rem;
+        align-items: center;
+        margin-bottom: 0.25rem;
+    }
+
+    @include media-lg {
+        .challengeSettings2 {
+            grid-template-columns: 1fr 1fr;
+        }
+        .challengeSettings3 {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+    }
+
     .challengeItem {
         height: 6rem;
         box-sizing: border-box;
@@ -159,16 +232,8 @@ $challenges-width: max(30vw, calc((100vw - $tab-width) / 5 * 2));
             @include challengeScore;
         }
 
-        &.selected {
-            margin-top: -2px;
-            padding: 2px 0;
-            background-color: $warning-color;
-            border-bottom: none;
-            margin-bottom: 2px;
-
-            .challengeScore::after {
-                @include challengeScoreLabel;
-            }
+        .challengeScore.solves {
+            font-size: 1.75rem;
         }
 
         .challengeDetails {
@@ -241,7 +306,6 @@ $challenges-width: max(30vw, calc((100vw - $tab-width) / 5 * 2));
     #challengesContentWrapper {
         height: 100%;
         position: relative;
-        z-index: 5;
         transition: width 0.5s;
 
         @include media-lg {
@@ -255,6 +319,7 @@ $challenges-width: max(30vw, calc((100vw - $tab-width) / 5 * 2));
             top: 0;
             bottom: 0;
             width: 100%;
+            z-index: 7;
 
             &:not(.expanded) {
                 width: 0;
@@ -293,8 +358,11 @@ $challenges-width: max(30vw, calc((100vw - $tab-width) / 5 * 2));
             }
 
             .currentChallengeName {
-                padding-right: 5rem;
                 margin: 0.25rem 0;
+
+                @include media-lg {
+                    padding-right: 8rem;
+                }
             }
 
             .currentChallengeCategory {
