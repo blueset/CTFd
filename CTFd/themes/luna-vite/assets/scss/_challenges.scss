@@ -145,6 +145,12 @@ $challenges-width: max(30vw, calc((100vw - $tab-width) / 5 * 2));
             }
         }
 
+        &.scrollLoopOff {
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
+        }
+
         &.scrollLoopOff > .challengeItem:not([data-is-center]) {
             display: none;
         }

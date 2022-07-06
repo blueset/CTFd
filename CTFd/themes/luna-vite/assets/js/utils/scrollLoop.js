@@ -9,47 +9,35 @@ export function scrollUpdate() {
 
     const listNode = document.getElementById("challengesList");
     const centerNodes = [...document.querySelectorAll("[data-is-center]")];
+    var centerProbe = centerNodes;
+    if (document.querySelectorAll(".challengeItem.selected").length) {
+      centerProbe = [...document.querySelectorAll(".challengeItem.selected")];
+    }
     const centerTop = Math.min(...centerNodes.map((v) => v.offsetTop));
     const centerBottom = Math.max(
-        ...centerNodes.map((v) => v.offsetTop + v.offsetHeight)
+      ...centerNodes.map((v) => v.offsetTop + v.offsetHeight)
+    );
+    const probeTop = Math.min(...centerProbe.map((v) => v.offsetTop));
+    const probeBottom = Math.max(
+      ...centerProbe.map((v) => v.offsetTop + v.offsetHeight)
     );
     const viewTop = listNode.scrollTop;
     const viewBottom = listNode.scrollTop + listNode.clientHeight;
     const viewHeight = listNode.clientHeight;
     const centerHeight = itemHeight * centerNodes.length;
 
-    if (viewBottom <= centerTop) {
-        // console.log(
-        //     `Condition: ${centerTop} ~ ${centerBottom} overlaps ${viewTop} ~ ${viewBottom}: ${(viewTop <= centerTop && centerTop <= viewBottom) ||
-        //     (viewTop <= centerBottom && centerBottom <= viewBottom) ||
-        //     (centerTop <= viewTop && viewBottom <= centerBottom)
-        //     }`
-        // );
-        // console.log(
-        //     `above: ${listNode.scrollTop} += ${Math.ceil((centerTop - viewBottom + viewHeight) / centerHeight) *
-        //     centerHeight
-        //     }`
-        // );
+    if (centerTop <= viewTop && viewBottom <= centerBottom) return;
+    
+    if (viewBottom <= probeTop) {
         setScrollOffset(
-            listNode,
-            +Math.ceil((centerTop - viewBottom + viewHeight) / centerHeight) *
+          listNode,
+          +Math.max(Math.ceil((probeTop - viewBottom + viewHeight) / centerHeight - 1), 1) *
             centerHeight
         );
-    } else if (viewTop >= centerBottom) {
-        // console.log(
-        //     `Condition: ${centerTop} ~ ${centerBottom} overlaps ${viewTop} ~ ${viewBottom}: ${(viewTop <= centerTop && centerTop <= viewBottom) ||
-        //     (viewTop <= centerBottom && centerBottom <= viewBottom) ||
-        //     (centerTop <= viewTop && viewBottom <= centerBottom)
-        //     }`
-        // );
-        // console.log(
-        //     `below: ${listNode.scrollTop} -= ${Math.ceil((viewTop - centerTop + viewHeight) / centerHeight - 1) *
-        //     centerHeight
-        //     }`
-        // );
+    } else if (viewTop >= probeBottom) {
         setScrollOffset(
-            listNode,
-            -Math.ceil((viewTop - centerTop + viewHeight) / centerHeight - 1) *
+          listNode,
+          -Math.max(Math.ceil((viewTop - probeTop + viewHeight) / centerHeight - 1), 1) *
             centerHeight
         );
     }

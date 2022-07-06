@@ -95,7 +95,7 @@
     ]
   },
   "assets/js/challenges.js": {
-    "file": "assets/challenges.0935c6fe.js",
+    "file": "assets/challenges.d63354c7.js",
     "src": "assets/js/challenges.js",
     "isEntry": true,
     "imports": [
@@ -129,22 +129,6 @@
     "file": "assets/clipboard.f5fd11cd.js",
     "imports": [
       "_tippy.esm.6ff6f36c.js"
-    ]
-  },
-  "_userscore.f07913d7.js": {
-    "file": "assets/userscore.f07913d7.js",
-    "imports": [
-      "assets/js/base.js",
-      "_index.4f897f7d.js",
-      "_duration.0f45fb32.js"
-    ]
-  },
-  "_index.4f897f7d.js": {
-    "file": "assets/index.4f897f7d.js",
-    "imports": [
-      "assets/js/base.js",
-      "_duration.0f45fb32.js",
-      "_echarts.6b45afba.js"
     ]
   },
   "_userscore.5e9bb46a.js": {
