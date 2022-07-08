@@ -360,7 +360,7 @@ Alpine.data("ChallengeBoard", () => ({
         
         // Fix refresh missing issue
         const bottom = this.$refs.bottomRepeatTemplate;
-        if (bottom && bottom.nextSibling.dataset.id !== `this.filteredChallenges[0].id`) {
+        if (bottom && bottom.nextSibling.dataset.id !== `${this.filteredChallenges[0].id}`) {
             bottom._x_runEffects()
         }
         this.centerNode(0);
