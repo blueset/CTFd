@@ -145,7 +145,7 @@ $challenges-width: max(30vw, calc((100vw - $tab-width) / 5 * 2));
             }
         }
 
-        &.loopHighlight > .challengeItem:not([data-is-center]) {
+        &.loopHighlight > .challengeItem:not([data-is-center]) > * {
             opacity: 0.25;
         }
 
