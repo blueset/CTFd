@@ -28,7 +28,7 @@
   </div>
 
   <div id="challengesListWrapper">
-    <div id="challengesList" :class="{'scrollLoopOff': !scrollLoop, 'highContrast': highContrast}" x-ref="listNode">
+    <div id="challengesList" :class="{'loopHighlight': loopHighlight, 'highContrast': highContrast}" x-ref="listNode">
       <div x-show="filteredChallenges.length < 1" class="noChallenge">No challenges found.</div>
       <template x-for="(ch, idx) in repeatArray(filteredChallenges, repeatTimes)" :key="`a${ch.id}-${idx}`">
         <div :class="{'challengeItem': true, 'solved': ch.solved_by_me, 'solvedFirst': ch.is_first_solver, }" @click="selectChallenge(idx % filteredChallenges.length, $event.target)">
@@ -97,14 +97,14 @@
       </div>
       <h3 class="sectionTitle">Accessibility</h3>
       <div class="challengeSettings3">
-        <div class="chip">Scroll loop</div>
+        <div class="chip">Loop highlight</div>
         <div class="radioGroup">
-          <input type="radio" name="scrollLoop" x-model.number="scrollLoop" id="scrollLoopOn" value="1">
-          <label for="scrollLoopOn">On</label>
+          <input type="radio" name="loopHighlight" x-model.number="loopHighlight" id="loopHighlightOn" value="1">
+          <label for="loopHighlightOn">On</label>
         </div>
         <div class="radioGroup">
-          <input type="radio" name="scrollLoop" x-model.number="scrollLoop" id="scrollLoopOff" value="0">
-          <label for="scrollLoopOff">Off</label>
+          <input type="radio" name="loopHighlight" x-model.number="loopHighlight" id="loopHighlightOff" value="0">
+          <label for="loopHighlightOff">Off</label>
         </div>
         <div class="chip">High contrast</div>
         <div class="radioGroup">

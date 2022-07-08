@@ -200,7 +200,7 @@ Alpine.data("ChallengeBoard", () => ({
     category: null,
     sortOrder: "Difficulty",
     filterCondition: "All",
-    scrollLoop: 1,
+    loopHighlight: 0,
     highContrast: 0,
 
     // Infinite scroll attributes

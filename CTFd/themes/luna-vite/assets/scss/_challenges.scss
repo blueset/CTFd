@@ -145,14 +145,8 @@ $challenges-width: max(30vw, calc((100vw - $tab-width) / 5 * 2));
             }
         }
 
-        &.scrollLoopOff {
-            justify-content: center;
-            display: flex;
-            flex-direction: column;
-        }
-
-        &.scrollLoopOff > .challengeItem:not([data-is-center]) {
-            display: none;
+        &.loopHighlight > .challengeItem:not([data-is-center]) {
+            opacity: 0.25;
         }
 
         &.highContrast {
@@ -226,7 +220,7 @@ $challenges-width: max(30vw, calc((100vw - $tab-width) / 5 * 2));
     }
 
     .challengeItem {
-        height: 6rem;
+        height: 100px;
         box-sizing: border-box;
         border-bottom: 2px solid #858390;
         display: flex;
