@@ -28,10 +28,10 @@ const sortFunctions = {
         return ((a.difficulty || 1) - (b.difficulty || 1)) || a.name.localeCompare(b.name);
     },
     Score(a, b) {
-        return ((a.value || 1) - (b.value || 1)) || a.name.localeCompare(b.name);
+        return ((a.value || 0) - (b.value || 0)) || a.name.localeCompare(b.name);
     },
     Solves(a, b) {
-        return ((a.solves || 1) - (b.solves || 1)) || a.name.localeCompare(b.name);
+        return ((a.solves || 0) - (b.solves || 0)) || a.name.localeCompare(b.name);
     },
     Name(a, b) {
         return a.name.localeCompare(b.name);
