@@ -31,17 +31,17 @@
     <div id="challengesList" :class="{'loopHighlight': loopHighlight, 'highContrast': highContrast}" x-ref="listNode">
       <div x-show="filteredChallenges.length < 1" class="noChallenge">No challenges found.</div>
       <template x-for="(ch, idx) in repeatArray(filteredChallenges, repeatTimes)" :key="`a${ch.id}-${idx}`">
-        <div :class="{'challengeItem': true, 'solved': ch.solved_by_me, 'solvedFirst': ch.is_first_solver, }" @click="selectChallenge(idx % filteredChallenges.length, $event.target)">
+        <div :data-id="ch.id" :class="{'challengeItem': true, 'solved': ch.solved_by_me, 'solvedFirst': ch.is_first_solver, }" @click="selectChallenge(idx % filteredChallenges.length, $event.target)">
         {% include 'components/challengeListEntry.html' %}
         </div>
       </template>
       <template x-for="(ch, idx) in filteredChallenges" :key="`c${ch.id}-${idx}`">
-        <div :data-is-center="idx" :data-index="idx" :class="{ 'challengeItem': true, 'solved': ch.solved_by_me, 'solvedFirst': ch.is_first_solver, 'selected': ch.id === selectedId }" @click="selectChallenge(idx, $event.target)">
+        <div :data-id="ch.id" :data-is-center="idx" :data-index="idx" :class="{ 'challengeItem': true, 'solved': ch.solved_by_me, 'solvedFirst': ch.is_first_solver, 'selected': ch.id === selectedId }" @click="selectChallenge(idx, $event.target)">
         {% include 'components/challengeListEntry.html' %}
         </div>
       </template>
-      <template x-for="(ch, idx) in repeatArray(filteredChallenges, repeatTimes)" :key="`b${ch.id}-${idx}`">
-        <div :class="{'challengeItem': true, 'solved': ch.solved_by_me, 'solvedFirst': ch.is_first_solver, }" @click="selectChallenge(idx % filteredChallenges.length, $event.target)">
+      <template x-for="(ch, idx) in repeatArray(filteredChallenges, repeatTimes)" :key="`b${ch.id}-${idx}`" x-ref="bottomRepeatTemplate">
+        <div :data-id="ch.id" :class="{'challengeItem': true, 'solved': ch.solved_by_me, 'solvedFirst': ch.is_first_solver, }" @click="selectChallenge(idx % filteredChallenges.length, $event.target)">
         {% include 'components/challengeListEntry.html' %}
         </div>
       </template>

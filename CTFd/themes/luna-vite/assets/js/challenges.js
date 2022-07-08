@@ -357,6 +357,12 @@ Alpine.data("ChallengeBoard", () => ({
             window.screen.height / (this.filteredChallenges.length * itemHeight)
         );
         await Alpine.nextTick();
+        
+        // Fix refresh missing issue
+        const bottom = this.$refs.bottomRepeatTemplate;
+        if (bottom && bottom.nextSibling.dataset.id !== `this.filteredChallenges[0].id`) {
+            bottom._x_runEffects()
+        }
         this.centerNode(0);
     },
 
