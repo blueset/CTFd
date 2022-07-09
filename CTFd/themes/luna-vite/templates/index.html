@@ -6,7 +6,9 @@
     <div class="homeContent">
         <div class="homeScreen">
             <img class="logo" src="{{ url_for('views.files', path=Configs.ctf_logo) if Configs.ctf_logo else url_for('views.themes', path='img/logos/sekai2.svg') }}" alt="Project SEKAI CTF" />
-            <div id="homeCountdown">...</div>
+            <time id="homeCountdown">...</time>
+            <time id="homeLocalDate">...</time>
+            <code><time id="homeISODate">...</time></code>
         </div>
         {{ content | safe }}
         <div class="homeFiller"></div>

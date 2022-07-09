@@ -51,6 +51,17 @@ body.titleScreenVisible {
         padding: 0.25rem 0.75rem;
     }
 
+    #homeLocalDate {
+        margin: 0.5rem 0;
+        font-weight: 550;
+        color: color.scale(#F4B73F, $lightness: -40%);
+    }
+
+    #homeISODate {
+        opacity: 0.5;
+        font-size: .85rem;
+    }
+
     .buttonOverlay {
         position: fixed;
         top: 0;

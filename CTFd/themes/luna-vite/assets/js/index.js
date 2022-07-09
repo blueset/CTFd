@@ -1,6 +1,12 @@
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration';
+import advancedFormat from 'dayjs/plugin/advancedFormat';
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
 dayjs.extend(duration);
+dayjs.extend(advancedFormat);
+dayjs.extend(utc);
+dayjs.extend(timezone);
 
 import tdcip from '2d-canvas-image-particles/';
 import tippy from 'tippy.js';
@@ -10,6 +16,8 @@ const titleScreen = document.getElementById('titleScreen');
 
 function initHomeCountdown() {
     const countdown = document.getElementById('homeCountdown');
+    const localDate = document.getElementById('homeLocalDate');
+    const isoDate = document.getElementById('homeISODate');
 
     var now = dayjs();
     var start = window.init.start && dayjs.unix(window.init.start);
@@ -18,11 +26,21 @@ function initHomeCountdown() {
     var prompt = "";
     if (start && now.isBefore(start)) {
         target = start;
-        prompt = " to start.";
+        prompt = " until start.";
     }
     else if (end && now.isBefore(end)) {
         target = end;
-        prompt = " to end.";
+        prompt = " until end.";
+    }
+    var display = target || end || start;
+    if (display) {
+        localDate.innerText = display.format("D MMM YYYY, H:mm [(]z[, UTC]Z[)]");
+        isoDate.innerText = display.toISOString();
+        localDate.dateTime = isoDate.innerText;
+        isoDate.dateTime = isoDate.innerText;
+    } else {
+        localDate.styles.display = "none";
+        isoDate.styles.display = "none";
     }
     // console.log(now, start, end, now.isBefore(start), now.isBefore(end));
 
@@ -45,9 +63,10 @@ function initHomeCountdown() {
                     `${diffHours}h ${diff.format(`mm[m] ss[s]`)}` :
                     diff.format(`mm[m] ss's'`);
                 countdown.innerText = diffStr + prompt;
+                countdown.dateTime = diff.toISOString();
             } else {
                 clearInterval(countdownInterval);
-                CountdownInit();
+                initHomeCountdown();
             }
         };
         countdownIntervalFn();

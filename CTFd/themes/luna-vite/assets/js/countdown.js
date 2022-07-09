@@ -30,6 +30,7 @@ export default function CountdownInit() {
                         `${diffHours}:${diff.format('mm:ss')}` :
                         diff.format('mm:ss');
                     countdown.innerText = diffStr;
+                    countdown.dateTime = diff.toISOString();
                 } else {
                     clearInterval(countdownInterval);
                     CountdownInit();
