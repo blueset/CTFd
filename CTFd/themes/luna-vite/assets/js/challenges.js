@@ -1,10 +1,30 @@
 import Alpine from "alpinejs";
 import CTFd from "./base";
 import dayjs from "dayjs";
+import updateLocale from "dayjs/plugin/updateLocale";
 import { Notyf } from "notyf";
 import { scrollUpdate, itemHeight } from "./utils/scrollLoop";
 import { copyTextToClipboard } from "./utils/clipboard";
 import { initModal } from "./modal";
+
+dayjs.extend(updateLocale);
+dayjs.updateLocale('en', {
+    relativeTime: {
+      future: "+%s",
+      past: "-%s",
+      s: '%s<small>s</small>',
+      m: "1<small>min</small>",
+      mm: "%d<small>mins</small>",
+      h: "1<small>hr</small>",
+      hh: "%d<small>hrs</small>",
+      d: "1<small>d</small>",
+      dd: "%d<small>d</small>",
+      M: "1<small>mth</small>",
+      MM: "%d<small>mths</small>",
+      y: "1<small>yr</small>",
+      yy: "%d<small>yrs</small>"
+    }
+});
 
 const difficultyMapping = {
     [window.init.themeSettings.tag_difficulty_1]: 1,
@@ -117,8 +137,14 @@ Alpine.data("Challenge", () => ({
 
   async showSolves() {
     this.solves = await CTFd.pages.challenge.loadSolves(this.id);
-    this.solves.forEach((solve) => {
+    this.solves.forEach((solve, idx) => {
       solve.date = dayjs(solve.date).format("D MMM YYYY, hh:mm:ss");
+      solve.timeDiff = "";
+      if (idx === 0 && window.init.start) {
+        solve.timeDiff = dayjs.duration(dayjs(solve.date).diff(dayjs.unix(window.init.start))).humanize(true);
+      } else if (idx > 0) {
+        solve.timeDiff = dayjs.duration(dayjs(solve.date).diff(dayjs(this.solves[idx-1].date))).humanize(true);
+      }
       return solve;
     });
     // new Tab(this.$el).show();

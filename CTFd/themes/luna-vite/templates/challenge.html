@@ -139,14 +139,19 @@
     <template x-for="(solve, idx) in solves">
       <a :href="solve.account_url" :class="{'listItem': true, 'active': solve.account_id == (window.init.userMode == 'teams' ? window.init.teamId : window.init.userId)}">
         <div class="listItemNumber">
-              <img :src="window.rankIcons[idx]" :alt="idx + 1" x-show="idx < 3">
-              <span x-text="idx + 1" x-show="idx >= 3"></span>
-            </div>
-            <div class="listItemDetails solversItemDetails">
-              <div class="listItemDetailsPrimary" x-text="solve.name"></div>
-              <div x-text="solve.date"></div>
-            </div>
-          </a>
+          <img :src="window.rankIcons[idx]" :alt="idx + 1" x-show="idx < 3">
+          <span x-text="idx + 1" x-show="idx >= 3"></span>
+        </div>
+        <div class="listItemDetails solversItemDetails">
+          <div class="listItemDetailsPrimary" x-text="solve.name"></div>
+          <div x-text="solve.date"></div>
+        </div>
+        <div class="listItemScore digits5">
+          <span>
+            <span class="listItemScoreValue" x-html="solve.timeDiff"></span>
+          </span>
+        </div>
+      </a>
     </template>
   </div>
   <div class="modalFooter">

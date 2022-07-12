@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 
 <head>
     <title>{{ Configs.ctf_name.replace('Sekai', 'Project SEKAI ') }}</title>
@@ -37,16 +37,7 @@
 </head>
 
 <body>
-    {% block content %}
-    {% endblock %}
-
-    {{ Assets.js("assets/js/base.js") }}
-    {% block scripts %}
-    {% endblock %}
-
-    {{ Plugins.scripts }}
-
-    <svg width="0" height="0" xmlns="http://www.w3.org/2000/svg" style="position: absolute; visibility: none;">
+    <svg width="0" height="0" xmlns="http://www.w3.org/2000/svg" style="position: absolute; visibility: hidden;">
         <filter id="primaryIconStroke" x="-20%" y="-20%" width="140%" height="140%" filterUnits="objectBoundingBox"
             primitiveUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
             <feMorphology operator="dilate" radius="2 2" x="0%" y="0%" width="100%" height="100%" in="SourceGraphic"
@@ -97,6 +88,15 @@
             <stop offset="100%" stop-color="#EE79F8" stop-opacity="1" />
         </linearGradient>
     </svg>
+
+    {% block content %}
+    {% endblock %}
+
+    {{ Assets.js("assets/js/base.js") }}
+    {% block scripts %}
+    {% endblock %}
+
+    {{ Plugins.scripts }}
 
     <style>
         body {
