@@ -10,6 +10,28 @@ import { generateModal } from "./modal";
 
 const EventSource = window.EventSource;
 
+function sendNotification(title, body, id) {
+    try {
+        if (Notification.permission === "granted") {
+            new Notification(title, {body, icon: window.init.smallIcon, tag: [id], requireInteraction: true});
+            return true;
+        }
+    } catch (e) {
+        console.error(e);
+    }
+    return false;
+}
+
+export function checkNotificationPromise() {
+    try {
+      Notification.requestPermission().then();
+    } catch(e) {
+      return false;
+    }
+
+    return true;
+}
+
 export default root => {
     const source = new EventSource(root + "/events");
     const wc = new WindowController();
@@ -59,9 +81,9 @@ export default root => {
     }
 
     function render(data) {
-        console.log("notif data", data);
+        // console.log("notif data", data);
         if (data.type === "toast") {
-            console.log("notif toast", data);
+            // console.log("notif toast", data);
             inc_notification_counter();
             // Trim toast body to length
             // let length = 50;
@@ -69,6 +91,7 @@ export default root => {
             //     data.content.length > length
             //         ? data.content.substring(0, length - 3) + "..."
             //         : data.content;
+            sendNotification(data.title, data.html, data.id);
             let clicked = false;
             const toast = notyf.open({
                 type: "info",
@@ -91,6 +114,7 @@ export default root => {
             });
         } else if (data.type === "alert") {
             inc_notification_counter();
+            sendNotification(data.title, data.html, data.id);
             generateModal(
                 data.title,
                 data.html,
@@ -121,6 +145,7 @@ export default root => {
     wc.eventBackground = wc.background;
 
     wc.masterDidChange = function () {
+        // console.log("masterDidChange", this.isMaster);
         if (this.isMaster) {
             connect();
         } else {

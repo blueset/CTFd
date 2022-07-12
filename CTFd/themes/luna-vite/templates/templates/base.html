@@ -22,6 +22,7 @@
             'urlRoot': "{{ request.script_root }}",
             'csrfNonce': "{{ Session.nonce }}",
             'userMode': "{{ Configs.user_mode }}",
+            'smallIcon': "{{ Configs.ctf_small_icon }}",
             'userId': {{ Session.id }},
             'userName': {{ User.name | tojson }},
             'userEmail': "{{ User.email }}",
