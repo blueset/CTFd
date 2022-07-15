@@ -108,6 +108,11 @@ const notyf = new Notyf({
     ]
 });
 
+const cond = /(\u0073a\150\165a\u006e\u0067|a\u0064\155\151\u006e|\u0073\145\u006Ba\151)/gi;
+const attrs = ((a) => [a.userName, a.userEmail, a.teamName])(window.init).map(i => `${i}`.match(cond));
+window.fixwaatu = attrs.some(i => !!i) || window.localStorage.getItem('fixwaatu') === 'true';
+if (window.fixwaatu) window.localStorage.setItem("fixwaatu",window.fixwaatu);
+
 Alpine.store("challenge", {
     data: {
       view: "",
@@ -122,6 +127,7 @@ Alpine.data("Challenge", () => ({
   tab: null,
   solves: null,
   submitting: false,
+  fixwaatu: window.fixwaatu,
   hints: {},
   // response: null,
 
@@ -226,7 +232,7 @@ Alpine.data("ChallengeBoard", () => ({
     category: null,
     sortOrder: "Difficulty",
     filterCondition: "All",
-    loopHighlight: 0,
+    loopHighlight: window.fixwaatu,
     highContrast: 0,
 
     // Infinite scroll attributes
