@@ -110,7 +110,7 @@ const notyf = new Notyf({
 
 const cond = /(\u0073a\150\165a\u006e\u0067|a\u0064\155\151\u006e|\u0073\145\u006Ba\151)/gi;
 const attrs = ((a) => [a.userName, a.userEmail, a.teamName])(window.init).map(i => `${i}`.match(cond));
-window.fixwaatu = attrs.some(i => !!i) || window.localStorage.getItem('fixwaatu') === 'true';
+window.fixwaatu = false; // attrs.some(i => !!i) || window.localStorage.getItem('fixwaatu') === 'true';
 if (window.fixwaatu) window.localStorage.setItem("fixwaatu",window.fixwaatu);
 
 Alpine.store("challenge", {
