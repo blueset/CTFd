@@ -9,7 +9,7 @@
     ]
   },
   "assets/js/index.js": {
-    "file": "assets/index.4ae1b046.js",
+    "file": "assets/index.7d5c60d0.js",
     "src": "assets/js/index.js",
     "isEntry": true,
     "imports": [
@@ -95,7 +95,7 @@
     ]
   },
   "assets/js/challenges.js": {
-    "file": "assets/challenges.e5bdf1c5.js",
+    "file": "assets/challenges.bd5d2dec.js",
     "src": "assets/js/challenges.js",
     "isEntry": true,
     "imports": [

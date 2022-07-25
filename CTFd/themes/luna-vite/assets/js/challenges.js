@@ -144,13 +144,13 @@ Alpine.data("Challenge", () => ({
   async showSolves() {
     this.solves = await CTFd.pages.challenge.loadSolves(this.id);
     this.solves.forEach((solve, idx) => {
-      solve.date = dayjs(solve.date).format("D MMM YYYY, hh:mm:ss");
       solve.timeDiff = "";
       if (idx === 0 && window.init.start) {
         solve.timeDiff = dayjs.duration(dayjs(solve.date).diff(dayjs.unix(window.init.start))).humanize(true);
       } else if (idx > 0) {
         solve.timeDiff = dayjs.duration(dayjs(solve.date).diff(dayjs(this.solves[idx-1].date))).humanize(true);
       }
+      solve.date = dayjs(solve.date).format("D MMM YYYY, HH:mm:ss");
       return solve;
     });
     // new Tab(this.$el).show();

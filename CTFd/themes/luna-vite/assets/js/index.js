@@ -61,7 +61,7 @@ function initHomeCountdown() {
                     `${diffDay}d ${diff.format(`HH[h] mm[m] ss[s]`)}` : 
                     diff.asHours() >= 1 ?
                     `${diffHours}h ${diff.format(`mm[m] ss[s]`)}` :
-                    diff.format(`mm[m] ss's'`);
+                    diff.format(`mm[m] ss[s]`);
                 countdown.innerText = diffStr + prompt;
                 countdown.dateTime = diff.toISOString();
             } else {
