@@ -125,6 +125,7 @@ $challenges-width: max(30vw, calc((100vw - $tab-width) / 5 * 2));
     #challengesList {
         height: 100%;
         overflow-y: auto;
+        position: relative;
 
         mask-image: linear-gradient(to bottom, #00000000 4rem, #000000ff 6rem, #000000ff 100%);
         -webkit-mask-image: linear-gradient(to bottom, #00000000 4rem, #000000ff 6rem, #000000ff 100%);
@@ -291,6 +292,17 @@ $challenges-width: max(30vw, calc((100vw - $tab-width) / 5 * 2));
                 border-right: 14px solid transparent;
             }
         }
+    }
+
+    .indicator {
+        position: sticky;
+        top: 50%;
+        color: $warning-color;
+        left: 0;
+        z-index: 5;
+        height: 0;
+        font-size: 1rem;
+        transform: translateY(-0.5rem);
     }
 
     .loadingWrapper {

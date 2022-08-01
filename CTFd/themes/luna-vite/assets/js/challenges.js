@@ -279,19 +279,24 @@ Alpine.data("ChallengeBoard", function () { return {
             }
         });
 
-        try {
-            const f = CTFd.config.themeSettings.challenge_category_order;
-            if (f) {
-                const getSort = new Function(`return (${f})`);
-                categories.sort(getSort());
-            }
-        } catch (error) {
-            // Ignore errors with theme category sorting
-            console.log("Error running challenge_category_order function");
-            console.log(error);
-        }
+        const knownCats = [
+            window.init.themeSettings.cat_name_misc,
+            window.init.themeSettings.cat_name_crypto,
+            window.init.themeSettings.cat_name_forensics,
+            window.init.themeSettings.cat_name_rev,
+            window.init.themeSettings.cat_name_pwn,
+            window.init.themeSettings.cat_name_ppc,
+            window.init.themeSettings.cat_name_web,
+        ];
 
-        return categories;
+        const sortedCategories = [
+            ...knownCats.filter((cat) => categories.includes(cat)),
+            ...categories
+                .sort((a, b) => a.localeCompare(b))
+                .filter((cat) => !knownCats.includes(cat)),
+        ];
+
+        return sortedCategories;
     },
 
     getCategoryWithIcons() {

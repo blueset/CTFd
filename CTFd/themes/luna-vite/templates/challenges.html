@@ -20,7 +20,7 @@
       <button :class="{'tab': true, 'active': category === null}" @click="setCategory(null)">All</button>
       <template x-for="(cat, idx) in getCategoryWithIcons()" :key="idx">
         <button class="tab" :class="{'tab': true, 'active': category === cat[0]}" @click="setCategory(cat[0])">
-          <img :src="cat[1]" :alt="cat[0]" x-show="cat[1] !== null" />
+          <img :src="cat[1]" :alt="cat[0]" x-show="cat[1] !== null" :title="cat[0]" />
           <span x-text="cat[0]" x-show="cat[1] === null"></span>
         </button>
       </template>
@@ -30,6 +30,7 @@
   <div id="challengesListWrapper">
     <div id="challengesList" :class="{'loopHighlight': loopHighlight, 'highContrast': highContrast}" x-ref="listNode">
       <div x-show="filteredChallenges.length < 1" class="noChallenge">No challenges found.</div>
+      <div x-show="filteredChallenges.length > 0" class="indicator">▶</div>
       <template x-for="(ch, idx) in repeatArray(filteredChallenges, repeatTimes)" :key="`a${ch.id}-${idx}`">
         <div :data-id="ch.id" :class="{'challengeItem': true, 'solved': ch.solved_by_me, 'solvedFirst': ch.is_first_solver, }" @click="selectChallenge(idx % filteredChallenges.length, $event.target)">
         {% include 'components/challengeListEntry.html' %}
