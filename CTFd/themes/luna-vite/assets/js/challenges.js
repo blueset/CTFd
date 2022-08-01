@@ -6,6 +6,9 @@ import { Notyf } from "notyf";
 import { scrollUpdate, itemHeight } from "./utils/scrollLoop";
 import { copyTextToClipboard } from "./utils/clipboard";
 import { initModal } from "./modal";
+import persist from "@alpinejs/persist";
+
+Alpine.plugin(persist);
 
 dayjs.extend(updateLocale);
 dayjs.updateLocale('en', {
@@ -32,7 +35,8 @@ const difficultyMapping = {
     [window.init.themeSettings.tag_difficulty_3]: 3,
     [window.init.themeSettings.tag_difficulty_4]: 4,
     [window.init.themeSettings.tag_difficulty_5]: 5,
-}
+};
+
 const colorMapping = {
     [window.init.themeSettings.cat_name_misc]: "#dbdbdb",
     [window.init.themeSettings.cat_name_crypto]: "#cbfdc6",
@@ -41,7 +45,7 @@ const colorMapping = {
     [window.init.themeSettings.cat_name_pwn]: "#fde2c6",
     [window.init.themeSettings.cat_name_ppc]: "#f8fdc6",
     [window.init.themeSettings.cat_name_web]: "#c6cbfd",
-}
+};
 
 const sortFunctions = {
     Difficulty(a, b) {
@@ -108,10 +112,6 @@ const notyf = new Notyf({
     ]
 });
 
-const cond = /(\u0073a\150\165a\u006e\u0067|a\u0064\155\151\u006e|\u0073\145\u006Ba\151)/gi;
-const attrs = ((a) => [a.userName, a.userEmail, a.teamName])(window.init).map(i => `${i}`.match(cond));
-window.fixwaatu = false; // attrs.some(i => !!i) || window.localStorage.getItem('fixwaatu') === 'true';
-if (window.fixwaatu) window.localStorage.setItem("fixwaatu",window.fixwaatu);
 
 Alpine.store("challenge", {
     data: {
@@ -127,7 +127,6 @@ Alpine.data("Challenge", () => ({
   tab: null,
   solves: null,
   submitting: false,
-  fixwaatu: window.fixwaatu,
   hints: {},
   // response: null,
 
@@ -224,16 +223,17 @@ Alpine.data("Challenge", () => ({
   },
 }));
 
-Alpine.data("ChallengeBoard", () => ({
+Alpine.data("ChallengeBoard", function () { return {
     loaded: false,
     challenges: [],
     filteredChallenges: [],
     selectedId: null,
     category: null,
-    sortOrder: "Difficulty",
-    filterCondition: "All",
-    loopHighlight: window.fixwaatu,
-    highContrast: 0,
+    oobe: this.$persist(true),
+    sortOrder: this.$persist("Difficulty"),
+    filterCondition: this.$persist("All"),
+    loopHighlight: this.$persist(false),
+    highContrast: this.$persist(false),
 
     // Infinite scroll attributes
     repeatTimes: 1,
@@ -253,6 +253,10 @@ Alpine.data("ChallengeBoard", () => ({
 
         if (initHash.length > 0) {
             await this.loadChalByName(decodeURIComponent(initHash.substring(1)));
+        }
+
+        if (this.oobe) {
+            this.$refs.oobeModal.showModal();
         }
     },
 
@@ -482,6 +486,21 @@ Alpine.data("ChallengeBoard", () => ({
         }
         document.documentElement.style.setProperty("--background-gradient", val);
     },
-}));
+
+    oobeUpdate(value) {
+        this.oobe = false;
+        this.loopHighlight = value;
+        const modalNode = this.$refs.oobeModal;
+
+        const modalHideAnimationEndCallback = () => {
+            modalNode.classList.remove('hide');
+            modalNode.close();
+            modalNode.removeEventListener('webkitAnimationEnd', modalHideAnimationEndCallback, false);
+        }
+
+        modalNode.classList.add('hide');
+        modalNode.addEventListener('webkitAnimationEnd', modalHideAnimationEndCallback, false);
+    },
+};});
 
 Alpine.start();

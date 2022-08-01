@@ -58,7 +58,7 @@
   </div>
   <div class="loadingWrapper" x-show="$store.challenge.loading">{% include "components/loading.html" %}</div>
 
-  <dialog class="modal fit" id="solvers" x-ref="settingsModal">
+  <dialog class="modal fit" id="challengesSettings" x-ref="settingsModal">
     <div class="modalHeader">Challenges settings</div>
     <div class="modalBody">
       <h3 class="sectionTitle">Sort order</h3>
@@ -97,7 +97,7 @@
       </div>
       <h3 class="sectionTitle">Accessibility</h3>
       <div class="challengeSettings3">
-        <div class="chip">Loop highlight</div>
+        <div class="chip">Focus mode</div>
         <div class="radioGroup">
           <input type="radio" name="loopHighlight" x-model.number="loopHighlight" id="loopHighlightOn" value="1">
           <label for="loopHighlightOn">On</label>
@@ -123,11 +123,35 @@
         </button>
     </div>
   </dialog>
+
+  <dialog class="modal fit" id="oobeModal" x-ref="oobeModal">
+    <div class="modalHeader">Choose your style</div>
+    <div class="modalBody modeSelection">
+      <button class="button" id="sekaiMode" @click="oobeUpdate(false)">
+        <iconify-icon icon="fluent:music-note-2-24-filled"></iconify-icon>
+        <div class="subName" lang="ja">セカイモード</div>  
+        <div class="mainName">SEKAI mode</div>
+      </button>
+      <button class="button" id="focusMode" @click="oobeUpdate(true)">
+        <iconify-icon icon="carbon:accessibility-color"></iconify-icon>
+        <div class="subName" lang="ja">フォーカスモード</div>  
+        <div class="mainName">Focus mode</div>
+      </button>
+    </div>
+    <div class="modalFooter">
+      <div class="formHint">You can still change your settings later.</div>
+    </div>
+  </dialog>
 </div>
 {% endblock %}
 
 {% block scripts %}
 {{ super() }}
+<style>
+body {
+    --popout: url("{{ url_for('views.themes', path='img/popout.svg') }}");
+}
+</style>
 <script>
   window.tagImages = {
     "misc": "{{ url_for('views.themes', path='img/categories/Misc.svg') }}",

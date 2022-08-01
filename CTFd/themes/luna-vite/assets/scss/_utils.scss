@@ -92,7 +92,7 @@ $tab-height: 5rem;
 }
 
 @mixin media-lg {
-    @media (min-width: 768px) {
+    @media (min-width: 769px) {
         @content;
     }
 }

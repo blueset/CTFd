@@ -292,6 +292,7 @@ $challenges-width: max(30vw, calc((100vw - $tab-width) / 5 * 2));
             }
         }
     }
+
     .loadingWrapper {
         position: absolute;
         bottom: 0;
@@ -303,6 +304,7 @@ $challenges-width: max(30vw, calc((100vw - $tab-width) / 5 * 2));
         box-sizing: border-box;
         z-index: 10;
     }
+
     #challengesContentWrapper {
         height: 100%;
         position: relative;
@@ -500,6 +502,80 @@ $challenges-width: max(30vw, calc((100vw - $tab-width) / 5 * 2));
                     margin: 0 -1.5rem;
                 }
             }
+        }
+    }
+
+    .modeSelection {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        align-items: center;
+        position: relative;
+        overflow: initial;
+
+        @include media-sm {
+            flex-direction: column;
+        }
+
+        &::before {
+            content: "Recommended";
+            position: absolute;
+            width: 160px;
+            height: 40px;
+            background-image: var(--popout);
+            background-size: contain;
+            background-repeat: no-repeat;
+            color: #fff;
+            font-size: 1rem;
+            left: 1rem;
+            top: 0;
+            padding: 0.3rem 0 0;
+            text-align: center;
+            z-index: 5;
+            animation: popOutBounce ease-in-out 2s infinite alternate;
+        }
+
+        @keyframes popOutBounce {
+            0%   { transform: translateY(-20px); }
+            100% { transform: translateY(-10px); }
+        }
+
+        button {
+            width: 15rem;
+            height: 11rem;
+            background-position-y: -10px, center;
+            background-size: auto 80px, 100% 100%;
+            background-position-x: center;
+            background-repeat: repeat-x;
+
+            .mainName {
+                font-weight: 500;
+                font-size: 1.5rem;
+            }
+            
+            .subName {
+                font-family: 'Source Han Sans', 'Noto Sans CJK', 'HiraginoSans-W8', 'Yu Gothic', $font-family;
+                font-weight: 800;
+                opacity: 0.5;
+            }
+
+            iconify-icon {
+                font-size: 5rem;
+                margin-bottom: 0.5rem;
+            }
+        }
+
+        #sekaiMode {
+            background-image: var(--halftone-bg-white);
+            background-color: #00FFDD;
+            border-color: #CBFFF7;
+            position: relative;
+        }
+
+        #focusMode {
+            background-image: var(--halftone-bg-white-25);
+            background-color: #FF74CD;
+            border-color: #FFA3DD;
         }
     }
 } 
