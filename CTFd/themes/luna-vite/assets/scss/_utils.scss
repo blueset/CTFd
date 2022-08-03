@@ -13,6 +13,7 @@ $tab-width: 12rem;
 $tab-height: 5rem;
 
 @mixin subtle-scroll {
+    overflow: auto;
     overflow: overlay;
     scrollbar-width: thin;
     --scrollbar-color: #00000000;

@@ -202,11 +202,13 @@
 
             @include media-lg {
                 flex-direction: column;
+                overflow-y: auto;
                 overflow-y: overlay;
             }
 
             @include media-sm {
                 flex-direction: row;
+                overflow-x: auto;
                 overflow-x: overlay;
             }
         }

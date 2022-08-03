@@ -1,3 +1,5 @@
+import { debounce } from "lodash";
+
 export const itemHeight = 100;
 
 function setScrollOffset(node, val) {
@@ -63,5 +65,5 @@ export function scrollUpdate() {
 const isWinGecko = !!/Windows NT .* rv:([^\)]+)\) Gecko\/\d{8}/.test(navigator.userAgent);
 
 if (isWinGecko) {
-    scrollUpdate = _.debounce(scrollUpdate, 150);
+    scrollUpdate = debounce(scrollUpdate, 150);
 }

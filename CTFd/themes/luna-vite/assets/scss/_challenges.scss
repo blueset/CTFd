@@ -497,7 +497,7 @@ $challenges-width: max(30vw, calc((100vw - $tab-width) / 5 * 2));
 
                 .solvers {
                     position: sticky;
-                    left: 0;
+                    left: -2rem;
                     bottom: 4.5rem;
                     right: 0;
                     padding: 0.5rem 1rem;
@@ -539,7 +539,6 @@ $challenges-width: max(30vw, calc((100vw - $tab-width) / 5 * 2));
             background-repeat: no-repeat;
             color: #fff;
             font-size: 1rem;
-            left: 1rem;
             top: 0;
             padding: 0.3rem 0 0;
             text-align: center;
@@ -569,6 +568,7 @@ $challenges-width: max(30vw, calc((100vw - $tab-width) / 5 * 2));
                 font-family: 'Source Han Sans', 'Noto Sans CJK', 'HiraginoSans-W8', 'Yu Gothic', $font-family;
                 font-weight: 800;
                 opacity: 0.5;
+                font-feature-settings: "palt" 1;
             }
 
             iconify-icon {
@@ -586,8 +586,8 @@ $challenges-width: max(30vw, calc((100vw - $tab-width) / 5 * 2));
 
         #focusMode {
             background-image: var(--halftone-bg-white-25);
-            background-color: #FF74CD;
-            border-color: #FFA3DD;
+            background-color: #FEA48F;
+            border-color: #FFD1C7;
         }
     }
 } 
