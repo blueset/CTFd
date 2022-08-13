@@ -1,8 +1,8 @@
-<button class="button shade iconButton menuButton buttonNotification" id="mainMenuButton">
+<button class="button shade iconButton menuButton buttonNotification" id="mainMenuButton" aria-label="Main menu" title="Main Menu">
     <iconify-icon icon="ic:baseline-menu"></iconify-icon>
 </button>
 <dialog class="modal fit" id="mainMenuModal">
-    <div class="modalHeader">Menu</div>
+    <h2 class="modalHeader" tabindex="0">Menu</h2>
     <div class="modalBody">
         {% for page in Plugins.user_menu_pages %}
             <a class="button textButton shade primaryIcon" href="{{ page.route }}">

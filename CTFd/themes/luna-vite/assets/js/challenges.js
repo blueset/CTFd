@@ -366,7 +366,7 @@ Alpine.data("ChallengeBoard", function () { return {
 
                 // nextTick is required here because we're working in a callback
                 Alpine.nextTick(() => {
-                    // Modal.getOrCreateInstance("[x-ref='challengeWindow']").show();
+                    this.$refs.challengesContentWrapper.focus();
                 });
             });
         }

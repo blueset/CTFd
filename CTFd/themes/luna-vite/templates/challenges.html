@@ -4,7 +4,7 @@
 <div id="challengesWrapper" x-data="ChallengeBoard" @load-challenges.window="loadChallengesEvt()"
 @load-challenge.window="loadChallengeEvt($event.detail)" @collapse-challenge.window="collapseChallengeEvt()">
   <div class="titleContainer">
-      <button class="button iconButton shade" id="backButton">
+      <button class="button iconButton shade" id="backButton" aria-label="Go back" title="Go back">
           <iconify-icon icon="icon-park-solid:back"></iconify-icon>
       </button>
       <div class="titleGroup">
@@ -12,37 +12,39 @@
           <h2 class="subtitle"><span>Challenges list</span></h2>
       </div>
     </div>
-    <button class="button iconButton tiny" id="settingsButton" @click="$refs.settingsModal.showModal()">
+    <button class="button iconButton tiny" id="settingsButton" @click="$refs.settingsModal.showModal()" aria-label="Challenge settings" title="Challenge settings">
       <iconify-icon icon="material-symbols:settings"></iconify-icon>
     </button>
-  <div class="tabs">
+  <nav class="tabs">
       <div class="filler"></div>
-      <button :class="{'tab': true, 'active': category === null}" @click="setCategory(null)">All</button>
+      <button :class="{'tab': true, 'active': category === null}" @click="setCategory(null)" aria-label="All challenges">All</button>
       <template x-for="(cat, idx) in getCategoryWithIcons()" :key="idx">
-        <button class="tab" :class="{'tab': true, 'active': category === cat[0]}" @click="setCategory(cat[0])">
-          <img :src="cat[1]" :alt="cat[0]" x-show="cat[1] !== null" :title="cat[0]" />
+        <button class="tab" :class="{'tab': true, 'active': category === cat[0]}" @click="setCategory(cat[0])" :aria-label="`${cat[0]}, category`">
+          <img :src="cat[1]" :alt="cat[0]" x-show="cat[1] !== null" :title="cat[0]" aria-hidden="true"/>
           <span x-text="cat[0]" x-show="cat[1] === null"></span>
         </button>
       </template>
       <div class="filler"></div>
-  </div>
+  </nav>
 
   <div id="challengesListWrapper">
-    <div id="challengesList" :class="{'loopHighlight': loopHighlight, 'highContrast': highContrast}" x-ref="listNode">
+    <div id="challengesList" :class="{'loopHighlight': loopHighlight, 'highContrast': highContrast}" x-ref="listNode" role="list" aria-label="Challenges list">
       <div x-show="filteredChallenges.length < 1" class="noChallenge">No challenges found.</div>
       <div x-show="filteredChallenges.length > 0" class="indicator">▶</div>
       <template x-for="(ch, idx) in repeatArray(filteredChallenges, repeatTimes)" :key="`a${ch.id}-${idx}`">
-        <div :data-id="ch.id" :class="{'challengeItem': true, 'solved': ch.solved_by_me, 'solvedFirst': ch.is_first_solver, }" @click="selectChallenge(idx % filteredChallenges.length, $event.target)">
+        <div :data-id="ch.id" :class="{'challengeItem': true, 'solved': ch.solved_by_me, 'solvedFirst': ch.is_first_solver, }" @click="selectChallenge(idx % filteredChallenges.length, $event.target)" aria-hidden="true">
         {% include 'components/challengeListEntry.html' %}
         </div>
       </template>
       <template x-for="(ch, idx) in filteredChallenges" :key="`c${ch.id}-${idx}`">
-        <div :data-id="ch.id" :data-is-center="idx" :data-index="idx" :class="{ 'challengeItem': true, 'solved': ch.solved_by_me, 'solvedFirst': ch.is_first_solver, 'selected': ch.id === selectedId }" @click="selectChallenge(idx, $event.target)">
+        <button :data-id="ch.id" :data-is-center="idx" :data-index="idx" 
+          :class="{ 'challengeItem': true, 'solved': ch.solved_by_me, 'solvedFirst': ch.is_first_solver, 'selected': ch.id === selectedId }" 
+          @click="selectChallenge(idx, $event.target)" role="listitem" :aria-label="`${ch.name}, ${ch.value} points, category ${ch.category}, difficulty level ${ch.difficulty}, ` + (ch.is_first_solver ? 'you are the first solver' : ch.solved_by_me ? 'solved' : 'unsolved')"> 
         {% include 'components/challengeListEntry.html' %}
-        </div>
+        </button>
       </template>
       <template x-for="(ch, idx) in repeatArray(filteredChallenges, repeatTimes)" :key="`b${ch.id}-${idx}`" x-ref="bottomRepeatTemplate">
-        <div :data-id="ch.id" :class="{'challengeItem': true, 'solved': ch.solved_by_me, 'solvedFirst': ch.is_first_solver, }" @click="selectChallenge(idx % filteredChallenges.length, $event.target)">
+        <div :data-id="ch.id" :class="{'challengeItem': true, 'solved': ch.solved_by_me, 'solvedFirst': ch.is_first_solver, }" @click="selectChallenge(idx % filteredChallenges.length, $event.target)" aria-hidden="true">
         {% include 'components/challengeListEntry.html' %}
         </div>
       </template>
@@ -53,14 +55,14 @@
         {% include "components/errors.html" %}
       </div>
     {% endif %}
-  </div>
+    </div>
 
-  <div id="challengesContentWrapper" :class="{'expanded': selectedId !== null}" x-html="$store.challenge.data.view">
-  </div>
+  <article id="challengesContentWrapper" :class="{'expanded': selectedId !== null}" x-ref="challengesContentWrapper" tabindex="0" x-html="$store.challenge.data.view">
+  </article>
   <div class="loadingWrapper" x-show="$store.challenge.loading">{% include "components/loading.html" %}</div>
 
   <dialog class="modal fit" id="challengesSettings" x-ref="settingsModal">
-    <div class="modalHeader">Challenges settings</div>
+    <h2 class="modalHeader" tabindex="0">Challenges settings</h2>
     <div class="modalBody">
       <h3 class="sectionTitle">Sort order</h3>
       <div class="challengeSettings2">
@@ -126,7 +128,7 @@
   </dialog>
 
   <dialog class="modal fit" id="oobeModal" x-ref="oobeModal">
-    <div class="modalHeader">Select a style</div>
+    <h2 class="modalHeader" tabindex="0">Select a style</h2>
     <div class="modalBody modeSelection">
       <button class="button" id="sekaiMode" @click="oobeUpdate(false)">
         <iconify-icon icon="fluent:music-note-2-24-filled"></iconify-icon>

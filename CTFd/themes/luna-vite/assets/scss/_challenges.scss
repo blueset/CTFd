@@ -221,10 +221,16 @@ $challenges-width: max(30vw, calc((100vw - $tab-width) / 5 * 2));
     }
 
     .challengeItem {
+        background: none;
+        border: none;
+        width: 100%;
+        text-align: start;
         height: 100px;
         box-sizing: border-box;
         border-bottom: 2px solid #858390;
         display: flex;
+        font-family: $font-family;
+        padding: 0;
         flex-direction: row;
         align-items: center;
         position: relative;
@@ -381,6 +387,7 @@ $challenges-width: max(30vw, calc((100vw - $tab-width) / 5 * 2));
 
             .currentChallengeCategory {
                 margin: 0.25rem 0;
+                font-weight: 600;
             }
             
             .currentChallengeMeta {

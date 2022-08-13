@@ -3,7 +3,7 @@
 {% block plainContent %}
 {% with form = Forms.auth.ConfirmForm() %}
 <form method="POST" action="{{ url_for('auth.confirm') }}" open class="modal centered fit">
-  <div class="modalHeader">Confirm</div>
+  <h2 class="modalHeader" tabindex="0">Confirm</h2>
   <div class="modalBody" style="display: flex; flex-direction: column; gap: 1rem;">
 
     <div>

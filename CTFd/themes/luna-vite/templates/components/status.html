@@ -4,15 +4,15 @@
 {% set status_name = get_current_user_attrs().name if get_config("user_mode") == "users" else get_current_team_attrs().name %}
 <div class="status">
     <span class="statusItem" id="statusName">
-        <iconify-icon icon="material-symbols:group" inline="true"></iconify-icon>
+        <iconify-icon icon="material-symbols:group" inline="true" title="Participating as"></iconify-icon>
         <span class="statusValue">{{ status_name | truncate(50) }}</span>
     </span>
     <span class="statusItem" id="statusScore">
-        <iconify-icon icon="mdi:counter" inline="true"></iconify-icon>
+        <iconify-icon icon="mdi:counter" inline="true" title="Total score"></iconify-icon>
         <span class="statusValue">{{ status_score or 0 }}</span>
     </span>
     <span class="statusItem" id="statusPlace">
-        <iconify-icon icon="mdi:podium" inline="true"></iconify-icon>
+        <iconify-icon icon="mdi:podium" inline="true" title="Standing"></iconify-icon>
         <span class="statusValue">{% if status_place %}{{ status_place[:-2] }}<sup>{{ status_place[-2:] }}</sup>{% else %}N/A{% endif %}</span>
     </span>
     <time id="statusCountdown">...</time>

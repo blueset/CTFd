@@ -219,7 +219,7 @@
 
 
 <dialog class="modal fit" id="teamEditModal" x-data="TeamEditModal">
-  <div class="modalHeader">Edit team</div>
+  <h2 class="modalHeader" tabindex="0">Edit team</h2>
   <form id="teamEditForm" class="modalBody formFields" method="POST" @submit.prevent="updateProfile()">
     {% with form = Forms.teams.TeamSettingsForm(obj=team) %}
 
@@ -261,7 +261,7 @@
 
 <dialog class="modal fit" id="teamCaptainModal" x-data="TeamCaptainModal">
   {% with form = Forms.teams.TeamCaptainForm(captain_id=team.captain_id) %}
-  <div class="modalHeader">Choose captain</div>
+  <h2 class="modalHeader" tabindex="0">Choose captain</h2>
   <form id="teamCaptainForm" method="POST" @submit.prevent="updateCaptain()" class="modalBody formFields">
     {{ form.captain_id.label(class="chip") }}
     {% for member in team.members %}
@@ -294,7 +294,7 @@
 </dialog>
 
 <dialog class="modal fit" id="teamInviteModal" x-data="TeamInviteModal">
-  <div class="modalHeader">Invite users</div>
+  <h2 class="modalHeader" tabindex="0">Invite users</h2>
   <div class="modalBody formFields">
   {% with form = Forms.teams.TeamInviteForm() %}
 
@@ -321,7 +321,7 @@
 </dialog>
 
 <dialog class="modal fit" id="teamDisbandModal" x-data="TeamDisbandModal">
-  <div class="modalHeader">Disband team?</div>
+  <h2 class="modalHeader" tabindex="0">Disband team?</h2>
   <div class="modalBody">
     <div class="warning">Are you sure you want to disband your team?</div>
     <template x-for="(msg, idx) in errors" :key="idx">

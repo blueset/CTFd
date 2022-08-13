@@ -5,7 +5,7 @@
 
 {% with form = Forms.auth.LoginForm() %}
 <form method="post" accept-charset="utf-8" autocomplete="off" class="modal centered fit">
-  <div class="modalHeader">Log in</div>
+  <h2 class="modalHeader" tabindex="0">Log in</h2>
   <div class="modalBody formFields">
 
     {{ form.name.label(class="chip") }}
