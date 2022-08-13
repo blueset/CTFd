@@ -146,10 +146,5 @@
       "_duration.e8546e45.js",
       "_echarts.6b45afba.js"
     ]
-  },
-  "assets/scss/main.scss": {
-    "file": "assets/main.ab64709a.js",
-    "src": "assets/scss/main.scss",
-    "isEntry": true
   }
 }
