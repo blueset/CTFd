@@ -1,89 +1,89 @@
 {
   "assets/js/base.js": {
-    "file": "assets/base.c80997e6.js",
+    "file": "assets/base.b89ead4b.js",
     "src": "assets/js/base.js",
     "isEntry": true,
     "imports": [
-      "_duration.e8546e45.js",
+      "_duration.c050dc80.js",
       "_notificationCounter.4f4e1e9f.js"
     ]
   },
   "assets/js/index.js": {
-    "file": "assets/index.7d5c60d0.js",
+    "file": "assets/index.4129c73e.js",
     "src": "assets/js/index.js",
     "isEntry": true,
     "imports": [
-      "_duration.e8546e45.js",
-      "_tippy.esm.6ff6f36c.js"
+      "_duration.c050dc80.js",
+      "_tippy.esm.67f4ecc9.js"
     ]
   },
   "assets/js/settings.js": {
-    "file": "assets/settings.92f8a01e.js",
+    "file": "assets/settings.1cf69738.js",
     "src": "assets/js/settings.js",
     "isEntry": true,
     "imports": [
       "_module.esm.860ebcbd.js",
       "_forms.8e7f478f.js",
       "assets/js/base.js",
-      "_clipboard.f5fd11cd.js",
-      "_duration.e8546e45.js",
+      "_clipboard.20c34662.js",
+      "_duration.c050dc80.js",
       "_notificationCounter.4f4e1e9f.js",
-      "_tippy.esm.6ff6f36c.js"
+      "_tippy.esm.67f4ecc9.js"
     ]
   },
   "assets/js/userProfile.js": {
-    "file": "assets/user_profile.6c311164.js",
+    "file": "assets/user_profile.97e46438.js",
     "src": "assets/js/userProfile.js",
     "isEntry": true,
     "imports": [
       "_module.esm.860ebcbd.js",
       "assets/js/base.js",
-      "_userscore.8d53dd61.js",
-      "_index.189f591f.js",
-      "_duration.e8546e45.js",
+      "_userscore.4c4d7b02.js",
+      "_index.4fe5ed34.js",
+      "_duration.c050dc80.js",
       "_notificationCounter.4f4e1e9f.js",
-      "_echarts.6b45afba.js"
+      "_echarts.879a849a.js"
     ]
   },
   "assets/js/teamProfile.js": {
-    "file": "assets/team_profile.ccb7fc4a.js",
+    "file": "assets/team_profile.3ef0f783.js",
     "src": "assets/js/teamProfile.js",
     "isEntry": true,
     "imports": [
       "_module.esm.860ebcbd.js",
       "assets/js/base.js",
-      "_userscore.8d53dd61.js",
-      "_index.189f591f.js",
-      "_duration.e8546e45.js",
+      "_userscore.4c4d7b02.js",
+      "_index.4fe5ed34.js",
+      "_duration.c050dc80.js",
       "_notificationCounter.4f4e1e9f.js",
-      "_echarts.6b45afba.js"
+      "_echarts.879a849a.js"
     ]
   },
   "assets/js/teamAdmin.js": {
-    "file": "assets/team_admin.c53f930a.js",
+    "file": "assets/team_admin.3f3f1d34.js",
     "src": "assets/js/teamAdmin.js",
     "isEntry": true,
     "imports": [
       "_module.esm.860ebcbd.js",
       "assets/js/base.js",
       "_forms.8e7f478f.js",
-      "_clipboard.f5fd11cd.js",
-      "_duration.e8546e45.js",
+      "_clipboard.20c34662.js",
+      "_duration.c050dc80.js",
       "_notificationCounter.4f4e1e9f.js",
-      "_tippy.esm.6ff6f36c.js"
+      "_tippy.esm.67f4ecc9.js"
     ]
   },
   "assets/js/scoreboard.js": {
-    "file": "assets/scoreboard.2a3b2c22.js",
+    "file": "assets/scoreboard.4bf9f366.js",
     "src": "assets/js/scoreboard.js",
     "isEntry": true,
     "imports": [
       "_module.esm.860ebcbd.js",
       "assets/js/base.js",
-      "_index.189f591f.js",
-      "_duration.e8546e45.js",
+      "_index.4fe5ed34.js",
+      "_duration.c050dc80.js",
       "_notificationCounter.4f4e1e9f.js",
-      "_echarts.6b45afba.js"
+      "_echarts.879a849a.js"
     ]
   },
   "assets/js/notifications.js": {
@@ -95,29 +95,29 @@
     ]
   },
   "assets/js/challenges.js": {
-    "file": "assets/challenges.3ac30b87.js",
+    "file": "assets/challenges.93cb98bc.js",
     "src": "assets/js/challenges.js",
     "isEntry": true,
     "imports": [
       "_module.esm.860ebcbd.js",
       "assets/js/base.js",
-      "_duration.e8546e45.js",
-      "_clipboard.f5fd11cd.js",
+      "_duration.c050dc80.js",
+      "_clipboard.20c34662.js",
       "_notificationCounter.4f4e1e9f.js",
-      "_tippy.esm.6ff6f36c.js"
+      "_tippy.esm.67f4ecc9.js"
     ]
   },
-  "_echarts.6b45afba.js": {
-    "file": "assets/echarts.6b45afba.js"
+  "_echarts.879a849a.js": {
+    "file": "assets/echarts.879a849a.js"
   },
-  "_duration.e8546e45.js": {
-    "file": "assets/duration.e8546e45.js"
+  "_duration.c050dc80.js": {
+    "file": "assets/duration.c050dc80.js"
   },
   "_notificationCounter.4f4e1e9f.js": {
     "file": "assets/notificationCounter.4f4e1e9f.js"
   },
-  "_tippy.esm.6ff6f36c.js": {
-    "file": "assets/tippy.esm.6ff6f36c.js"
+  "_tippy.esm.67f4ecc9.js": {
+    "file": "assets/tippy.esm.67f4ecc9.js"
   },
   "_module.esm.860ebcbd.js": {
     "file": "assets/module.esm.860ebcbd.js"
@@ -125,26 +125,31 @@
   "_forms.8e7f478f.js": {
     "file": "assets/forms.8e7f478f.js"
   },
-  "_clipboard.f5fd11cd.js": {
-    "file": "assets/clipboard.f5fd11cd.js",
+  "_clipboard.20c34662.js": {
+    "file": "assets/clipboard.20c34662.js",
     "imports": [
-      "_tippy.esm.6ff6f36c.js"
+      "_tippy.esm.67f4ecc9.js"
     ]
   },
-  "_userscore.8d53dd61.js": {
-    "file": "assets/userscore.8d53dd61.js",
+  "_userscore.4c4d7b02.js": {
+    "file": "assets/userscore.4c4d7b02.js",
     "imports": [
       "assets/js/base.js",
-      "_index.189f591f.js",
-      "_duration.e8546e45.js"
+      "_index.4fe5ed34.js",
+      "_duration.c050dc80.js"
     ]
   },
-  "_index.189f591f.js": {
-    "file": "assets/index.189f591f.js",
+  "_index.4fe5ed34.js": {
+    "file": "assets/index.4fe5ed34.js",
     "imports": [
       "assets/js/base.js",
-      "_duration.e8546e45.js",
-      "_echarts.6b45afba.js"
+      "_duration.c050dc80.js",
+      "_echarts.879a849a.js"
     ]
+  },
+  "assets/scss/main.scss": {
+    "file": "assets/main.f9de0338.css",
+    "src": "assets/scss/main.scss",
+    "isEntry": true
   }
 }
