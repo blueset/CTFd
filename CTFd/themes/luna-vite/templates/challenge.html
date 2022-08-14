@@ -141,7 +141,7 @@ Configs.theme_settings["tag_difficulty_5"]: 5,
   </div>
 
   <dialog class="modal fit" id="solvers" x-ref="solversModal">
-    <h2 class="modalHeader" tabindex="0"><span x-text="solves && solves.length"></span> solve<span
+    <h2 class="modalHeader"><span x-text="solves && solves.length"></span> solve<span
         x-text="(solves && solves.length !== 1) ? 's' : ''"></span> of {{ challenge.name }}</h2>
     <div class="modalBody">
       <template x-for="(solve, idx) in solves">
@@ -172,7 +172,7 @@ Configs.theme_settings["tag_difficulty_5"]: 5,
 
   {% for hint in hints %}
   <dialog class="modal fit hintModal" x-ref="hintDialog{{ hint.id }}" data-hint-id="{{ hint.id }}">
-    <h2 class="modalHeader" tabindex="0">Hint {{ loop.index }}</h2>
+    <h2 class="modalHeader">Hint {{ loop.index }}</h2>
     <div class="modalBody text">
       {% if hint.content %}
       {{ hint.html | safe }}

@@ -62,7 +62,7 @@
   <div class="loadingWrapper" x-show="$store.challenge.loading">{% include "components/loading.html" %}</div>
 
   <dialog class="modal fit" id="challengesSettings" x-ref="settingsModal">
-    <h2 class="modalHeader" tabindex="0">Challenges settings</h2>
+    <h2 class="modalHeader">Challenges settings</h2>
     <div class="modalBody">
       <h3 class="sectionTitle">Sort order</h3>
       <div class="challengeSettings2">
@@ -128,7 +128,7 @@
   </dialog>
 
   <dialog class="modal fit" id="oobeModal" x-ref="oobeModal">
-    <h2 class="modalHeader" tabindex="0">Select a style</h2>
+    <h2 class="modalHeader">Select a style</h2>
     <div class="modalBody modeSelection">
       <button class="button" id="sekaiMode" @click="oobeUpdate(false)">
         <iconify-icon icon="fluent:music-note-2-24-filled"></iconify-icon>
