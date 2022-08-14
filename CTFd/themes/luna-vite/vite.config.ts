@@ -9,7 +9,7 @@ export default defineConfig({
   // mode: "development",
   plugins: [
     // vue(),
-    CSSManifestPlugin()
+    // CSSManifestPlugin()
   ],
   resolve: {
     alias: {
