@@ -423,6 +423,7 @@ $challenges-width: max(30vw, calc((100vw - $tab-width) / 5 * 2));
 
             .flagSubmissionRow input {
                 font-family: $monospace-font;
+                font-variation-settings: "dlig" 1, "ss08" 1, "ss09" 1, "CASL" 1, "MONO" 1;
             }
 
             .copyableConnection {

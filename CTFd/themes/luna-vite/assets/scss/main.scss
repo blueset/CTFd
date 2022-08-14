@@ -2,9 +2,8 @@
 @import 'notyf/notyf.min.css';
 @import 'utils';
 
-@import-normalize;
-
 @import url('https://rsms.me/inter/inter.css');
+@import url('https://fonts.googleapis.com/css2?family=Recursive:wght,CASL,CRSV,MONO@300..1000,1,0..1,1&display=swap');
 
 :root {
   font-size: 16px;
@@ -26,8 +25,9 @@ a {
     color: $accent-text-color;
 }
 
-code {
+pre, code {
   font-family: $monospace-font;
+  font-variation-settings: "dlig" 1, "ss08" 1, "ss09" 1, "CASL" 1, "MONO" 1;
 }
 
 // Notyf

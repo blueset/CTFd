@@ -105,18 +105,6 @@
             --halftone-bg-white: url("{{ url_for('views.themes', path='img/halftoneButtonBgWhite.svg') }}");
             --halftone-bg-white-25: url("{{ url_for('views.themes', path='img/halftoneButtonBgWhite25.svg') }}");
         }
-
-        @font-face {
-            font-family: 'Cascadia Code';
-            src: url("{{ url_for('views.themes', path='fonts/CascadiaCode.woff2') }}") format('woff2'),
-                url("{{ url_for('views.themes', path='fonts/CascadiaCode.ttf') }}") format('truetype');
-        }
-        @font-face {
-            font-family: 'Cascadia Code';
-            font-style: italic;
-            src: url("{{ url_for('views.themes', path='fonts/CascadiaCodeItalic.woff2') }}") format('woff2'),
-                url("{{ url_for('views.themes', path='fonts/CascadiaCodeItalic.ttf') }}") format('truetype');
-        }
     </style>
 
     {{ Configs.theme_footer }}
