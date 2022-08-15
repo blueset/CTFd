@@ -1,5 +1,7 @@
 import datetime
 from collections import defaultdict
+import hashlib
+import urllib
 
 from flask_marshmallow import Marshmallow
 from flask_sqlalchemy import SQLAlchemy
@@ -339,6 +341,10 @@ class Users(db.Model):
 
     def __init__(self, **kwargs):
         super(Users, self).__init__(**kwargs)
+
+    def gravatar(self, default):
+        email_hash = hashlib.md5(self.email.strip().lower().encode("utf-8")).hexdigest()
+        return "https://www.gravatar.com/avatar/" + email_hash + "?d=" + urllib.parse.quote(default)
 
     @validates("password")
     def validate_password(self, key, plaintext):

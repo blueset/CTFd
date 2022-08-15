@@ -29,7 +29,9 @@
         {% endif %}
           <div class="cellHeader">{{ team.name | truncate(50) }}</div>
           <div class="cellBody">
-            <img src="https://ui-avatars.com/api/?background=random&name={{ team.name | urlencode }}" class="cellBodyIcon">
+            {% set team_name = team.name | urlencode %}
+            {% set team_name = team_name.replace('%20', '+') %}
+            <img src="{{ team.captain.gravatar('https://ui-avatars.com/api/' + team_name + '/80/random') }}" class="cellBodyIcon">
           </div>
           <div class="cellFooter">
             {{ team.members | length }} {{ team.members | length | pluralize('member', 'members') }}
