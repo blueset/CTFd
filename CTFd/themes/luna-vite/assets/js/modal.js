@@ -1,4 +1,8 @@
+import dialogPolyfill from 'dialog-polyfill';
+
 export function initModal(modalNode, openButtons, closeButtons, closeCallback = () => { }) {
+    dialogPolyfill.registerDialog(modalNode);
+
     openButtons.forEach(button => {
         button.addEventListener("click", () => {
             modalNode.showModal();

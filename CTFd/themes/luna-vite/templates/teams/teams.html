@@ -31,7 +31,7 @@
           <div class="cellBody">
             {% set team_name = team.name | urlencode %}
             {% set team_name = team_name.replace('%20', '+') %}
-            <img src="{{ team.captain.gravatar('https://ui-avatars.com/api/' + team_name + '/80/random') }}" class="cellBodyIcon">
+            <img width="80" height="80" src="{{ team.captain.gravatar('https://ui-avatars.com/api/' + team_name + '/80/random') }}" class="cellBodyIcon">
           </div>
           <div class="cellFooter">
             {{ team.members | length }} {{ team.members | length | pluralize('member', 'members') }}

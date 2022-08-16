@@ -7,6 +7,7 @@ import { scrollUpdate, itemHeight } from "./utils/scrollLoop";
 import { copyTextToClipboard } from "./utils/clipboard";
 import { initModal } from "./modal";
 import persist from "@alpinejs/persist";
+import dialogPolyfill from 'dialog-polyfill';
 
 Alpine.plugin(persist);
 
@@ -153,6 +154,7 @@ Alpine.data("Challenge", () => ({
       return solve;
     });
     // new Tab(this.$el).show();
+    dialogPolyfill.registerDialog(this.$refs.solversModal);
     this.$refs.solversModal.showModal();
   },
 
@@ -196,6 +198,7 @@ Alpine.data("Challenge", () => ({
   async showHint(hintId, loadFromServer) {
     console.log("showHint", hintId, loadFromServer);
     const modalNode = this.$refs[`hintDialog${hintId}`];
+    dialogPolyfill.registerDialog(modalNode);
     if (loadFromServer) {
       let response = await CTFd.pages.challenge.loadHint(hintId);
       let hint = response.data;
@@ -256,6 +259,7 @@ Alpine.data("ChallengeBoard", function () { return {
         }
 
         if (this.oobe) {
+            dialogPolyfill.registerDialog(this.$refs.oobeModal);
             this.$refs.oobeModal.showModal();
         }
     },

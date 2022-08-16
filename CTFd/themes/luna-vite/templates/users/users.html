@@ -31,7 +31,7 @@
           <div class="cellBody">
             {% set user_name = user.name | urlencode %}
             {% set user_name = user_name.replace('%20', '+') %}
-            <img src="{{ user.gravatar('https://ui-avatars.com/api/' + user_name + '/80/random') }}" class="cellBodyIcon">
+            <img width="80" height="80" src="{{ user.gravatar('https://ui-avatars.com/api/' + user_name + '/80/random') }}" class="cellBodyIcon">
           </div>
           <div class="cellFooter">
             {% if user.team %}{{user.team.name | truncate(50) }}{% else %}<em>No team</em>{% endif %}
