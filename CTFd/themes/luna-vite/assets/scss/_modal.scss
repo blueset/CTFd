@@ -12,7 +12,7 @@ dialog.modal:not([open]) {
     padding: 0;
     border: none;
 
-    &::backdrop {
+    &::backdrop, & + .backdrop {
         background-color: #00000060;
     }
 
