@@ -52,7 +52,7 @@ export default function IconWallCanvasInit() {
         container.insertBefore( canvas, container.firstChild);
     }
     const iconWall = new Image();
-    iconWall.src = getComputedStyle(document.documentElement).getPropertyValue("--icon-wall").match(/(?<=")(.+)(?=")/g)[0];
+    iconWall.src = /(?:")(.+)(?=")/g.exec(getComputedStyle(document.documentElement).getPropertyValue("--icon-wall"))[1];
 
     BackgroundCanvasResources.canvas = canvas;
     BackgroundCanvasResources.iconWall = iconWall;

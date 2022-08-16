@@ -29,7 +29,7 @@
     }
 
     > #mainMenuButton {
-        position: fixed;
+        position: absolute;
         top: 1.5rem;
         right: 1.5rem;
         z-index: 2;
@@ -143,9 +143,13 @@
     // Tabbed
 
     .tabs {
-        position: fixed;
+        position: absolute;
         background-color: rgba(0, 0, 0, 0.3);
         padding-top: 7rem;
+        display: flex;
+        gap: 1rem;
+
+        @include subtle-scroll;
 
         @include media-lg {
             top: 0;
@@ -153,6 +157,10 @@
             bottom: 0;
             width: $tab-width;
             border-right: 5px solid white;
+            flex-direction: column;
+            overflow-x: hidden;
+            overflow-y: auto;
+            overflow-y: overlay;
         }
 
         @include media-sm {
@@ -161,6 +169,10 @@
             right: 0;
             height: $tab-height;
             border-bottom: 5px solid white;
+            flex-direction: row;
+            overflow-y: hidden;
+            overflow-x: auto;
+            overflow-x: overlay;
         }
 
         .tab {
@@ -192,25 +204,6 @@
 
         .filler {
             flex-grow: 1;
-        }
-
-        & {
-            display: flex;
-            gap: 1rem;
-
-            @include subtle-scroll;
-
-            @include media-lg {
-                flex-direction: column;
-                overflow-y: auto;
-                overflow-y: overlay;
-            }
-
-            @include media-sm {
-                flex-direction: row;
-                overflow-x: auto;
-                overflow-x: overlay;
-            }
         }
     }
 

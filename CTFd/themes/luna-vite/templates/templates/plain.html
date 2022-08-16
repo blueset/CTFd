@@ -1,7 +1,7 @@
 {% extends "templates/base.html" %}
 
 {% block content %}
-<div class="triangleContainer page-{{ request.endpoint.replace('.', '-') }}">
+<div class="triangleContainer page-{{ (request.endpoint or 'unknown').replace('.', '-') }}">
 
     {% include 'components/menu.html' %}
     {% block plainContent %}

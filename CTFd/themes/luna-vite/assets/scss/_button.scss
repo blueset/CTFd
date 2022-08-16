@@ -8,6 +8,7 @@
     margin: 3px 3px 6px 3px;
     font-weight: 550;
     font-family: $font-family;
+    padding: 0;
     text-decoration: none;
     color: #454367;
 
@@ -85,6 +86,7 @@
         font-size: 1.7rem;
         display: flex;
         align-items: center;
+        justify-content: center;
         text-align: center;
         color: $accent-color;
     }
