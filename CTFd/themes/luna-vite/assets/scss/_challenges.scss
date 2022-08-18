@@ -185,6 +185,15 @@ $challenges-width: max(30vw, calc((100vw - $tab-width) / 5 * 2));
                     .challengeScore.solves::after {
                         content: "Solves";
                     }
+                    .challengeScore.lrn::after {
+                        @include challengeScoreLabel;
+                        content: "ポイント";
+                        font-family: 'M PLUS 1p', sans-serif !important;
+                    }
+                    .challengeScore.solves.lrn::after {
+                        content: "人クリア";
+                        font-family: 'M PLUS 1p', sans-serif !important;
+                    }
                 }
             }
         }

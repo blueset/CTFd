@@ -1,4 +1,4 @@
-<div :class="{challengeScore: true, solves: sortOrder === 'Solves'}"
+<div :class="{challengeScore: true, solves: sortOrder === 'Solves', lrn: lrn !== null}"
     x-text="sortOrder === 'Solves' ? ch.solves : ch.value"
     :aria-label="sortOrder === 'Solves' ? `${ch.solves} solves` : `${ch.value} points`"></div>
 <template x-if="lrn !== null"><img :src="`https://assets.pjsek.ai/file/pjsekai-assets/startapp/music/jacket/${lrn[ch.id % lrn.length].assetbundleName}/${lrn[ch.id % lrn.length].assetbundleName}.png`" class="challengeCover"></template>
