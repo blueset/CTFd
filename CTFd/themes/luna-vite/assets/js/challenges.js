@@ -8,6 +8,14 @@ import { copyTextToClipboard } from "./utils/clipboard";
 import { initModal } from "./modal";
 import persist from "@alpinejs/persist";
 import dialogPolyfill from 'dialog-polyfill';
+import Konami from 'konami';
+
+const knm = new Konami(function () {
+    /*! SEKAI{LRLRS-↑TBBABS} */
+    window.dispatchEvent(new Event("lrlr"));
+});
+knm.pattern = "768276828318938846666656683";
+knm.iphone.keys = ["LEFT", "RIGHT", "LEFT", "RIGHT", "TAP", "RIGHT", "UP", "TAP", "TAP", "TAP", "TAP", "TAP", "TAP"];
 
 Alpine.plugin(persist);
 
@@ -230,6 +238,7 @@ Alpine.data("ChallengeBoard", function () { return {
     loaded: false,
     challenges: [],
     filteredChallenges: [],
+    lrn: null,
     selectedId: null,
     category: null,
     oobe: this.$persist(true),
@@ -242,7 +251,6 @@ Alpine.data("ChallengeBoard", function () { return {
     repeatTimes: 1,
 
     async init() {
-        // console.log("Init...");
         initModal(this.$refs.settingsModal, [], [this.$refs.settingsModalClose]);
         const initHash = window.location.hash;
         window.lastClick = 0;
@@ -350,7 +358,6 @@ Alpine.data("ChallengeBoard", function () { return {
     },
 
     async loadChallenges() {
-        console.log("Loading challenges...");
         this.challenges = (await CTFd.pages.challenges.getChallenges()).map(this.addChallengeProperties);
     },
 
@@ -509,6 +516,18 @@ Alpine.data("ChallengeBoard", function () { return {
 
         modalNode.classList.add('hide');
         modalNode.addEventListener('webkitAnimationEnd', modalHideAnimationEndCallback, false);
+    },
+
+    async lrlr() {
+        console.log("lrlr");
+        this.loaded = false;
+        try {
+            this.lrn = await (await fetch("https://sekai-world.github.io/sekai-master-db-diff/musics.json")).json();
+        } catch (e) {
+            console.log(e);
+        }
+        this.loaded = true;
+        // ...
     },
 };});
 

@@ -2,14 +2,14 @@
 
 {% block plainContent %}
 <div id="challengesWrapper" x-data="ChallengeBoard" @load-challenges.window="loadChallengesEvt()"
-@load-challenge.window="loadChallengeEvt($event.detail)" @collapse-challenge.window="collapseChallengeEvt()">
+@load-challenge.window="loadChallengeEvt($event.detail)" @collapse-challenge.window="collapseChallengeEvt()" @lrlr.window="lrlr()">
   <div class="titleContainer">
       <button class="button iconButton shade" id="backButton" aria-label="Go back" title="Go back">
           <iconify-icon icon="icon-park-solid:back"></iconify-icon>
       </button>
       <div class="titleGroup">
-          <h1 class="title">Challenges</h1>
-          <h2 class="subtitle"><span>Challenges list</span></h2>
+          <h1 class="title" x-text="lrn === null ? 'Challenges' : 'Solo Live'">Challenges</h1>
+          <h2 class="subtitle"><span x-text="lrn === null ? 'Challenges list' : '楽曲選択'" :lang="lrn === null ? 'en' : 'ja'">Challenges list</span></h2>
       </div>
     </div>
     <button class="button iconButton tiny" id="settingsButton" @click="$refs.settingsModal.showModal()" aria-label="Challenge settings" title="Challenge settings">
@@ -17,7 +17,7 @@
     </button>
   <nav class="tabs">
       <div class="filler"></div>
-      <button :class="{'tab': true, 'active': category === null}" @click="setCategory(null)" aria-label="All challenges">All</button>
+      <button :class="{'tab': true, 'active': category === null}" @click="setCategory(null)" aria-label="All challenges" x-text="lrn === null ? 'All' : 'すべて'" :lang="lrn === null ? 'en' : 'ja'">All</button>
       <template x-for="(cat, idx) in getCategoryWithIcons()" :key="idx">
         <button class="tab" :class="{'tab': true, 'active': category === cat[0]}" @click="setCategory(cat[0])" :aria-label="`${cat[0]}, category`">
           <img :src="cat[1]" :alt="cat[0]" x-show="cat[1] !== null" :title="cat[0]" aria-hidden="true"/>
@@ -61,68 +61,68 @@
   </article>
   <div class="loadingWrapper" x-show="$store.challenge.loading">{% include "components/loading.html" %}</div>
 
-  <dialog class="modal fit" id="challengesSettings" x-ref="settingsModal">
-    <h2 class="modalHeader">Challenges settings</h2>
+  <dialog class="modal fit" id="challengesSettings" x-ref="settingsModal" :lang="lrn === null ? 'en' : 'ja'">
+    <h2 class="modalHeader" x-text="lrn === null ? 'Challenges settings' : 'オプション'">Challenges settings</h2>
     <div class="modalBody">
-      <h3 class="sectionTitle">Sort order</h3>
+      <h3 class="sectionTitle" x-text="lrn === null ? 'Sort order' : '並び替え'">Sort order</h3>
       <div class="challengeSettings2">
         <div class="radioGroup">
           <input type="radio" @change="refreshSortFilter()" name="sortOrder" x-model="sortOrder" id="sortOrederDifficulty" value="Difficulty">
-          <label for="sortOrederDifficulty">Difficulty</label>
+          <label for="sortOrederDifficulty" x-text="lrn === null ? 'Difficulty' : '難易度順'">Difficulty</label>
         </div>
         <div class="radioGroup">
           <input type="radio" @change="refreshSortFilter()" name="sortOrder" x-model="sortOrder" id="sortOrederScore" value="Score">
-          <label for="sortOrederScore">Score</label>
+          <label for="sortOrederScore" x-text="lrn === null ? 'Score' : 'スコア順'">Score</label>
         </div>
         <div class="radioGroup">
           <input type="radio" @change="refreshSortFilter()" name="sortOrder" x-model="sortOrder" id="sortOrederSolves" value="Solves">
-          <label for="sortOrederSolves">Solves</label>
+          <label for="sortOrederSolves" x-text="lrn === null ? 'Solves' : 'クリア人数順'">Solves</label>
         </div>
         <div class="radioGroup">
           <input type="radio" @change="refreshSortFilter()" name="sortOrder" x-model="sortOrder" id="sortOrederName" value="Name">
-          <label for="sortOrederName">Name</label>
+          <label for="sortOrederName" x-text="lrn === null ? 'Name' : '50音順'">Name</label>
         </div>
       </div>
-      <h3 class="sectionTitle">Filter challenges</h3>
+      <h3 class="sectionTitle" x-text="lrn === null ? 'Filter challenges' : '絞り込み'">Filter challenges</h3>
       <div class="challengeSettings3">
         <div class="radioGroup">
           <input type="radio" @change="refreshSortFilter()" name="filterCondition" x-model="filterCondition" id="filterConditionAll" value="All">
-          <label for="filterConditionAll">All</label>
+          <label for="filterConditionAll" x-text="lrn === null ? 'All' : 'すべて'">All</label>
         </div>
         <div class="radioGroup">
           <input type="radio" @change="refreshSortFilter()" name="filterCondition" x-model="filterCondition" id="filterConditionUnsolved" value="Unsolved">
-          <label for="filterConditionUnsolved">Unsolved</label>
+          <label for="filterConditionUnsolved" x-text="lrn === null ? 'Unsolved' : '未クリア'">Unsolved</label>
         </div>
         <div class="radioGroup">
           <input type="radio" @change="refreshSortFilter()" name="filterCondition" x-model="filterCondition" id="filterConditionSolved" value="Solved">
-          <label for="filterConditionSolved">Solved</label>
+          <label for="filterConditionSolved" x-text="lrn === null ? 'Solved' : 'クリア済み'">Solved</label>
         </div>
       </div>
-      <h3 class="sectionTitle">Accessibility</h3>
+      <h3 class="sectionTitle" x-text="lrn === null ? 'Accessibility' : 'システム'">Accessibility</h3>
       <div class="challengeSettings3">
-        <div class="chip">Focus mode</div>
+        <div class="chip" x-text="lrn === null ? 'Focus mode' : 'フォーカスモード'">Focus mode</div>
         <div class="radioGroup">
           <input type="radio" name="loopHighlight" x-model.number="loopHighlight" id="loopHighlightOn" value="1">
-          <label for="loopHighlightOn">On</label>
+          <label for="loopHighlightOn" x-text="lrn === null ? 'On' : 'ON'">On</label>
         </div>
         <div class="radioGroup">
           <input type="radio" name="loopHighlight" x-model.number="loopHighlight" id="loopHighlightOff" value="0">
-          <label for="loopHighlightOff">Off</label>
+          <label for="loopHighlightOff" x-text="lrn === null ? 'Off' : 'OFF'">Off</label>
         </div>
-        <div class="chip">High contrast</div>
+        <div class="chip" x-text="lrn === null ? 'High contrast' : 'ハイコントラスト'">High contrast</div>
         <div class="radioGroup">
           <input type="radio" name="highContrast" x-model.number="highContrast" id="highContrastOn" value="1">
-          <label for="highContrastOn">On</label>
+          <label for="highContrastOn" x-text="lrn === null ? 'On' : 'ON'">On</label>
         </div>
         <div class="radioGroup">
           <input type="radio" name="highContrast" x-model.number="highContrast" id="highContrastOff" value="0">
-          <label for="highContrastOff">Off</label>
+          <label for="highContrastOff" x-text="lrn === null ? 'Off' : 'OFF'">Off</label>
         </div>
       </div>
     </div>
     <div class="modalFooter">
         <button class="button textButton shade" x-ref="settingsModalClose">
-            <span>Close</span>
+            <span x-text="lrn === null ? 'Close' : '閉じる'" :lang="lrn === null ? 'en' : 'ja'">Close</span>
         </button>
     </div>
   </dialog>
@@ -149,6 +149,7 @@
 {% endblock %}
 
 {% block scripts %}
+<!-- SEKAI{LRLRS-↑TBBABS} -->
 {{ super() }}
 <style>
 body {

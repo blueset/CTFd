@@ -1,9 +1,10 @@
 <div :class="{challengeScore: true, solves: sortOrder === 'Solves'}"
     x-text="sortOrder === 'Solves' ? ch.solves : ch.value"
     :aria-label="sortOrder === 'Solves' ? `${ch.solves} solves` : `${ch.value} points`"></div>
+<template x-if="lrn !== null"><img :src="`https://assets.pjsek.ai/file/pjsekai-assets/startapp/music/jacket/${lrn[ch.id % lrn.length].assetbundleName}/${lrn[ch.id % lrn.length].assetbundleName}.png`" class="challengeCover"></template>
 <div class="challengeDetails">
     <div class="challengeLabel" x-show="ch.label" x-text="ch.label"></div>
-    <div class="challengeTitle" x-text="ch.name"></div>
+    <div class="challengeTitle" x-text="lrn === null ? ch.name : lrn[ch.id % lrn.length].title" :lang="lrn === null ? 'en' : 'ja'"></div>
     <div class="challengeCategory" x-text="ch.category"></div>
     <div class="challengeDifficulty" x-bind:title="`Difficulty level ${ch.difficulty}, ` + (ch.is_first_solver ? 'you are the first solver' : ch.solved_by_me ? 'solved' : 'unsolved')">
         <template x-for="_ in Array(ch.difficulty)">

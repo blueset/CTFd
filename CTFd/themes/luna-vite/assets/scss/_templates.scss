@@ -111,12 +111,13 @@
             color: white;
             position: relative;
 
-            >span {
+            > span {
                 width: 100%;
                 overflow: hidden;
                 text-overflow: ellipsis;
                 height: 1.2em;
                 white-space: nowrap;
+                line-height: 1.15;
             }
         }
 

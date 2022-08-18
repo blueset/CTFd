@@ -17,6 +17,7 @@
     "echarts": "^5.3.3",
     "howler": "^2.2.3",
     "iconify-icon": "^0.0.6",
+    "konami": "^1.6.3",
     "lodash": "^4.17.21",
     "notyf": "^3.10.0",
     "rollup-plugin-copy": "^3.4.0",
