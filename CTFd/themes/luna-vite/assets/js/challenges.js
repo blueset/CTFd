@@ -11,11 +11,11 @@ import dialogPolyfill from 'dialog-polyfill';
 import Konami from 'konami';
 
 const knm = new Konami(function () {
-    /*! SEKAI{LRLRS-↑TBBABS} */
+    /*! SEKAI{→↓↑→→↓→→↑↑↓↓←→←→} */
     window.dispatchEvent(new Event("lrlr"));
 });
-knm.pattern = "768276828318938846666656683";
-knm.iphone.keys = ["LEFT", "RIGHT", "LEFT", "RIGHT", "TAP", "RIGHT", "UP", "TAP", "TAP", "TAP", "TAP", "TAP", "TAP"];
+knm.pattern = "39403839394039393838404037393739";
+knm.iphone.keys = ["RIGHT", "DOWN", "UP", "RIGHT", "RIGHT", "DOWN", "RIGHT", "RIGHT", "UP", "UP", "DOWN", "DOWN", "LEFT", "RIGHT", "LEFT", "RIGHT"];
 
 Alpine.plugin(persist);
 
