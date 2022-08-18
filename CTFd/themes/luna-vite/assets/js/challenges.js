@@ -519,7 +519,6 @@ Alpine.data("ChallengeBoard", function () { return {
     },
 
     async lrlr() {
-        console.log("lrlr");
         this.loaded = false;
         try {
             this.lrn = await (await fetch("https://sekai-world.github.io/sekai-master-db-diff/musics.json")).json();
