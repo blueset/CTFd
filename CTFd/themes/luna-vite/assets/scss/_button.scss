@@ -73,6 +73,11 @@
             font-size: 1.25rem;
             border-width: 3px;
             box-shadow: 0 0 0 3px #555573, 0 2px 0 3px #555573;
+
+            &:hover:not(:disabled) {
+                border-color: $accent-color;
+                box-shadow: 0 0 0 3px #555573;
+            }
         }
     }
 
