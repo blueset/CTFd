@@ -19,6 +19,8 @@ dialog.modal:not([open]) {
     &.fit {
         min-width: 300px;
         max-height: calc(100vh - 4rem);
+        max-height: calc(var(--1dvh, 1vh) * 100 - 4rem);
+        max-height: calc(100dvh - 4rem);
         width: max-content;
         max-width: calc(100vw - 4rem);
     }

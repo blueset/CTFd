@@ -12,6 +12,7 @@ import CountdownInit from "./countdown";
 import events from "./events";
 
 import times from "./theme/times";
+import 'large-small-dynamic-viewport-units-polyfill';
 // import highlight from "./theme/highlight";
 
 dayjs.extend(advancedFormat);

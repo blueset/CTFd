@@ -1,6 +1,6 @@
 {
   "assets/js/base.js": {
-    "file": "assets/base.28b75056.js",
+    "file": "assets/base.8678d78f.js",
     "src": "assets/js/base.js",
     "isEntry": true,
     "imports": [
@@ -18,7 +18,7 @@
     ]
   },
   "assets/js/settings.js": {
-    "file": "assets/settings.f5f5c3c9.js",
+    "file": "assets/settings.7a18bb0b.js",
     "src": "assets/js/settings.js",
     "isEntry": true,
     "imports": [
@@ -32,35 +32,35 @@
     ]
   },
   "assets/js/userProfile.js": {
-    "file": "assets/user_profile.44b24d2b.js",
+    "file": "assets/user_profile.0550e86b.js",
     "src": "assets/js/userProfile.js",
     "isEntry": true,
     "imports": [
       "_module.esm.860ebcbd.js",
       "assets/js/base.js",
-      "_userscore.ed3e9a9d.js",
-      "_index.75925ba1.js",
+      "_userscore.d495b498.js",
+      "_index.834ae3e7.js",
       "_duration.c050dc80.js",
       "_notificationCounter.4f4e1e9f.js",
       "_echarts.879a849a.js"
     ]
   },
   "assets/js/teamProfile.js": {
-    "file": "assets/team_profile.fd404800.js",
+    "file": "assets/team_profile.ede9fe1b.js",
     "src": "assets/js/teamProfile.js",
     "isEntry": true,
     "imports": [
       "_module.esm.860ebcbd.js",
       "assets/js/base.js",
-      "_userscore.ed3e9a9d.js",
-      "_index.75925ba1.js",
+      "_userscore.d495b498.js",
+      "_index.834ae3e7.js",
       "_duration.c050dc80.js",
       "_notificationCounter.4f4e1e9f.js",
       "_echarts.879a849a.js"
     ]
   },
   "assets/js/teamAdmin.js": {
-    "file": "assets/team_admin.f1476eaf.js",
+    "file": "assets/team_admin.ff42e650.js",
     "src": "assets/js/teamAdmin.js",
     "isEntry": true,
     "imports": [
@@ -74,13 +74,13 @@
     ]
   },
   "assets/js/scoreboard.js": {
-    "file": "assets/scoreboard.caf54946.js",
+    "file": "assets/scoreboard.f34d1b3e.js",
     "src": "assets/js/scoreboard.js",
     "isEntry": true,
     "imports": [
       "_module.esm.860ebcbd.js",
       "assets/js/base.js",
-      "_index.75925ba1.js",
+      "_index.834ae3e7.js",
       "_duration.c050dc80.js",
       "_notificationCounter.4f4e1e9f.js",
       "_echarts.879a849a.js"
@@ -95,7 +95,7 @@
     ]
   },
   "assets/js/challenges.js": {
-    "file": "assets/challenges.639c5623.js",
+    "file": "assets/challenges.e77e7069.js",
     "src": "assets/js/challenges.js",
     "isEntry": true,
     "imports": [
@@ -148,8 +148,72 @@
     ]
   },
   "assets/scss/main.scss": {
-    "file": "assets/main.03cd16fc.css",
+    "file": "assets/main.be15387a.css",
     "src": "assets/scss/main.scss",
     "isEntry": true
+  },
+  "_userscore.8cce475a.js": {
+    "file": "assets/userscore.8cce475a.js",
+    "imports": [
+      "assets/js/base.js",
+      "_index.b875f0f8.js",
+      "_duration.c050dc80.js"
+    ]
+  },
+  "_index.b875f0f8.js": {
+    "file": "assets/index.b875f0f8.js",
+    "imports": [
+      "assets/js/base.js",
+      "_duration.c050dc80.js",
+      "_echarts.879a849a.js"
+    ]
+  },
+  "_userscore.d1fb25f5.js": {
+    "file": "assets/userscore.d1fb25f5.js",
+    "imports": [
+      "assets/js/base.js",
+      "_index.f3b4a8fe.js",
+      "_duration.c050dc80.js"
+    ]
+  },
+  "_index.f3b4a8fe.js": {
+    "file": "assets/index.f3b4a8fe.js",
+    "imports": [
+      "assets/js/base.js",
+      "_duration.c050dc80.js",
+      "_echarts.879a849a.js"
+    ]
+  },
+  "_userscore.c61debbe.js": {
+    "file": "assets/userscore.c61debbe.js",
+    "imports": [
+      "assets/js/base.js",
+      "_index.67ac38d5.js",
+      "_duration.c050dc80.js"
+    ]
+  },
+  "_index.67ac38d5.js": {
+    "file": "assets/index.67ac38d5.js",
+    "imports": [
+      "assets/js/base.js",
+      "_duration.c050dc80.js",
+      "_echarts.879a849a.js"
+    ]
+  },
+  "_userscore.d495b498.js": {
+    "file": "assets/userscore.d495b498.js",
+    "imports": [
+      "assets/js/base.js",
+      "_index.834ae3e7.js",
+      "_duration.c050dc80.js"
+    ]
+  },
+  "_index.834ae3e7.js": {
+    "file": "assets/index.834ae3e7.js",
+    "imports": [
+      "assets/js/base.js",
+      "_duration.c050dc80.js",
+      "_echarts.879a849a.js"
+    ]
   }
 }

@@ -11,18 +11,15 @@
     padding: 0;
     text-decoration: none;
     color: #454367;
+    cursor: default;
 
     &:disabled {
         filter: brightness(0.5);
     }
 
     &:hover:not(:disabled) {
-        box-shadow: 0 0 0 3px #555573;
-    }
-
-    &:focus {
-        // box-shadow: 0 0 0 3px $accent-color, 0 3px 0 3px $accent-color;
         border-color: $accent-color;
+        box-shadow: 0 0 0 3px #555573;
     }
 
     &:active:not(:disabled) {
