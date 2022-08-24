@@ -5,7 +5,10 @@ import {
   TooltipComponent,
   GridComponent,
   DatasetComponent,
-  TransformComponent
+  TransformComponent,
+  LegendComponent, 
+  ToolboxComponent, 
+  DataZoomComponent
 } from 'echarts/components';
 // Features like Universal Transition and Label Layout
 import { LabelLayout, UniversalTransition } from 'echarts/features';
@@ -21,6 +24,9 @@ echarts.use([
   GridComponent,
   DatasetComponent,
   TransformComponent,
+  LegendComponent,
+  ToolboxComponent,
+  DataZoomComponent,
   LabelLayout,
   UniversalTransition,
   CanvasRenderer
@@ -29,9 +35,18 @@ echarts.use([
 export function embed(target, option){
   let chart = echarts.init(target);
   chart.setOption(option);
-  // $(window).on("resize", function() {
-  //   if (chart != null && chart != undefined) {
-  //     chart.resize();
-  //   }
-  // });
+  window.addEventListener("resize", () => {
+    if (chart) {
+      chart.resize();
+    }
+  });
+}
+
+export function resize(element) {
+  try {
+    let instance = echarts.getInstanceByDom(element);
+    if (instance) instance.resize();
+  } catch (e) {
+    console.error("Error occurred while resizing chart.", e);
+  }
 }

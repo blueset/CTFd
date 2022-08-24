@@ -1,3 +1,5 @@
+import { resize } from "./utils/graphs/echarts";
+
 export function initTabs(tabNodes, tabContentNodes) {
     Object.keys(tabNodes).forEach(tabId => {
         const tabNode = tabNodes[tabId];
@@ -11,6 +13,12 @@ export function initTabs(tabNodes, tabContentNodes) {
             });
             tabNode.classList.add('active');
             tabContentNode.classList.remove('hidden');
+
+            // Resize graphs
+            let graph = document.getElementById("score-graph");
+            if (graph) {
+                resize(graph);
+            }
         });
     });
 }
