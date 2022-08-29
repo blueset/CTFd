@@ -45,7 +45,9 @@ export function embed(target, option){
 export function resize(element) {
   try {
     let instance = echarts.getInstanceByDom(element);
-    if (instance) instance.resize();
+    if (instance) {
+      instance.resize();
+    }
   } catch (e) {
     console.error("Error occurred while resizing chart.", e);
   }
