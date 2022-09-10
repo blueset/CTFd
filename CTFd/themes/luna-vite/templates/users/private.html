@@ -22,6 +22,11 @@
   <div class="frameContentWrapper">
 
     <div class="profileDetailGroup">
+      <div class="profileIcon">
+        {% set user_name = user.name | urlencode %}
+        {% set user_name = user_name.replace('%20', '+') %}
+        <img width="80" height="80" class="cellBodyIcon" src="{{ user.gravatar('404') }}" data-fallback="https://avatars.dicebear.com/api/initials/{{user_name}}.svg?backgroundColorLevel=800" onerror="this.src = this.dataset.fallback;this.onerror='';">
+      </div>
       <div class="profileMeta">
         <div class="profileMetaRow">
           <div class="profileMetaBox">

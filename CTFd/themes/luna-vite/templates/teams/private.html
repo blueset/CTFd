@@ -74,6 +74,11 @@
     {% for member in team.members %}
     <a class="listItem{% if member.id == Session.id %} active{% endif %}" href="{{ url_for('users.public', user_id=member.id) }}">
       <div class="listItemDetails">
+        {% set member_name = member.name | urlencode %}
+        {% set member_name = member_name.replace('%20', '+') %}
+        <div class="listItemDetailsIcon">
+          <img width="60" height="60" class="cellBodyIcon" src="{{ member.gravatar('404') }}" data-fallback="https://avatars.dicebear.com/api/initials/{{member_name}}.svg?backgroundColorLevel=800" onerror="this.src = this.dataset.fallback;this.onerror='';">
+        </div>
         <div class="listItemDetailsPrimary">
           {{ member.name }}
           {% if team.captain_id == member.id %}

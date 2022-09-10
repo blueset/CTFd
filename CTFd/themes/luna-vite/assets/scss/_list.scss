@@ -44,6 +44,20 @@
         }
     }
 
+    .listItemDetailsIcon {
+        margin: 0 1rem;
+
+        @include media-sm {
+            margin: 0 0 0 1rem;
+        }
+
+        .cellBodyIcon {
+            border-radius: 5px;
+            border: 1px solid #fff;
+            box-shadow: 0 0 0 3px #62B8B9;
+        }
+    }
+
     .listItemDetails {
         display: flex;
         flex-direction: column;

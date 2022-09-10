@@ -2,10 +2,23 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    gap: 1rem;
 
     @include media-sm {
         flex-direction: column;
         gap: 0.5rem;
+    }
+
+    .profileIcon {
+        @include media-sm {
+            display: none;
+        }
+
+        .cellBodyIcon {
+            border-radius: 5px;
+            border: 1px solid #fff;
+            box-shadow: 0 0 0 3px #62B8B9;
+        }
     }
 
     .profileMeta {
@@ -35,11 +48,16 @@
     .profileMetaBox {
         border: 3px solid #D5EBEF;
         padding: 0.5rem 0.5rem;
-        width: 15rem;
+        max-width: 15rem;
+        width: 9rem;
+        flex-grow: 1;
         border-radius: 0.5rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
 
         @include media-sm {
             width: 0;
+            max-width: unset;
             min-width: fit-content;
             flex-grow: 1;
         }
