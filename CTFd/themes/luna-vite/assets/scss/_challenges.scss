@@ -452,6 +452,7 @@ $challenges-width: max(30vw, calc((100vw - $tab-width) / 5 * 2));
             .connectionValue {
                 font-size: 1.2rem;
                 flex-grow: 1;
+                word-break: break-all;
             }
 
             .buttonRow {
