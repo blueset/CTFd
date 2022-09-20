@@ -128,6 +128,7 @@ class ThemeLoader(FileSystemLoader):
             template = template[len(self._ADMIN_THEME_PREFIX) :]
         theme_name = self.theme_name or str(utils.get_config("ctf_theme"))
         template = safe_join(theme_name, "templates", template)
+        print(f"Loading template: {template}")
         return super(ThemeLoader, self).get_source(environment, template)
 
 
@@ -303,5 +304,7 @@ def create_app(config="CTFd.config.Config"):
         init_logs(app)
         init_events(app)
         init_plugins(app)
+        # TODO: REMOVE THIS BEFORE RELEASE
+        app.jinja_env.add_extension('jinja2.ext.debug')
 
         return app
