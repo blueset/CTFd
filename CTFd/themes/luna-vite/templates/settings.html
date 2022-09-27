@@ -14,6 +14,7 @@
 <div class="frameContentWrapper">
 
   <div class="tabPane" id="tabProfile">
+    <h3 class="sectionTitle">Basic information</h3>
     
     {% with form = Forms.self.SettingsForm(country=country) %}
       <form
@@ -84,6 +85,12 @@
         </div>
       </form>
     {% endwith %}
+
+    <h3 class="sectionTitle">Profile picture</h3>
+    <p>We use Gravatar to retrieve profile picture with the email address you provided to us. To change your profile picture, visit Gravatar and update the picture assigned to the email address above.</p>
+    <div style="text-align: center;">
+      <a class="button textButton shade" href="https://gravatar.com" target="_blank"><span>Gravatar</span></a>
+    </div>
   </div>
 
   <div class="hidden tabPane" id="tabAccessTokens">
