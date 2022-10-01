@@ -1,5 +1,5 @@
 {% macro get_rank(rank_str) -%}
-{%- if rank_str in "123" -%}
+{%- if rank_str in ("1", "2", "3") -%}
 <img src="{{ url_for('views.themes', path='img/ranks/rank-' + rank_str + '.svg') }}" alt="Rank {{ rank_str }}">
 {%- else -%}
 {{ rank_str }}
