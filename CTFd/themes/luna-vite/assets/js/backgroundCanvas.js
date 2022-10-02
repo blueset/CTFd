@@ -36,7 +36,11 @@ function render(timer) {
         //ctx.font = "20px sans-serif";
         //ctx.fillText(`Timer: ${timer}`, 10, 50);
     }
-    return window.requestAnimationFrame(render);
+}
+
+function frame(timer) {
+    render(timer);
+    return window.requestAnimationFrame(frame);
 }
 
 export default function IconWallCanvasInit() {
