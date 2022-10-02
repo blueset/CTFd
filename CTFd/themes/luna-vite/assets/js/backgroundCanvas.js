@@ -68,6 +68,6 @@ export default function IconWallCanvasInit() {
         canvas.height = window.innerHeight;
     });
 
-    window.requestAnimationFrame(render);
+    window.requestAnimationFrame(frame);
 
 }
