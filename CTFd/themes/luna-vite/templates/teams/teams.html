@@ -44,7 +44,7 @@
   {% if teams.pages > 1 %}
   <div class="pageCounter">
     {% for page in range(1, teams.pages + 1) %}
-    <span class="pageCounterDot {% if teams.page == page %}active{% endif %}"></span>
+    <a class="pageCounterDot {% if teams.page == page %}active{% endif %}" href="{{ url_for(request.endpoint) }}?page={{ page }}" title="Page {{ page }}" aria-label="Page {{ page }}"></a>
     {% endfor %}
   </div>
   {% endif %}
