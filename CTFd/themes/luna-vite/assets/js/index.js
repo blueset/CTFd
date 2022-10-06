@@ -3,6 +3,7 @@ import duration from 'dayjs/plugin/duration';
 import advancedFormat from 'dayjs/plugin/advancedFormat';
 import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
+import getLyricsContent from './splashData.js';
 dayjs.extend(duration);
 dayjs.extend(advancedFormat);
 dayjs.extend(utc);
@@ -150,8 +151,9 @@ function initTitleScreen() {
     initTitleScreen();
     initHomeCountdown();
 
+    const lyricsContent = getLyricsContent();
     tippy(document.querySelectorAll("[data-tippy-lyrics]"), {
-        content: LyricsContent,
+        content: lyricsContent,
         theme: "lunaDefault",
         allowHTML: true,
         placement: "bottom-start",

@@ -1,5 +1,4 @@
 {% extends "templates/base.html" %}
-{% from "macros/lyrics.html" import get_lyrics %}
 
 {% block content %}
 <div id="homeWrapper">
@@ -86,7 +85,6 @@
         pattern2: "{{ url_for('views.themes', path='img/particles/outline.svg') }}",
         pattern3: "{{ url_for('views.themes', path='img/particles/blur.svg') }}",
     };
-    const LyricsContent = `{{ get_lyrics() }}`;
 </script>
 
 <style>

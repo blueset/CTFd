@@ -10,11 +10,12 @@
     ]
   },
   "assets/js/index.js": {
-    "file": "assets/index.4129c73e.js",
+    "file": "assets/index.f9a122e9.js",
     "src": "assets/js/index.js",
     "isEntry": true,
     "imports": [
       "_duration.c050dc80.js",
+      "_lodash.a9f8c3c1.js",
       "_tippy.esm.67f4ecc9.js"
     ]
   },
@@ -98,13 +99,14 @@
     ]
   },
   "assets/js/challenges.js": {
-    "file": "assets/challenges.02abb95b.js",
+    "file": "assets/challenges.689bbc8f.js",
     "src": "assets/js/challenges.js",
     "isEntry": true,
     "imports": [
       "_module.esm.860ebcbd.js",
       "assets/js/base.js",
       "_duration.c050dc80.js",
+      "_lodash.a9f8c3c1.js",
       "_clipboard.20c34662.js",
       "_echarts.4cc66d9c.js",
       "_notificationCounter.4f4e1e9f.js",
@@ -122,6 +124,12 @@
   },
   "_tippy.esm.67f4ecc9.js": {
     "file": "assets/tippy.esm.67f4ecc9.js"
+  },
+  "_lodash.a9f8c3c1.js": {
+    "file": "assets/lodash.a9f8c3c1.js",
+    "imports": [
+      "_duration.c050dc80.js"
+    ]
   },
   "_module.esm.860ebcbd.js": {
     "file": "assets/module.esm.860ebcbd.js"
