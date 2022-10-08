@@ -23,6 +23,15 @@ function initHomeCountdown() {
     var now = dayjs();
     var start = window.init.start && dayjs.unix(window.init.start);
     var end = window.init.end && dayjs.unix(window.init.end);
+    var archived = window.init.archived;
+    if (archived) {
+        countdown.innerText = "The CTF is archived.";
+        localDate.innerText = `${start.format("D MMM YYYY, H:mm")} – ${end.format("D MMM YYYY, H:mm [(]z[, UTC]Z[)]")}`;
+        isoDate.innerText = `${start.toISOString()} + ${dayjs.duration(end.diff(start)).toISOString()}`;
+        localDate.dateTime = isoDate.innerText;
+        isoDate.dateTime = isoDate.innerText;
+        return;
+    }
     var target = null;
     var prompt = "";
     if (start && now.isBefore(start)) {
