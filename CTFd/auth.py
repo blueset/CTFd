@@ -1,4 +1,4 @@
-import base64
+import base64  # noqa: I001
 
 import requests
 from flask import Blueprint, abort
@@ -189,6 +189,14 @@ def register():
     if current_user.authed():
         return redirect(url_for("challenges.listing"))
 
+    num_users_limit = int(get_config("num_users", default=0))
+    num_users = Users.query.filter_by(banned=False, hidden=False).count()
+    if num_users_limit and num_users >= num_users_limit:
+        abort(
+            403,
+            description=f"Reached the maximum number of users ({num_users_limit}).",
+        )
+
     if request.method == "POST":
         name = request.form.get("name", "").strip()
         email_address = request.form.get("email", "").strip().lower()
@@ -200,9 +208,11 @@ def register():
         registration_code = str(request.form.get("registration_code", ""))
 
         name_len = len(name) == 0
-        names = Users.query.add_columns("name", "id").filter_by(name=name).first()
+        names = (
+            Users.query.add_columns(Users.name, Users.id).filter_by(name=name).first()
+        )
         emails = (
-            Users.query.add_columns("email", "id")
+            Users.query.add_columns(Users.email, Users.id)
             .filter_by(email=email_address)
             .first()
         )
@@ -228,14 +238,6 @@ def register():
             value = request.form.get(f"fields[{field_id}]", "").strip()
             if field.required is True and (value is None or value == ""):
                 errors.append("Please provide all required fields")
-                break
-
-            # Handle special casing of existing profile fields
-            if field.name.lower() == "affiliation":
-                affiliation = value
-                break
-            elif field.name.lower() == "website":
-                website = value
                 break
 
             if field.field_type == "boolean":
@@ -265,11 +267,7 @@ def register():
         if not valid_email:
             errors.append("Please enter a valid email address")
         if email.check_email_is_whitelisted(email_address) is False:
-            errors.append(
-                "Only email addresses under {domains} may register".format(
-                    domains=get_config("domain_whitelist")
-                )
-            )
+            errors.append("Your email address is not from an allowed domain")
         if names:
             errors.append("That user name is already taken")
         if team_name_email_check is True:
@@ -494,6 +492,15 @@ def oauth_redirect():
 
             user = Users.query.filter_by(email=user_email).first()
             if user is None:
+                # Respect the user count limit
+                num_users_limit = int(get_config("num_users", default=0))
+                num_users = Users.query.filter_by(banned=False, hidden=False).count()
+                if num_users_limit and num_users >= num_users_limit:
+                    abort(
+                        403,
+                        description=f"Reached the maximum number of users ({num_users_limit}).",
+                    )
+
                 # Check if we are allowing registration before creating users
                 if registration_visible() or mlc_registration():
                     user = Users(
@@ -512,7 +519,7 @@ def oauth_redirect():
                     )
                     return redirect(url_for("auth.login"))
 
-            if get_config("user_mode") == TEAMS_MODE:
+            if get_config("user_mode") == TEAMS_MODE and user.team_id is None:
                 team_id = api_data["team"]["id"]
                 team_name = api_data["team"]["name"]
 

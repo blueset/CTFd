@@ -1,106 +1,66 @@
 <div role="tabpanel" class="tab-pane config-section" id="settings">
+	{% 
+		with form = Forms.config.VisibilitySettingsForm(
+			challenge_visibility=challenge_visibility, 
+			account_visibility=account_visibility, 
+			score_visibility=score_visibility, 
+			registration_visibility=registration_visibility
+		) 
+	%}
 	<form method="POST" autocomplete="off" class="w-100">
 		<div class="form-group">
-			<label>
-				Challenge Visibility<br>
-				<small class="form-text text-muted">
-					Control whether users must be logged in to see challenges
-				</small>
-			</label>
-			<select class="form-control custom-select" name="challenge_visibility">
-				<option value="public" {% if challenge_visibility == 'public' %}selected{% endif %}>
-					Public
-				</option>
-				<option value="private" {% if challenge_visibility == 'private' %}selected{% endif %}>
-					Private
-				</option>
-				<option value="admins" {% if challenge_visibility == 'admins' %}selected{% endif %}>
-					Admins Only
-				</option>
-			</select>
+			{{ form.challenge_visibility.label }}
+			{{ form.challenge_visibility(class="form-control custom-select") }}
+			<small class="form-text text-muted">
+				{{ form.challenge_visibility.description }}
+			</small>
 		</div>
 
 		<div class="form-group">
-			<label>
-				Score Visibility<br>
-				<small class="form-text text-muted">
-					Control whether solves/score are shown to the public, to logged in users, hidden to all non-admins, or only shown to admins
-				</small>
-			</label>
-			<select class="form-control custom-select" name="score_visibility">
-				<option value="public" {% if score_visibility == 'public' %}selected{% endif %}>
-					Public
-				</option>
-				<option value="private" {% if score_visibility == 'private' %}selected{% endif %}>
-					Private
-				</option>
-				<option value="hidden" {% if score_visibility == 'hidden' %}selected{% endif %}>
-					Hidden
-				</option>
-				<option value="admins" {% if score_visibility == 'admins' %}selected{% endif %}>
-					Admins Only
-				</option>
-			</select>
+			{{ form.account_visibility.label }}
+			{{ form.account_visibility(class="form-control custom-select") }}
 			<small class="form-text text-muted">
-				This setting should generally be the same as Account Visibility to avoid conflicts.
+				{{ form.account_visibility.description }}
+			</small>
+		</div>
+
+		<div class="form-group">
+			{{ form.score_visibility.label }}
+			{{ form.score_visibility(class="form-control custom-select") }}
+			<small class="form-text text-muted">
+				{{ form.score_visibility.description }}
+			</small>
+			<small class="form-text text-muted py-2">
+				Score Visibility is a subset of Account Visibility. 
+				This means that if accounts are visible to a user then score visibility will control whether they can see the score of that user. 
+				If accounts are not visibile then score visibility has no effect.
+			</small>
+		</div>
+
+		<div class="form-group">
+			{{ form.registration_visibility.label }}
+			{{ form.registration_visibility(class="form-control custom-select") }}
+			<small class="form-text text-muted">
+				{{ form.registration_visibility.description }}
 			</small>
 		</div>
 
 		<div class="form-group">
 			<label>
-				Account Visibility<br>
+				Pause<br>
 				<small class="form-text text-muted">
-					Control whether accounts (users &amp; teams) are shown to everyone, only to authenticated users, or only to admins
+					Prevent users from submitting answers until unpaused. Challenges can still be viewed.
 				</small>
 			</label>
-			<select class="form-control custom-select" name="account_visibility">
-				<option value="public" {% if account_visibility == 'public' %}selected{% endif %}>
-					Public
-				</option>
-				<option value="private" {% if account_visibility == 'private' %}selected{% endif %}>
-					Private
-				</option>
-				<option value="admins" {% if account_visibility == 'admins' %}selected{% endif %}>
-					Admins Only
-				</option>
-			</select>
-			<small class="form-text text-muted">
-				This setting should generally be the same as Score Visibility to avoid conflicts.
-			</small>
-		</div>
-
-		<div class="form-group">
-			<label>
-				Registration Visibility<br>
-				<small class="form-text text-muted">
-					Control whether registration is enabled for everyone or disabled
-				</small>
-			</label>
-			<select class="form-control custom-select" name="registration_visibility">
-				<option value="public" {% if registration_visibility == 'public' %}selected{% endif %}>
-					Public
-				</option>
-				<option value="private" {% if registration_visibility == 'private' %}selected{% endif %}>
-					Private
-				</option>
-				<option value="mlc" {% if registration_visibility == 'mlc' %}selected{% endif %}>
-					MajorLeagueCyber Only
-				</option>
-			</select>
-		</div>
-
-		<div class="form-group">
-			<div class="form-check">
+			<div class="form-check pl-0">
 				<label>
 					<input id="paused" name="paused" type="checkbox" {% if paused %}checked{% endif %}>
 					Pause CTF<br>
-					<small>
-						Prevent users from submitting answers until unpaused. Challenges can still be viewed.
-					</small>
 				</label>
 			</div>
 		</div>
 
 		<button type="submit" class="btn btn-md btn-primary float-right">Update</button>
 	</form>
+	{% endwith %}
 </div>

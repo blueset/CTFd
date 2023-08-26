@@ -1,14 +1,17 @@
+import datetime
 import os
 import posixpath
 import string
+import time
 from pathlib import PurePath
 from shutil import copyfileobj, rmtree
+from urllib.parse import urlparse
 
 import boto3
 from botocore.client import Config
 from flask import current_app, redirect, send_file
-from flask.helpers import safe_join
-from werkzeug.utils import secure_filename
+from freezegun import freeze_time
+from werkzeug.utils import safe_join, secure_filename
 
 from CTFd.utils import get_app_config
 from CTFd.utils.encoding import hexencode
@@ -85,12 +88,17 @@ class S3Uploader(BaseUploader):
         access_key = get_app_config("AWS_ACCESS_KEY_ID")
         secret_key = get_app_config("AWS_SECRET_ACCESS_KEY")
         endpoint = get_app_config("AWS_S3_ENDPOINT_URL")
+        region = get_app_config("AWS_S3_REGION")
+        addressing_style = get_app_config("AWS_S3_ADDRESSING_STYLE")
         client = boto3.client(
             "s3",
-            config=Config(signature_version="s3v4"),
+            config=Config(
+                signature_version="s3v4", s3={"addressing_style": addressing_style}
+            ),
             aws_access_key_id=access_key,
             aws_secret_access_key=secret_key,
             endpoint_url=endpoint,
+            region_name=region,
         )
         return client
 
@@ -117,18 +125,30 @@ class S3Uploader(BaseUploader):
         return dst
 
     def download(self, filename):
+        # S3 URLs by default are valid for one hour.
+        # We round the timestamp down to the previous hour and generate the link at that time
+        current_timestamp = int(time.time())
+        truncated_timestamp = current_timestamp - (current_timestamp % 3600)
         key = filename
         filename = filename.split("/").pop()
-        url = self.s3.generate_presigned_url(
-            "get_object",
-            Params={
-                "Bucket": self.bucket,
-                "Key": key,
-                "ResponseContentDisposition": "attachment; filename={}".format(
-                    filename
-                ),
-            },
-        )
+        with freeze_time(datetime.datetime.fromtimestamp(truncated_timestamp)):
+            url = self.s3.generate_presigned_url(
+                "get_object",
+                Params={
+                    "Bucket": self.bucket,
+                    "Key": key,
+                    "ResponseContentDisposition": "attachment; filename={}".format(
+                        filename
+                    ),
+                    "ResponseCacheControl": "max-age=3600",
+                },
+                ExpiresIn=3600,
+            )
+
+        custom_domain = get_app_config("AWS_S3_CUSTOM_DOMAIN")
+        if custom_domain:
+            url = urlparse(url)._replace(netloc=custom_domain).geturl()
+
         return redirect(url)
 
     def delete(self, filename):

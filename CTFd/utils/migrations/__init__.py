@@ -1,4 +1,6 @@
 import os
+import re
+from pathlib import Path
 
 from alembic.migration import MigrationContext
 from flask import current_app as app
@@ -15,10 +17,10 @@ migrations = Migrate()
 def create_database():
     url = make_url(app.config["SQLALCHEMY_DATABASE_URI"])
     if url.drivername == "postgres":
-        url.drivername = "postgresql"
+        url = url.set(drivername="postgresql")
 
     if url.drivername.startswith("mysql"):
-        url.query["charset"] = "utf8mb4"
+        url = url.update_query_dict({"charset": "utf8mb4"})
 
     # Creates database if the database database does not exist
     if not database_exists_util(url):
@@ -32,7 +34,7 @@ def create_database():
 def drop_database():
     url = make_url(app.config["SQLALCHEMY_DATABASE_URI"])
     if url.drivername == "postgres":
-        url.drivername = "postgresql"
+        url = url.set(drivername="postgresql")
     drop_database_util(url)
 
 
@@ -48,3 +50,13 @@ def stamp_latest_revision():
     # Get proper migrations directory regardless of cwd
     directory = os.path.join(os.path.dirname(app.root_path), "migrations")
     stamp(directory=directory)
+
+
+def get_available_revisions():
+    revisions = []
+    directory = Path(os.path.dirname(app.root_path), "migrations", "versions")
+    for f in directory.glob("*.py"):
+        with f.open() as migration:
+            revision = re.search(r'revision = "(.*?)"', migration.read()).group(1)
+            revisions.append(revision)
+    return revisions

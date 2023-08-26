@@ -5,6 +5,7 @@ import urllib
 
 from flask_marshmallow import Marshmallow
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.ext.compiler import compiles
 from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.orm import column_property, validates
 
@@ -16,15 +17,26 @@ ma = Marshmallow()
 
 def get_class_by_tablename(tablename):
     """Return class reference mapped to table.
-    https://stackoverflow.com/a/23754464
+    https://stackoverflow.com/a/66666783
 
     :param tablename: String with name of table.
     :return: Class reference or None.
     """
-    for c in db.Model._decl_class_registry.values():
+    for m in db.Model.registry.mappers:
+        c = m.class_
         if hasattr(c, "__tablename__") and c.__tablename__ == tablename:
             return c
     return None
+
+
+@compiles(db.DateTime, "mysql")
+def compile_datetime_mysql(_type, _compiler, **kw):
+    """
+    This decorator makes the default db.DateTime class always enable fsp to enable millisecond precision
+    https://dev.mysql.com/doc/refman/5.7/en/fractional-seconds.html
+    https://docs.sqlalchemy.org/en/14/core/custom_types.html#overriding-type-compilation
+    """
+    return "DATETIME(6)"
 
 
 class Notifications(db.Model):
@@ -171,6 +183,12 @@ class Hints(db.Model):
         from CTFd.utils.helpers import markup
 
         return markup(build_markdown(self.content))
+
+    @property
+    def prerequisites(self):
+        if self.requirements:
+            return self.requirements.get("prerequisites", [])
+        return []
 
     def __init__(self, *args, **kwargs):
         super(Hints, self).__init__(**kwargs)
@@ -327,12 +345,16 @@ class Users(db.Model):
     hidden = db.Column(db.Boolean, default=False)
     banned = db.Column(db.Boolean, default=False)
     verified = db.Column(db.Boolean, default=False)
+    language = db.Column(db.String(32), nullable=True, default=None)
 
     # Relationship for Teams
     team_id = db.Column(db.Integer, db.ForeignKey("teams.id"))
 
     field_entries = db.relationship(
-        "UserFieldEntries", foreign_keys="UserFieldEntries.user_id", lazy="joined"
+        "UserFieldEntries",
+        foreign_keys="UserFieldEntries.user_id",
+        lazy="joined",
+        back_populates="user",
     )
 
     created = db.Column(db.DateTime, default=datetime.datetime.utcnow)
@@ -428,7 +450,7 @@ class Users(db.Model):
     def get_solves(self, admin=False):
         from CTFd.utils import get_config
 
-        solves = Solves.query.filter_by(user_id=self.id)
+        solves = Solves.query.filter_by(user_id=self.id).order_by(Solves.date.desc())
         freeze = get_config("freeze")
         if freeze and admin is False:
             dt = datetime.datetime.utcfromtimestamp(freeze)
@@ -438,7 +460,7 @@ class Users(db.Model):
     def get_fails(self, admin=False):
         from CTFd.utils import get_config
 
-        fails = Fails.query.filter_by(user_id=self.id)
+        fails = Fails.query.filter_by(user_id=self.id).order_by(Fails.date.desc())
         freeze = get_config("freeze")
         if freeze and admin is False:
             dt = datetime.datetime.utcfromtimestamp(freeze)
@@ -448,7 +470,7 @@ class Users(db.Model):
     def get_awards(self, admin=False):
         from CTFd.utils import get_config
 
-        awards = Awards.query.filter_by(user_id=self.id)
+        awards = Awards.query.filter_by(user_id=self.id).order_by(Awards.date.desc())
         freeze = get_config("freeze")
         if freeze and admin is False:
             dt = datetime.datetime.utcfromtimestamp(freeze)
@@ -496,7 +518,7 @@ class Users(db.Model):
         to no imports within the CTFd application as importing from the
         application itself will result in a circular import.
         """
-        from CTFd.utils.scores import get_user_standings
+        from CTFd.utils.scores import get_user_standings  # noqa: I001
         from CTFd.utils.humanize.numbers import ordinalize
 
         standings = get_user_standings(admin=admin)
@@ -545,7 +567,10 @@ class Teams(db.Model):
     captain = db.relationship("Users", foreign_keys=[captain_id])
 
     field_entries = db.relationship(
-        "TeamFieldEntries", foreign_keys="TeamFieldEntries.team_id", lazy="joined"
+        "TeamFieldEntries",
+        foreign_keys="TeamFieldEntries.team_id",
+        lazy="joined",
+        back_populates="team",
     )
 
     created = db.Column(db.DateTime, default=datetime.datetime.utcnow)
@@ -613,7 +638,7 @@ class Teams(db.Model):
         ]
 
     def get_invite_code(self):
-        from flask import current_app
+        from flask import current_app  # noqa: I001
         from CTFd.utils.security.signing import serialize, hmac
 
         secret_key = current_app.config["SECRET_KEY"]
@@ -632,7 +657,7 @@ class Teams(db.Model):
 
     @classmethod
     def load_invite_code(cls, code):
-        from flask import current_app
+        from flask import current_app  # noqa: I001
         from CTFd.utils.security.signing import (
             unserialize,
             hmac,
@@ -674,7 +699,7 @@ class Teams(db.Model):
         member_ids = [member.id for member in self.members]
 
         solves = Solves.query.filter(Solves.user_id.in_(member_ids)).order_by(
-            Solves.date.asc()
+            Solves.date.desc()
         )
 
         freeze = get_config("freeze")
@@ -690,7 +715,7 @@ class Teams(db.Model):
         member_ids = [member.id for member in self.members]
 
         fails = Fails.query.filter(Fails.user_id.in_(member_ids)).order_by(
-            Fails.date.asc()
+            Fails.date.desc()
         )
 
         freeze = get_config("freeze")
@@ -706,7 +731,7 @@ class Teams(db.Model):
         member_ids = [member.id for member in self.members]
 
         awards = Awards.query.filter(Awards.user_id.in_(member_ids)).order_by(
-            Awards.date.asc()
+            Awards.date.desc()
         )
 
         freeze = get_config("freeze")
@@ -731,7 +756,7 @@ class Teams(db.Model):
         to no imports within the CTFd application as importing from the
         application itself will result in a circular import.
         """
-        from CTFd.utils.scores import get_team_standings
+        from CTFd.utils.scores import get_team_standings  # noqa: I001
         from CTFd.utils.humanize.numbers import ordinalize
 
         standings = get_team_standings(admin=admin)
@@ -836,6 +861,10 @@ class Fails(Submissions):
     __mapper_args__ = {"polymorphic_identity": "incorrect"}
 
 
+class Discards(Submissions):
+    __mapper_args__ = {"polymorphic_identity": "discard"}
+
+
 class Unlocks(db.Model):
     __tablename__ = "unlocks"
     id = db.Column(db.Integer, primary_key=True)
@@ -904,6 +933,7 @@ class Tokens(db.Model):
         db.DateTime,
         default=lambda: datetime.datetime.utcnow() + datetime.timedelta(days=30),
     )
+    description = db.Column(db.Text)
     value = db.Column(db.String(128), unique=True)
 
     user = db.relationship("Users", foreign_keys="Tokens.user_id", lazy="select")
@@ -1009,10 +1039,14 @@ class FieldEntries(db.Model):
 class UserFieldEntries(FieldEntries):
     __mapper_args__ = {"polymorphic_identity": "user"}
     user_id = db.Column(db.Integer, db.ForeignKey("users.id", ondelete="CASCADE"))
-    user = db.relationship("Users", foreign_keys="UserFieldEntries.user_id")
+    user = db.relationship(
+        "Users", foreign_keys="UserFieldEntries.user_id", back_populates="field_entries"
+    )
 
 
 class TeamFieldEntries(FieldEntries):
     __mapper_args__ = {"polymorphic_identity": "team"}
     team_id = db.Column(db.Integer, db.ForeignKey("teams.id", ondelete="CASCADE"))
-    team = db.relationship("Teams", foreign_keys="TeamFieldEntries.team_id")
+    team = db.relationship(
+        "Teams", foreign_keys="TeamFieldEntries.team_id", back_populates="field_entries"
+    )

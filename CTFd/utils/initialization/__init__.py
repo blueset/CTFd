@@ -43,6 +43,12 @@ from CTFd.utils.user import (
 )
 
 
+def init_cli(app):
+    from CTFd.cli import _cli
+
+    app.register_blueprint(_cli, cli_group=None)
+
+
 def init_template_filters(app):
     app.jinja_env.filters["markdown"] = markdown
     app.jinja_env.filters["unix_time"] = unix_time
@@ -52,7 +58,7 @@ def init_template_filters(app):
 
 
 def init_template_globals(app):
-    from CTFd.constants import JINJA_ENUMS
+    from CTFd.constants import JINJA_ENUMS  # noqa: I001
     from CTFd.constants.assets import Assets
     from CTFd.constants.config import Configs
     from CTFd.constants.plugins import Plugins
@@ -192,12 +198,19 @@ def init_request_processors(app):
 
     @app.before_request
     def needs_setup():
+        if import_in_progress():
+            if request.endpoint == "admin.import_ctf":
+                return
+            else:
+                return "Import currently in progress", 403
         if is_setup() is False:
             if request.endpoint in (
                 "views.setup",
                 "views.integrations",
                 "views.themes",
                 "views.files",
+                "views.healthcheck",
+                "views.robots",
             ):
                 return
             else:
@@ -212,7 +225,7 @@ def init_request_processors(app):
             if request.endpoint == "admin.import_ctf":
                 return
             else:
-                abort(403, description="Import currently in progress")
+                return "Import currently in progress", 403
 
         if authed():
             user_ips = get_current_user_recent_ips()

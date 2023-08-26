@@ -21,7 +21,7 @@ def timed_lru_cache(timeout: int = 300, maxsize: int = 64, typed: bool = False):
 
     def wrapper_cache(func):
         func = lru_cache(maxsize=maxsize, typed=typed)(func)
-        func.delta = timeout * 10 ** 9
+        func.delta = timeout * 10**9
         func.expiration = monotonic_ns() + func.delta
 
         @wraps(func)
@@ -60,7 +60,7 @@ def clear_config():
 
 
 def clear_standings():
-    from CTFd.models import Users, Teams
+    from CTFd.models import Users, Teams  # noqa: I001
     from CTFd.constants.static import CacheKeys
     from CTFd.utils.scores import get_standings, get_team_standings, get_user_standings
     from CTFd.api.v1.scoreboard import ScoreboardDetail, ScoreboardList
@@ -98,6 +98,18 @@ def clear_standings():
     cache.delete(make_template_fragment_key(CacheKeys.PUBLIC_SCOREBOARD_TABLE))
 
 
+def clear_challenges():
+    from CTFd.utils.challenges import get_all_challenges  # noqa: I001
+    from CTFd.utils.challenges import get_solves_for_challenge_id
+    from CTFd.utils.challenges import get_solve_ids_for_user_id
+    from CTFd.utils.challenges import get_solve_counts_for_challenges
+
+    cache.delete_memoized(get_all_challenges)
+    cache.delete_memoized(get_solves_for_challenge_id)
+    cache.delete_memoized(get_solve_ids_for_user_id)
+    cache.delete_memoized(get_solve_counts_for_challenges)
+
+
 def clear_pages():
     from CTFd.utils.config.pages import get_page, get_pages
 
@@ -112,7 +124,7 @@ def clear_user_recent_ips(user_id):
 
 
 def clear_user_session(user_id):
-    from CTFd.utils.user import (
+    from CTFd.utils.user import (  # noqa: I001
         get_user_attrs,
         get_user_place,
         get_user_score,
@@ -126,7 +138,7 @@ def clear_user_session(user_id):
 
 
 def clear_all_user_sessions():
-    from CTFd.utils.user import (
+    from CTFd.utils.user import (  # noqa: I001
         get_user_attrs,
         get_user_place,
         get_user_score,
