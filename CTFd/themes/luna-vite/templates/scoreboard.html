@@ -25,7 +25,7 @@
           {% set team_name = standing.name | urlencode %}
           {% set team_name = team_name.replace('%20', '+') %}
           <div class="listItemDetailsIcon">
-            <img width="60" height="60" class="cellBodyIcon" src="{{ standing.gravatar }}" data-fallback="https://avatars.dicebear.com/api/initials/{{team_name}}.svg?backgroundColorLevel=800" onerror="this.src = this.dataset.fallback;this.onerror='';">
+            <img width="60" height="60" loading="lazy" class="cellBodyIcon" src="{{ standing.gravatar }}" data-fallback="https://avatars.dicebear.com/api/initials/{{team_name}}.svg?backgroundColorLevel=800" onerror="this.src = this.dataset.fallback;this.onerror='';">
           </div>
           <div class="listItemDetails">
             
