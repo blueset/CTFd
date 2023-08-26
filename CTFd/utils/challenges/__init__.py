@@ -1,7 +1,7 @@
 import datetime
 from collections import namedtuple
 
-from sqlalchemy import func as sa_func
+from sqlalchemy import func as sa_func, asc
 from sqlalchemy.sql import and_, false, true
 
 from CTFd.cache import cache
@@ -128,3 +128,35 @@ def get_solve_counts_for_challenges(challenge_id=None, admin=False):
     for chal_id, solve_count in solves_q:
         solve_counts[chal_id] = solve_count
     return solve_counts
+
+
+@cache.memoize(timeout=60)
+def get_first_solvers(challenge_id=None, admin=False):
+    if challenge_id is None:
+        challenge_id_filter = ()
+    else:
+        challenge_id_filter = (Solves.challenge_id == challenge_id,)
+    AccountModel = get_model()
+    freeze = get_config("freeze")
+    if freeze and not admin:
+        freeze_cond = Solves.date < unix_time_to_utc(freeze)
+    else:
+        freeze_cond = true()
+    exclude_solves_cond = and_(
+        AccountModel.banned == false(),
+        AccountModel.hidden == false(),
+    )
+    solves_q = (
+        db.session.query(
+            Solves.challenge_id,
+            sa_func.first_value(Solves.team_id).over(partition_by=Solves.challenge_id, order_by=asc(Solves.date)),
+        )
+        .join(AccountModel)
+        .filter(*challenge_id_filter, freeze_cond, exclude_solves_cond)
+        .group_by(Solves.challenge_id)
+    )
+
+    first_solvers = {}
+    for chal_id, first_solver in solves_q:
+        first_solvers[chal_id] = first_solver
+    return first_solvers
