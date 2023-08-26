@@ -21,12 +21,13 @@ function initHomeCountdown() {
     const isoDate = document.getElementById('homeISODate');
 
     var now = dayjs();
+    const timezoneFormat = now.format("z").includes("GMT") ? "[(UTC]Z[)]" : "[(]z[, UTC]Z[)]";
     var start = window.init.start && dayjs.unix(window.init.start);
     var end = window.init.end && dayjs.unix(window.init.end);
     var archived = window.init.archived;
     if (archived) {
         countdown.innerText = "The CTF is archived.";
-        localDate.innerText = `${start.format("D MMM YYYY, H:mm")} – ${end.format("D MMM YYYY, H:mm [(]z[, UTC]Z[)]")}`;
+        localDate.innerText = `${start.format("D MMM YYYY, H:mm")} – ${end.format(`D MMM YYYY, H:mm ${timezoneFormat}`)}`;
         isoDate.innerText = `${start.toISOString()} + ${dayjs.duration(end.diff(start)).toISOString()}`;
         localDate.dateTime = isoDate.innerText;
         isoDate.dateTime = isoDate.innerText;
@@ -44,7 +45,7 @@ function initHomeCountdown() {
     }
     var display = target || end || start;
     if (display) {
-        localDate.innerText = display.format("D MMM YYYY, H:mm [(]z[, UTC]Z[)]");
+        localDate.innerText = display.format(`D MMM YYYY, H:mm ${timezoneFormat}`);
         isoDate.innerText = display.toISOString();
         localDate.dateTime = isoDate.innerText;
         isoDate.dateTime = isoDate.innerText;
