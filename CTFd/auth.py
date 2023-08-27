@@ -5,6 +5,7 @@ from flask import Blueprint, abort
 from flask import current_app as app
 from flask import redirect, render_template, request, session, url_for
 from itsdangerous.exc import BadSignature, BadTimeSignature, SignatureExpired
+from flask_babel import lazy_gettext as _l
 
 from CTFd.cache import clear_team_session, clear_user_session
 from CTFd.models import Teams, UserFieldEntries, UserFields, Users, db
@@ -41,11 +42,11 @@ def confirm(data=None):
             user_email = unserialize(data, max_age=1800)
         except (BadTimeSignature, SignatureExpired):
             return render_template(
-                "confirm.html", errors=["Your confirmation link has expired"]
+                "confirm.html", errors=[_l("Your confirmation link has expired")]
             )
         except (BadSignature, TypeError, base64.binascii.Error):
             return render_template(
-                "confirm.html", errors=["Your confirmation token is invalid"]
+                "confirm.html", errors=[_l("Your confirmation token is invalid")]
             )
 
         user = Users.query.filter_by(email=user_email).first_or_404()
@@ -84,7 +85,7 @@ def confirm(data=None):
                 name=user.name,
             )
             return render_template(
-                "confirm.html", infos=[f"Confirmation email sent to {user.email}!"]
+                "confirm.html", infos=[_l(f"Confirmation email sent to %(email_addr)s!", email_addr=user.email)]
             )
         elif request.method == "GET":
             # User has been directed to the confirm page
@@ -100,7 +101,7 @@ def reset_password(data=None):
             "reset_password.html",
             errors=[
                 markup(
-                    "This CTF is not configured to send email.<br> Please contact an organizer to have your password reset."
+                    _l("This CTF is not configured to send email.<br> Please contact an organizer to have your password reset.")
                 )
             ],
         )
@@ -110,11 +111,11 @@ def reset_password(data=None):
             email_address = unserialize(data, max_age=1800)
         except (BadTimeSignature, SignatureExpired):
             return render_template(
-                "reset_password.html", errors=["Your link has expired"]
+                "reset_password.html", errors=[_l("Your link has expired")]
             )
         except (BadSignature, TypeError, base64.binascii.Error):
             return render_template(
-                "reset_password.html", errors=["Your reset token is invalid"]
+                "reset_password.html", errors=[_l("Your reset token is invalid")]
             )
 
         if request.method == "GET":
@@ -126,14 +127,14 @@ def reset_password(data=None):
                 return render_template(
                     "reset_password.html",
                     infos=[
-                        "Your account was registered via an authentication provider and does not have an associated password. Please login via your authentication provider."
+                        _l("Your account was registered via an authentication provider and does not have an associated password. Please login via your authentication provider.")
                     ],
                 )
 
             pass_short = len(password) == 0
             if pass_short:
                 return render_template(
-                    "reset_password.html", errors=["Please pick a longer password"]
+                    "reset_password.html", errors=[_l("Please pick a longer password")]
                 )
 
             user.password = password
@@ -158,7 +159,7 @@ def reset_password(data=None):
             return render_template(
                 "reset_password.html",
                 infos=[
-                    "If that account exists you will receive an email, please check your inbox"
+                    _l("If that account exists you will receive an email, please check your inbox")
                 ],
             )
 
@@ -166,7 +167,7 @@ def reset_password(data=None):
             return render_template(
                 "reset_password.html",
                 infos=[
-                    "The email address associated with this account was registered via an authentication provider and does not have an associated password. Please login via your authentication provider."
+                    _l("The email address associated with this account was registered via an authentication provider and does not have an associated password. Please login via your authentication provider.")
                 ],
             )
 
@@ -175,7 +176,7 @@ def reset_password(data=None):
         return render_template(
             "reset_password.html",
             infos=[
-                "If that account exists you will receive an email, please check your inbox"
+                _l("If that account exists you will receive an email, please check your inbox")
             ],
         )
     return render_template("reset_password.html")
@@ -206,6 +207,7 @@ def register():
         affiliation = request.form.get("affiliation")
         country = request.form.get("country")
         registration_code = str(request.form.get("registration_code", ""))
+        language = current_user.get_locale()
 
         name_len = len(name) == 0
         names = (
@@ -226,7 +228,7 @@ def register():
                 registration_code.lower()
                 != str(get_config("registration_code", default="")).lower()
             ):
-                errors.append("The registration code you entered was incorrect")
+                errors.append(_l("The registration code you entered was incorrect"))
 
         # Process additional user fields
         fields = {}
@@ -237,7 +239,7 @@ def register():
         for field_id, field in fields.items():
             value = request.form.get(f"fields[{field_id}]", "").strip()
             if field.required is True and (value is None or value == ""):
-                errors.append("Please provide all required fields")
+                errors.append(_l("Please provide all required fields"))
                 break
 
             if field.field_type == "boolean":
@@ -265,27 +267,27 @@ def register():
             valid_affiliation = True
 
         if not valid_email:
-            errors.append("Please enter a valid email address")
+            errors.append(_l("Please enter a valid email address"))
         if email.check_email_is_whitelisted(email_address) is False:
-            errors.append("Your email address is not from an allowed domain")
+            errors.append(_l("Your email address is not from an allowed domain"))
         if names:
-            errors.append("That user name is already taken")
+            errors.append(_l("That user name is already taken"))
         if team_name_email_check is True:
-            errors.append("Your user name cannot be an email address")
+            errors.append(_l("Your user name cannot be an email address"))
         if emails:
-            errors.append("That email has already been used")
+            errors.append(_l("That email has already been used"))
         if pass_short:
-            errors.append("Pick a longer password")
+            errors.append(_l("Pick a longer password"))
         if pass_long:
-            errors.append("Pick a shorter password")
+            errors.append(_l("Pick a shorter password"))
         if name_len:
-            errors.append("Pick a longer user name")
+            errors.append(_l("Pick a longer user name"))
         if valid_website is False:
-            errors.append("Websites must be a proper URL starting with http or https")
+            errors.append(_l("Websites must be a proper URL starting with http or https"))
         if valid_country is False:
-            errors.append("Invalid country")
+            errors.append(_l("Invalid country"))
         if valid_affiliation is False:
-            errors.append("Please provide a shorter affiliation")
+            errors.append(_l("Please provide a shorter affiliation"))
 
         if len(errors) > 0:
             return render_template(
@@ -299,6 +301,8 @@ def register():
             with app.app_context():
                 user = Users(name=name, email=email_address, password=password)
 
+                if language:
+                    user.language = language
                 if website:
                     user.website = website
                 if affiliation:
@@ -373,10 +377,10 @@ def login():
 
         if user:
             if user.password is None:
-                errors.append(
+                errors.append(_l(
                     "Your account was registered with a 3rd party authentication provider. "
                     "Please try logging in with a configured authentication provider."
-                )
+                ))
                 return render_template("login.html", errors=errors)
 
             if user and verify_password(request.form["password"], user.password):
@@ -405,7 +409,7 @@ def login():
         else:
             # This user just doesn't exist
             log("logins", "[{date}] {ip} - submitted invalid account information")
-            errors.append("Your username or password is incorrect")
+            errors.append(_l("Your username or password is incorrect"))
             db.session.close()
             return render_template("login.html", errors=errors)
     else:

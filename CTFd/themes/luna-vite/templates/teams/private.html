@@ -4,13 +4,13 @@
 {% from "macros/forms.html" import render_extra_fields %}
 
 {% block title %}Teams{% endblock %}
-{% block subtitle %}Your team{% endblock %}
+{% block subtitle %}{% trans %}Your team{% endtrans %}{% endblock %}
 
 {% block tabbedContent %}
-<button class="tab active" data-target="tabMembers">Members</button>
-<button class="tab" data-target="tabSolves">Solves</button>
-<button class="tab" data-target="tabBreakdown">Breakdown</button>
-<button class="tab" data-target="tabTimeline">Timeline</button>
+<button class="tab active" data-target="tabMembers">{% trans %}Members{% endtrans %}</button>
+<button class="tab" data-target="tabSolves">{% trans %}Solves{% endtrans %}</button>
+<button class="tab" data-target="tabBreakdown">{% trans %}Breakdown{% endtrans %}</button>
+<button class="tab" data-target="tabTimeline">{% trans %}Timeline{% endtrans %}</button>
 {% endblock %}
 
 {% block framedContent %}
@@ -31,34 +31,34 @@
           </div>
           {% if team.oauth_id %}
           <a href="https://majorleaguecyber.org/u/{{ team.name }}" class="chip tall">
-            Official
+            {% trans %}Official{% endtrans %}
           </a>
           {% endif %}
         </div>
         <div class="profileMetaRow" x-data="CaptainMenu">
           <button class="button textButton shade small" @click="editTeam()">
-            <span>Edit team</span>
+            <span>{% trans %}Edit team{% endtrans %}</span>
           </button>
           <button class="button textButton shade small" @click="chooseCaptain()">
-            <span>Choose captain</span>
+            <span>{% trans %}Choose captain{% endtrans %}</span>
           </button>
           <button class="button textButton shade small" @click="inviteMembers()">
-            <span>Invite users</span>
+            <span>{% trans %}Invite users{% endtrans %}</span>
           </button>
           <button class="button textButton shade small" @click="disbandTeam()">
-            <span>Disband team</span>
+            <span>{% trans %}Disband team{% endtrans %}</span>
           </button>
         </div>
       </div>
 
       <div class="profileRank">
-        <label class="chip">Rank</label>
+        <label class="chip">{% trans %}Rank{% endtrans %}</label>
         {% if scores_visible() and place %}
         <div class="profileRankNumber">{{ get_rank(place[:-2]) }}</div>
         {% elif not scores_visible() %}
-        <div class="profileRankNumber unranked">Hidden</div>
+        <div class="profileRankNumber unranked">{% trans %}Hidden{% endtrans %}</div>
         {% else %}
-        <div class="profileRankNumber unranked">Unranked</div>
+        <div class="profileRankNumber unranked">{% trans %}Unranked{% endtrans %}</div>
         {% endif %}
       </div>
     </div>
@@ -69,7 +69,7 @@
     </div>
     {% endfor %}
 
-    <h3 class="sectionTitle">Members</h3>
+    <h3 class="sectionTitle">{% trans %}Members{% endtrans %}</h3>
     {% if team.members %}
     {% for member in team.members %}
     <a class="listItem{% if member.id == Session.id %} active{% endif %}" href="{{ url_for('users.public', user_id=member.id) }}">
@@ -85,7 +85,7 @@
             <iconify-icon icon="material-symbols:manage-accounts" class="teamCaptain" inline></iconify-icon>
           {% endif %}
         </div>
-        <div>{{ member.solves | length }} {{ member.solves | length | pluralize("solve", "solves") }}</div>
+        <div>{{ ngettext('%(solves)d solve', '%(solves)d solves', member.solves | length, solves=member.solves | length) }}</div>
       </div>
       <div class="listItemScore digits5">
         <span>
@@ -95,13 +95,13 @@
     </a>
     {% endfor %}
     {% else %}
-      <div class="info" style="justify-content: center;">No members.</div>
+      <div class="info" style="justify-content: center;">{% trans %}No members.{% endtrans %}</div>
     {% endif %}
 
   </div>
   <div class="totalScore">
     <div class="frameContentWrapper">
-      <span class="totalScorePrompt">Total score</span>
+      <span class="totalScorePrompt">{% trans %}Total score{% endtrans %}</span>
       <span class="totalScoreDisplay">
         <span class="totalScoreValue">{{ score or 0 }}</span>&nbsp;<span class="totalScoreP">P</span>
       </span>
@@ -116,7 +116,7 @@
     <a class="listItem" href="{{ url_for('challenges.listing') }}#{{ solve.challenge.name }}-{{ solve.challenge.id }}">
       <div class="listItemDetails">
         <div class="listItemDetailsPrimary">{{ solve.challenge.name }}</div>
-        <div>{{ solve.challenge.category }}, solved on <time data-time="{{ solve.date | isoformat }}"></time></div>
+        <div>{{ gettext("%(category)s, solved on %(time)s.", category=solve.challenge.category, time=gettext('<time data-time="%(date)s"></time>', date=solve.date | isoformat )) | safe }}</div>
       </div>
       <div class="listItemScore digits5">
         <span>
@@ -126,13 +126,13 @@
     </a>
     {% endfor %}
     {% else %}
-      <div class="info" style="justify-content: center;">No solves yet.</div>
+      <div class="info" style="justify-content: center;">{% trans %}No solves yet.{% endtrans %}</div>
     {% endif %}
 
   </div>
   <div class="totalScore">
     <div class="frameContentWrapper">
-      <span class="totalScorePrompt">Total score</span>
+      <span class="totalScorePrompt">{% trans %}Total score{% endtrans %}</span>
       <span class="totalScoreDisplay">
         <span class="totalScoreValue">{{ score }}</span>&nbsp;<span class="totalScoreP">P</span>
       </span>
@@ -144,7 +144,7 @@
     
     {% if solves %}
     <div class="progressBarChart">
-      <h3 class="sectionTitle">Solve percentages</h3>
+      <h3 class="sectionTitle">{% trans %}Solve percentages{% endtrans %}</h3>
       <div class="progress">
         <div class="progress-bar" role="progressbar"
           :style="{ width: `${getSolvePercentage()}%`, 'background-color': 'rgb(0, 209, 64)' }">
@@ -155,18 +155,18 @@
         <svg height="16" width="16">
           <circle cx="8" cy="8" r="5" fill="rgb(0, 209, 64)" />
         </svg>
-        <small x-text="`Solves (${getSolvePercentage().toFixed(2)}%)`"></small>
+        <small x-text="`{% trans %}Solves{% endtrans %} (${getSolvePercentage().toFixed(2)}%)`"></small>
       </div>
       <div class="progressBarLegend">
         <svg height="16" width="16">
           <circle cx="8" cy="8" r="5" fill="rgb(207, 38, 0)" />
         </svg>
-        <small x-text="`Fails (${getFailPercentage().toFixed(2)}%)`"></small>
+        <small x-text="`{% trans %}Fails{% endtrans %} (${getFailPercentage().toFixed(2)}%)`"></small>
       </div>
     </div>
 
     <div class="progressBarChart">
-      <h3 class="sectionTitle">Category breakdown</h3>
+      <h3 class="sectionTitle">{% trans %}Category breakdown{% endtrans %}</h3>
       <div class="progress">
         <template x-for="category in getCategoryBreakdown()" :key="category.name">
           <div class="progress-bar" role="progressbar"
@@ -184,7 +184,7 @@
       </template>
     </div>
     {% else %}
-      <div class="info" style="justify-content: center;">No solves yet.</div>
+      <div class="info" style="justify-content: center;">{% trans %}No solves yet.{% endtrans %}</div>
     {% endif %}
 
   </div>
@@ -196,7 +196,7 @@
       Loading...
     </div>
     {% else %}
-    <div class="info" style="justify-content: center;">No solves yet.</div>
+    <div class="info" style="justify-content: center;">{% trans %}No solves yet.{% endtrans %}</div>
     {% endif %}
   </div>
 </div>
@@ -244,7 +244,7 @@
 
     <div class="info" role="alert" x-cloak="success" x-show="success">
       <iconify-icon icon="material-symbols:info"></iconify-icon>
-      <span><strong>Success!</strong> Your team’s profile has been updated.</span>
+      <span><strong>{% trans %}Success!{% endtrans %}</strong> {% trans %}Your team’s profile has been updated.{% endtrans %}</span>
     </div>
     <template x-for="(msg, idx) in errors" :key="idx">
       <div class="warning" role="alert">
@@ -256,17 +256,17 @@
   </form>
   <div class="modalFooter">
       <button class="button textButton shade" id="teamEditModalClose">
-          <span>Cancel</span>
+          <span>{% trans %}Cancel{% endtrans %}</span>
       </button>
       <button class="button textButton shade primary" type="submit" form="teamEditForm" x-bind:disabled="submitting">
-          <span>Update</span>
+          <span>{% trans %}Update{% endtrans %}</span>
       </button>
   </div>
 </dialog>
 
 <dialog class="modal fit" id="teamCaptainModal" x-data="TeamCaptainModal">
   {% with form = Forms.teams.TeamCaptainForm(captain_id=team.captain_id) %}
-  <h2 class="modalHeader">Choose captain</h2>
+  <h2 class="modalHeader">{% trans %}Choose captain{% endtrans %}</h2>
   <form id="teamCaptainForm" method="POST" @submit.prevent="updateCaptain()" class="modalBody formFields">
     {{ form.captain_id.label(class="chip") }}
     {% for member in team.members %}
@@ -277,7 +277,7 @@
 
     <div class="info" role="alert" x-cloak="success" x-show="success">
       <iconify-icon icon="material-symbols:info"></iconify-icon>
-      <span><strong>Success!</strong> Your captain rights have been transferred.</span>
+      <span><strong>{% trans %}Success!{% endtrans %}</strong> {% trans %}Your captain rights have been transferred.{% endtrans %}</span>
     </div>
     <template x-for="(msg, idx) in errors" :key="idx">
       <div class="warning" role="alert">
@@ -299,7 +299,7 @@
 </dialog>
 
 <dialog class="modal fit" id="teamInviteModal" x-data="TeamInviteModal">
-  <h2 class="modalHeader">Invite users</h2>
+  <h2 class="modalHeader">{% trans %}Invite users{% endtrans %}</h2>
   <div class="modalBody formFields">
   {% with form = Forms.teams.TeamInviteForm() %}
 
@@ -312,23 +312,23 @@
       </button>
     </div>
     <p class="formHint fieldHint">
-      Share this link with your team members for them to join your team.<br>
-      Invite links can be re-used and expire after one day.
+      {% trans %}Share this link with your team members for them to join your team.<br>
+      Invite links can be re-used and expire after one day.{% endtrans %}
     </p>
 
     {% endwith %}
   </div>
   <div class="modalFooter">
     <button class="button textButton shade" id="teamInviteModalClose">
-      <span>Close</span>
+      <span>{% trans %}Close{% endtrans %}</span>
     </button>
   </div>
 </dialog>
 
 <dialog class="modal fit" id="teamDisbandModal" x-data="TeamDisbandModal">
-  <h2 class="modalHeader">Disband team?</h2>
+  <h2 class="modalHeader">{% trans %}Disband team?{% endtrans %}</h2>
   <div class="modalBody">
-    <div class="warning">Are you sure you want to disband your team?</div>
+    <div class="warning">{% trans %}Are you sure you want to disband your team?{% endtrans %}</div>
     <template x-for="(msg, idx) in errors" :key="idx">
       <div class="warning" role="alert">
         <iconify-icon icon="material-symbols:warning"></iconify-icon>
@@ -338,10 +338,10 @@
   </div>
   <div class="modalFooter">
       <button class="button textButton shade primary" id="teamDisbandModalClose">
-          <span>Cancel</span>
+          <span>{% trans %}Cancel{% endtrans %}</span>
       </button>
       <button class="button textButton shade" type="submit" @click="disbandTeam()" :disabled="errors.length > 0">
-          <span>Disband</span>
+          <span>{% trans %}Disband{% endtrans %}</span>
       </button>
   </div>
 </dialog>

@@ -1,5 +1,6 @@
 import { colorHash } from "@ctfdio/ctfd-js/ui";
 import dayjs from "dayjs";
+import { _ } from '../../i18n.js';
 
 export function cumulativeSum(arr) {
   let result = [...arr];
@@ -17,7 +18,7 @@ export function getOption(mode, places) {
   let option = {
     title: {
       left: "center",
-      text: "Top 10 " + (mode === "teams" ? "Teams" : "Users"),
+      text: (mode === "teams" ? _("Top 10 Teams") : _("Top 10 Users")),
     },
     tooltip: {
       trigger: "axis",
@@ -67,6 +68,9 @@ export function getOption(mode, places) {
       },
     ],
     series: [],
+    textStyle: {
+      fontFamily: 'sans-serif'
+    },
   };
 
   const teams = Object.keys(places);

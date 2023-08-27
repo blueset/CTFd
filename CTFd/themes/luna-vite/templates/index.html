@@ -21,27 +21,27 @@
         <div class="homeCTAButtons">
             <a href="{{ url_for('views.static_html', route='rules') }}" class="button textButton shade homeCTAButton">
                 <iconify-icon icon="material-symbols:menu-book" style="transform: translate(4px, -8px) scale(1.1);"></iconify-icon>
-                <span>Rules</span>
+                <span>{% trans %}Rules{% endtrans %}</span>
             </a>
             {% if authed() %}
             <a href="{{ url_for('scoreboard.listing') }}" class="button textButton shade homeCTAButton">
                 <iconify-icon icon="mdi:podium" style="transform: translate(4px, -10px) scale(1.1);"></iconify-icon>
-                <span>Rankings</span>
+                <span>{% trans %}Rankings{% endtrans %}</span>
             </a>
             <a href="{{ url_for('challenges.listing') }}" class="button textButton shade primary homeCTAButton">
                 <iconify-icon icon="fluent:music-note-2-24-filled" style="transform: translateY(-15px) scale(1.4);"></iconify-icon>
-                <span>Challenges</span>
+                <span>{% trans %}Challenges{% endtrans %}</span>
             </a>
             {% else %}
             {% if registration_visible() %}
             <a href="{{ url_for('auth.register') }}" class="button textButton shade homeCTAButton">
                 <iconify-icon icon="mdi:account-plus" style="transform: translate(4px, -10px) scale(1.1);"></iconify-icon>
-                <span>Register</span>
+                <span>{% trans %}Register{% endtrans %}</span>
             </a>
             {% endif %}
             <a href="{{ url_for('auth.login') }}" class="button textButton shade primary homeCTAButton">
                 <iconify-icon icon="mdi:login-variant" style="transform: translateY(-13px) scale(1.25);"></iconify-icon>
-                <span>Log in</span>
+                <span>{% trans %}Log in{% endtrans %}</span>
             </a>
             {% endif %}
         </div>
@@ -72,8 +72,7 @@
     </div>
     <div class="logoBox">
         <img src="{{ url_for('views.files', path=Configs.ctf_logo) if Configs.ctf_logo else url_for('views.themes', path='img/logos/sekai2.svg') }}" alt="Project SEKAI CTF" />
-        <div class="tapToStart"><span class="click">Click</span><span
-                class="tap">Tap</span> to start</div>
+        <div class="tapToStart">{{ gettext("%(verb)s to start", verb=gettext('<span class="click">Click</span><span class="tap">Tap</span>')) | safe }}</div>
     </div>
 </div>
 {% endblock %}

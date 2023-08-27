@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ get_locale() }}">
 
 <head>
     <title>{{ Configs.ctf_name.replace('Sekai', 'Project SEKAI ') }}</title>
@@ -38,7 +38,7 @@
     {{ Configs.theme_header }}
 </head>
 
-<body>
+<body class="{{ request.endpoint | replace('.', '-') }}">
     <svg width="0" height="0" xmlns="http://www.w3.org/2000/svg" style="position: absolute; visibility: hidden;">
         <filter id="primaryIconStroke" filterUnits="objectBoundingBox"
             primitiveUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
@@ -94,6 +94,43 @@
     {% block content %}
     {% endblock %}
 
+    <script>
+        window.strings = {
+            "The CTF is archived.": "{{ gettext('The CTF is archived.') }}",
+            "D MMM YYYY, H:mm": "{{ gettext('D MMM YYYY, H:mm') }}",
+            "%(time)s until start.": "{{ gettext('%(time)s until start.', time='%(time)s') }}",
+            "%(time)s until end.": "{{ gettext('%(time)s until end.', time='%(time)s') }}",
+            "%(days)sd %(rest)s": "{{ gettext('%(days)sd %(rest)s', days='%(days)s', rest='%(rest)s') }}",
+            "%(hours)sh %(rest)s": "{{ gettext('%(hours)sh %(rest)s', hours='%(hours)s', rest='%(rest)s') }}",
+            "HH[h] mm[m] ss[s]": "{{ gettext('HH[h] mm[m] ss[s]') }}",
+            "mm[m] ss[s]": "{{ gettext('mm[m] ss[s]') }}",
+            "The CTF has started.": "{{ gettext('The CTF has started.') }}",
+            "The CTF has ended.": "{{ gettext('The CTF has ended.') }}",
+            "Category Breakdown": "{{ gettext('Category Breakdown') }}",
+            "Top 10 Teams": "{{ gettext('Top 10 Teams') }}",
+            "Top 10 Users": "{{ gettext('Top 10 Users') }}",
+            "Solve Percentages": "{{ gettext('Solve Percentages') }}",
+            "Fails": "{{ gettext('Fails') }}",
+            "Solves": "{{ gettext('Solves') }}",
+            "Score over Time": "{{ gettext('Score over Time') }}",
+            "Clipboard is not available.": "{{ gettext('Clipboard is not available.') }}",
+            "Copied!": "{{ gettext('Copied!') }}",
+            "%d<small>s</small>": "{{ gettext('%(val)s<small>s</small>', val='%d') }}",
+            "1<small>min</small>": "{{ gettext('1<small>min</small>') }}",
+            "%d<small>mins</small>": "{{ gettext('%(val)s<small>mins</small>', val='%d') }}",
+            "1<small>hr</small>": "{{ gettext('1<small>hr</small>') }}",
+            "%d<small>hrs</small>": "{{ gettext('%(val)s<small>hrs</small>', val='%d') }}",
+            "1<small>d</small>": "{{ gettext('1<small>d</small>') }}",
+            "%d<small>d</small>": "{{ gettext('%(val)s<small>d</small>', val='%d') }}",
+            "1<small>mth</small>": "{{ gettext('1<small>mth</small>') }}",
+            "%d<small>mths</small>": "{{ gettext('%(val)s<small>mths</small>', val='%d') }}",
+            "1<small>yr</small>": "{{ gettext('1<small>yr</small>') }}",
+            "%d<small>yrs</small>": "{{ gettext('%(val)s<small>yrs</small>', val='%d') }}",
+            "Hint is not available.": "{{ gettext('Hint is not available.') }}",
+            "Close": "{{ gettext('Close') }}",
+            "Invite users": "{{ gettext('Invite users') }}",
+        };
+    </script>
     {{ Assets.js("assets/js/base.js") }}
     {% block scripts %}
     {% endblock %}
@@ -105,8 +142,26 @@
             --halftone-bg: url("{{ url_for('views.themes', path='img/halftoneButtonBg.svg') }}");
             --halftone-bg-white: url("{{ url_for('views.themes', path='img/halftoneButtonBgWhite.svg') }}");
             --halftone-bg-white-25: url("{{ url_for('views.themes', path='img/halftoneButtonBgWhite25.svg') }}");
-            --inter-variable: url("{{ url_for('views.themes', path='fonts/InterVariable.woff2') }}");
-            --inter-variable-italic: url("{{ url_for('views.themes', path='fonts/InterVariable-Italic.woff2') }}");
+        }
+
+        @font-face {
+            font-family: "InterVar";
+            font-weight: 100 900;
+            font-display: swap;
+            font-style: normal;
+            src: url("{{ url_for('views.themes', path='fonts/InterVariable.woff2') }}") format("woff2-variations"),
+                 url("{{ url_for('views.themes', path='fonts/InterVariable.woff2') }}") format("woff2");
+            src: url("{{ url_for('views.themes', path='fonts/InterVariable.woff2') }}") format("woff2") tech("variations");
+        }
+        
+        @font-face {
+            font-family: "InterVar";
+            font-weight: 100 900;
+            font-display: swap;
+            font-style: italic;
+            src: url("{{ url_for('views.themes', path='fonts/InterVariable-Italic.woff2') }}") format("woff2-variations"),
+                 url("{{ url_for('views.themes', path='fonts/InterVariable-Italic.woff2') }}") format("woff2");
+            src: url("{{ url_for('views.themes', path='fonts/InterVariable-Italic.woff2') }}") format("woff2") tech("variations");
         }
     </style>
 

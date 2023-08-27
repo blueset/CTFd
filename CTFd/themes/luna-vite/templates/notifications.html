@@ -1,12 +1,12 @@
 {% extends "templates/framed.html" %}
 
 {% block title %}INFO{% endblock %}
-{% block subtitle %}Notifications{% endblock %}
+{% block subtitle %}{% trans %}Notifications{% endtrans %}{% endblock %}
 
 {% block framedContent %}
 <div class="frameContentWrapper">
 	{% if not notifications %}
-	<p class="info" style="justify-content: center;">There are no notifications yet.</p>
+	<p class="info" style="justify-content: center;">{% trans %}There are no notifications yet.{% endtrans %}</p>
 	{% endif %}
 	{% for notification in notifications %}
 	<div class="listItem notificationItem">

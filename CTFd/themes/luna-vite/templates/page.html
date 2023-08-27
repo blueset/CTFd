@@ -1,7 +1,7 @@
 {% extends "templates/framed.html" %}
 
 {% block title %}Info{% endblock %}
-{% block subtitle %}{{ 'Privacy Policy' if request.path == '/privacy' else 'Terms of Service' if request.path == '/tos' else title }}{% endblock %}
+{% block subtitle %}{{ gettext('Privacy Policy') if request.path == '/privacy' else gettext('Terms of Service') if request.path == '/tos' else gettext('Rules') if request.path == '/rules' else title }}{% endblock %}
 
 {% block framedContent %}
   <div class="container">

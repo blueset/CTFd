@@ -3,20 +3,20 @@
 {% block plainContent %}
 {% with form = Forms.auth.ConfirmForm() %}
 <form method="POST" action="{{ url_for('auth.confirm') }}" open class="modal centered fit">
-  <h2 class="modalHeader">Confirm</h2>
+  <h2 class="modalHeader">{% trans %}Confirm{% endtrans %}</h2>
   <div class="modalBody" style="display: flex; flex-direction: column; gap: 1rem;">
 
     <div>
-      We've sent a confirmation email to your email address.
+      {% trans %}We've sent a confirmation email to your email address.{% endtrans %}
     </div>
 
     <div>
-      Please click the link in that email to confirm your account.
+      {% trans %}Please click the link in that email to confirm your account.{% endtrans %}
     </div>
 
     <div>
-      If the email doesn’t arrive, check your spam folder or
-      contact an administrator to manually verify your account.
+      {% trans %}If the email doesn’t arrive, check your spam folder or
+      contact an administrator to manually verify your account.{% endtrans %}
     </div>
     {% include "components/errors.html" %}
 
@@ -24,10 +24,10 @@
   </div>
   <div class="modalFooter">
     <a class="button textButton shade" href="{{ url_for('views.settings') }}">
-      <span>Change email address</span>
+      <span>{% trans %}Change email address{% endtrans %}</span>
     </a>
     <button class="button textButton primary shade" type="submit">
-      <span>Resend email</span>
+      <span>{% trans %}Resend email{% endtrans %}</span>
     </button>
   </div>
 </form>

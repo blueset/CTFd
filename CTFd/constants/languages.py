@@ -3,10 +3,11 @@ from CTFd.constants import RawEnum
 
 class Languages(str, RawEnum):
     ENGLISH = "en"
-    GERMAN = "de"
-    POLISH = "pl"
-    SPANISH = "es"
+    # GERMAN = "de"
+    # POLISH = "pl"
+    # SPANISH = "es"
     CHINESE = "zh"
+    JAPANESE = "ja"
 
 
 LANGUAGE_NAMES = {
@@ -14,7 +15,8 @@ LANGUAGE_NAMES = {
     "de": "Deutsch",
     "pl": "Polski",
     "es": "Español",
-    "zh": "中文",
+    "zh": "简体中文",
+    "ja": "日本語",
 }
 
 SELECT_LANGUAGE_LIST = [("", "")] + [

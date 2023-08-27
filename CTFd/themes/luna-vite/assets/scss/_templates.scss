@@ -66,6 +66,10 @@
         z-index: 2;
 
         @include subtle-scroll;
+
+        .scoreboard-listing &, .teams-listing &, .users-listing &, .views-notifications & {
+            scrollbar-gutter: stable both-edges;
+        }
     }
 
     #backButton {

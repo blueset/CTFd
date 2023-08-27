@@ -9,7 +9,7 @@
       </button>
       <div class="titleGroup">
           <h1 class="title" x-text="lrn === null ? 'Challenges' : 'Solo Live'">Challenges</h1>
-          <h2 class="subtitle"><span x-text="lrn === null ? 'Challenges list' : '楽曲選択'" :lang="lrn === null ? 'en' : 'ja'">Challenges list</span></h2>
+          <h2 class="subtitle"><span x-text="lrn === null ? '{% trans %}Challenges list{% endtrans %}' : '楽曲選択'" :lang="lrn === null ? '' : 'ja'">{% trans %}Challenges list{% endtrans %}</span></h2>
       </div>
     </div>
     <button class="button iconButton tiny" id="settingsButton" @click="$refs.settingsModal.showModal()" aria-label="Challenge settings" title="Challenge settings">
@@ -17,9 +17,9 @@
     </button>
   <nav class="tabs">
       <div class="filler"></div>
-      <button :class="{'tab': true, 'active': category === null}" @click="setCategory(null)" aria-label="All challenges" x-text="lrn === null ? 'All' : 'すべて'" :lang="lrn === null ? 'en' : 'ja'">All</button>
+      <button :class="{'tab': true, 'active': category === null}" @click="setCategory(null)" aria-label="{% trans %}All challenges{% endtrans %}" x-text="lrn === null ? '{% trans %}All{% endtrans %}' : 'すべて'" :lang="lrn === null ? '' : 'ja'">{% trans %}All{% endtrans %}</button>
       <template x-for="(cat, idx) in getCategoryWithIcons()" :key="idx">
-        <button class="tab" :class="{'tab': true, 'active': category === cat[0]}" @click="setCategory(cat[0])" :aria-label="`${cat[0]}, category`">
+        <button class="tab" :class="{'tab': true, 'active': category === cat[0]}" @click="setCategory(cat[0])" :aria-label="`${cat[0]}, {% trans %}category{% endtrans %}`">
           <img :src="cat[1]" :alt="cat[0]" x-show="cat[1] !== null" :title="cat[0]" aria-hidden="true"/>
           <span x-text="cat[0]" x-show="cat[1] === null"></span>
         </button>
@@ -28,8 +28,8 @@
   </nav>
 
   <div id="challengesListWrapper">
-    <div id="challengesList" :class="{'loopHighlight': loopHighlight, 'highContrast': highContrast}" x-ref="listNode" role="list" aria-label="Challenges list">
-      <div x-show="filteredChallenges.length < 1" class="noChallenge">No challenges found.</div>
+    <div id="challengesList" :class="{'loopHighlight': loopHighlight, 'highContrast': highContrast}" x-ref="listNode" role="list" aria-label="{% trans %}Challenges list{% endtrans %}">
+      <div x-show="filteredChallenges.length < 1" class="noChallenge">{% trans %}No challenges found.{% endtrans %}</div>
       <div x-show="filteredChallenges.length > 0" class="indicator">▶</div>
       <template x-for="(ch, idx) in repeatArray(filteredChallenges, repeatTimes)" :key="`a${ch.id}-${idx}`">
         <div :data-id="ch.id" :class="{'challengeItem': true, 'solved': ch.solved_by_me, 'solvedFirst': ch.is_first_solver, }" @click="selectChallenge(idx % filteredChallenges.length, $event.target)" aria-hidden="true">
@@ -39,7 +39,7 @@
       <template x-for="(ch, idx) in filteredChallenges" :key="`c${ch.id}-${idx}`">
         <button :data-id="ch.id" :data-is-center="idx" :data-index="idx" 
           :class="{ 'challengeItem': true, 'solved': ch.solved_by_me, 'solvedFirst': ch.is_first_solver, 'selected': ch.id === selectedId }" 
-          @click="selectChallenge(idx, $event.target)" role="listitem" :aria-label="`${ch.name}, ${ch.value} points, category ${ch.category}, difficulty level ${ch.difficulty}, ` + (ch.is_first_solver ? 'you are the first solver' : ch.solved_by_me ? 'solved' : 'unsolved')"> 
+          @click="selectChallenge(idx, $event.target)" role="listitem" :aria-label="`${ch.name}, {{ gettext('%(points)s points', points='${ch.value}') }}, {{ gettext('category %(category)s', category='${ch.category}') }}, {{ gettext('difficulty level %(level)s', level='${ch.difficulty}') }}, ` + (ch.is_first_solver ? '{% trans %}you are the first solver{% endtrans %}' : ch.solved_by_me ? '{% trans %}solved{% endtrans %}' : '{% trans %}unsolved{% endtrans %}')"> 
         {% include 'components/challengeListEntry.html' %}
         </button>
       </template>
@@ -61,88 +61,88 @@
   </article>
   <div class="loadingWrapper" x-show="$store.challenge.loading">{% include "components/loading.html" %}</div>
 
-  <dialog class="modal fit" id="challengesSettings" x-ref="settingsModal" :lang="lrn === null ? 'en' : 'ja'">
-    <h2 class="modalHeader" x-text="lrn === null ? 'Challenges settings' : 'オプション'">Challenges settings</h2>
+  <dialog class="modal fit" id="challengesSettings" x-ref="settingsModal" :lang="lrn === null ? '' : 'ja'">
+    <h2 class="modalHeader" x-text="lrn === null ? '{% trans %}Challenges settings{% endtrans %}' : 'オプション'">{% trans %}Challenges settings{% endtrans %}</h2>
     <div class="modalBody">
-      <h3 class="sectionTitle" x-text="lrn === null ? 'Sort order' : '並び替え'">Sort order</h3>
+      <h3 class="sectionTitle" x-text="lrn === null ? '{% trans %}Sort order{% endtrans %}' : '並べ替え'">{% trans %}Sort order{% endtrans %}</h3>
       <div class="challengeSettings2">
         <div class="radioGroup">
           <input type="radio" @change="refreshSortFilter()" name="sortOrder" x-model="sortOrder" id="sortOrederDifficulty" value="Difficulty">
-          <label for="sortOrederDifficulty" x-text="lrn === null ? 'Difficulty' : '難易度順'">Difficulty</label>
+          <label for="sortOrederDifficulty" x-text="lrn === null ? '{% trans %}Difficulty{% endtrans %}' : '難易度順'">{% trans %}Difficulty{% endtrans %}</label>
         </div>
         <div class="radioGroup">
           <input type="radio" @change="refreshSortFilter()" name="sortOrder" x-model="sortOrder" id="sortOrederScore" value="Score">
-          <label for="sortOrederScore" x-text="lrn === null ? 'Score' : 'スコア順'">Score</label>
+          <label for="sortOrederScore" x-text="lrn === null ? '{% trans %}Score{% endtrans %}' : 'スコア順'">{% trans %}Score{% endtrans %}</label>
         </div>
         <div class="radioGroup">
           <input type="radio" @change="refreshSortFilter()" name="sortOrder" x-model="sortOrder" id="sortOrederSolves" value="Solves">
-          <label for="sortOrederSolves" x-text="lrn === null ? 'Solves' : 'クリア人数順'">Solves</label>
+          <label for="sortOrederSolves" x-text="lrn === null ? '{% trans %}Solves{% endtrans %}' : 'クリア人数順'">{% trans %}Solves{% endtrans %}</label>
         </div>
         <div class="radioGroup">
           <input type="radio" @change="refreshSortFilter()" name="sortOrder" x-model="sortOrder" id="sortOrederName" value="Name">
-          <label for="sortOrederName" x-text="lrn === null ? 'Name' : '50音順'">Name</label>
+          <label for="sortOrederName" x-text="lrn === null ? '{% trans %}Name{% endtrans %}' : '50音順'">{% trans %}Name{% endtrans %}</label>
         </div>
       </div>
-      <h3 class="sectionTitle" x-text="lrn === null ? 'Filter challenges' : '絞り込み'">Filter challenges</h3>
+      <h3 class="sectionTitle" x-text="lrn === null ? '{% trans %}Filter challenges{% endtrans %}' : '絞り込み'">{% trans %}Filter challenges{% endtrans %}</h3>
       <div class="challengeSettings3">
         <div class="radioGroup">
           <input type="radio" @change="refreshSortFilter()" name="filterCondition" x-model="filterCondition" id="filterConditionAll" value="All">
-          <label for="filterConditionAll" x-text="lrn === null ? 'All' : 'すべて'">All</label>
+          <label for="filterConditionAll" x-text="lrn === null ? '{% trans %}All{% endtrans %}' : 'すべて'">{% trans %}All{% endtrans %}</label>
         </div>
         <div class="radioGroup">
           <input type="radio" @change="refreshSortFilter()" name="filterCondition" x-model="filterCondition" id="filterConditionUnsolved" value="Unsolved">
-          <label for="filterConditionUnsolved" x-text="lrn === null ? 'Unsolved' : '未クリア'">Unsolved</label>
+          <label for="filterConditionUnsolved" x-text="lrn === null ? '{% trans %}Unsolved{% endtrans %}' : '未クリア'">{% trans %}Unsolved{% endtrans %}</label>
         </div>
         <div class="radioGroup">
           <input type="radio" @change="refreshSortFilter()" name="filterCondition" x-model="filterCondition" id="filterConditionSolved" value="Solved">
-          <label for="filterConditionSolved" x-text="lrn === null ? 'Solved' : 'クリア済み'">Solved</label>
+          <label for="filterConditionSolved" x-text="lrn === null ? '{% trans %}Solved{% endtrans %}' : 'クリア済み'">{% trans %}Solved{% endtrans %}</label>
         </div>
       </div>
-      <h3 class="sectionTitle" x-text="lrn === null ? 'Accessibility' : 'システム'">Accessibility</h3>
+      <h3 class="sectionTitle" x-text="lrn === null ? '{% trans %}Accessibility{% endtrans %}' : 'システム'">{% trans %}Accessibility{% endtrans %}</h3>
       <div class="challengeSettings3">
-        <div class="chip" x-text="lrn === null ? 'Focus mode' : 'フォーカスモード'">Focus mode</div>
+        <div class="chip" x-text="lrn === null ? '{% trans %}Focus mode{% endtrans %}' : 'フォーカスモード'">{% trans %}Focus mode{% endtrans %}</div>
         <div class="radioGroup">
           <input type="radio" name="loopHighlight" x-model.number="loopHighlight" id="loopHighlightOn" value="1">
-          <label for="loopHighlightOn" x-text="lrn === null ? 'On' : 'ON'">On</label>
+          <label for="loopHighlightOn" x-text="lrn === null ? '{% trans %}On{% endtrans %}' : 'ON'">{% trans %}On{% endtrans %}</label>
         </div>
         <div class="radioGroup">
           <input type="radio" name="loopHighlight" x-model.number="loopHighlight" id="loopHighlightOff" value="0">
-          <label for="loopHighlightOff" x-text="lrn === null ? 'Off' : 'OFF'">Off</label>
+          <label for="loopHighlightOff" x-text="lrn === null ? '{% trans %}Off{% endtrans %}' : 'OFF'">{% trans %}Off{% endtrans %}</label>
         </div>
-        <div class="chip" x-text="lrn === null ? 'High contrast' : 'ハイコントラスト'">High contrast</div>
+        <div class="chip" x-text="lrn === null ? '{% trans %}High contrast{% endtrans %}' : 'ハイコントラスト'">{% trans %}High contrast{% endtrans %}</div>
         <div class="radioGroup">
           <input type="radio" name="highContrast" x-model.number="highContrast" id="highContrastOn" value="1">
-          <label for="highContrastOn" x-text="lrn === null ? 'On' : 'ON'">On</label>
+          <label for="highContrastOn" x-text="lrn === null ? '{% trans %}On{% endtrans %}' : 'ON'">{% trans %}On{% endtrans %}</label>
         </div>
         <div class="radioGroup">
           <input type="radio" name="highContrast" x-model.number="highContrast" id="highContrastOff" value="0">
-          <label for="highContrastOff" x-text="lrn === null ? 'Off' : 'OFF'">Off</label>
+          <label for="highContrastOff" x-text="lrn === null ? '{% trans %}Off{% endtrans %}' : 'OFF'">{% trans %}Off{% endtrans %}</label>
         </div>
       </div>
     </div>
     <div class="modalFooter">
         <button class="button textButton shade" x-ref="settingsModalClose">
-            <span x-text="lrn === null ? 'Close' : '閉じる'" :lang="lrn === null ? 'en' : 'ja'">Close</span>
+            <span x-text="lrn === null ? '{% trans %}Close{% endtrans %}' : '閉じる'" :lang="lrn === null ? '' : 'ja'">{% trans %}Close{% endtrans %}</span>
         </button>
     </div>
   </dialog>
 
   <dialog class="modal fit" id="oobeModal" x-ref="oobeModal">
-    <h2 class="modalHeader">Select a style</h2>
+    <h2 class="modalHeader">{% trans %}Select a style{% endtrans %}</h2>
     <div class="modalBody modeSelection">
       <button class="button" id="sekaiMode" @click="oobeUpdate(false)">
         <iconify-icon icon="fluent:music-note-2-24-filled"></iconify-icon>
         <div class="subName" lang="ja">セカイモード</div>  
-        <div class="mainName">SEKAI mode</div>
+        <div class="mainName">{% trans %}SEKAI mode{% endtrans %}</div>
       </button>
       <button class="button" id="focusMode" @click="oobeUpdate(true)">
         <iconify-icon icon="carbon:accessibility-color"></iconify-icon>
         <div class="subName" lang="ja">フォーカスモード</div>  
-        <div class="mainName">Focus mode</div>
+        <div class="mainName">{% trans %}Focus mode{% endtrans %}</div>
       </button>
     </div>
     <div class="modalFooter">
-      <div class="formHint">You can change your selection later in the Settings panel.</div>
+      <div class="formHint">{% trans %}You can change your selection later in the Settings panel.{% endtrans %}</div>
     </div>
   </dialog>
 </div>

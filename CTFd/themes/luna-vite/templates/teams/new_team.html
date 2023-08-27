@@ -5,7 +5,7 @@
 {% block plainContent %}
 {% with form = Forms.teams.TeamRegisterForm() %}
 <form method="post" accept-charset="utf-8" autocomplete="off" role="form" class="modal centered fit">
-  <h2 class="modalHeader">Create Team</h2>
+  <h2 class="modalHeader">{% trans %}Create Team{% endtrans %}</h2>
 
   <div class="modalBody formFields">
     
@@ -16,7 +16,7 @@
     {{ wtf_input_field(form.password(class="")) }}
 
     <p class="formHint">
-      After creating your team, share the team name and password with your teammates so they can join your team.
+      {% trans %}After creating your team, share the team name and password with your teammates so they can join your team.{% endtrans %}
     </p>
 
     {{ render_extra_fields(form.extra) }}
@@ -26,7 +26,7 @@
   </div>
   <div class="modalFooter">
     <button class="button textButton shade" type="submit">
-      <span>Create</span>
+      <span>{% trans %}Create{% endtrans %}</span>
     </button>
   </div>
 </form>

@@ -1,4 +1,5 @@
 import dialogPolyfill from 'dialog-polyfill';
+import { _ } from './utils/i18n.js';
 
 export function initModal(modalNode, openButtons, closeButtons, closeCallback = () => { }) {
     dialogPolyfill.registerDialog(modalNode);
@@ -58,7 +59,7 @@ export function generateModal(title, content, closeCallback = () => {}) {
     modal.appendChild(modalFooter);
     const closeButton = document.createElement("button");
     closeButton.className = "button textButton shade";
-    closeButton.innerHTML = `<span>Close</span>`;
+    closeButton.innerHTML = `<span>${_("Close")}</span>`;
     modalFooter.appendChild(closeButton);
 
     initModal(modal, [], [closeButton], () => {

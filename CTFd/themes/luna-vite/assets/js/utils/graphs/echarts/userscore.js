@@ -2,12 +2,13 @@ import { colorHash } from "@ctfdio/ctfd-js/ui";
 import { cumulativeSum } from "./scoreboard";
 import { shortFormat } from "../../../theme/times";
 import dayjs from "dayjs";
+import { _ } from '../../i18n.js';
 
 export function getOption(id, name, solves, awards) {
     let option = {
         title: {
           left: "center",
-          text: "Score over Time"
+          text: _("Score over Time")
         },
         tooltip: {
           trigger: "axis",
@@ -53,6 +54,9 @@ export function getOption(id, name, solves, awards) {
             fillerColor: "rgba(233, 236, 241, 0.4)"
           }
         ],
+        textStyle: {
+          fontFamily: 'sans-serif'
+        },
         series: []
       };
 

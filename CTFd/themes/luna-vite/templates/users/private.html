@@ -2,12 +2,12 @@
 {% from "macros/rank.html" import get_rank %}
 
 {% block title %}Users{% endblock %}
-{% block subtitle %}Your profile{% endblock %}
+{% block subtitle %}{% trans %}Your profile{% endtrans %}{% endblock %}
 
 {% block tabbedContent %}
-<button class="tab active" data-target="tabSolves">Solves</button>
-<button class="tab" data-target="tabBreakdown">Breakdown</button>
-<button class="tab" data-target="tabTimeline">Timeline</button>
+<button class="tab active" data-target="tabSolves">{% trans %}Solves{% endtrans %}</button>
+<button class="tab" data-target="tabBreakdown">{% trans %}Breakdown{% endtrans %}</button>
+<button class="tab" data-target="tabTimeline">{% trans %}Timeline{% endtrans %}</button>
 {% endblock %}
 
 {% block framedContent %}
@@ -34,17 +34,17 @@
           </div>
           {% if user.oauth_id %}
           <a href="https://majorleaguecyber.org/u/{{ user.name }}" class="chip tall">
-            Official
+            {% trans %}Official{% endtrans %}
           </a>
           {% endif %}
         </div>
         
         <div class="profileMetaRow">
-          <label class="chip tall" id="teamLabel">Team</label>
-          <div class="profileMetaBox">{% if user.team_id %}{{ user.team.name }}{% else %}<em>No team</em>{% endif %}</div>
+          <label class="chip tall" id="teamLabel">{% trans %}Team{% endtrans %}</label>
+          <div class="profileMetaBox">{% if user.team_id %}{{ user.team.name }}{% else %}<em>{% trans %}No team{% endtrans %}</em>{% endif %}</div>
           {% if user.team_id %}
           <a href="{{ url_for('teams.public', team_id=user.team_id) }}" class="button textButton shade small">
-            <span>View team</span>
+            <span>{% trans %}View team{% endtrans %}</span>
           </a>
           {% endif %}
         </div>
@@ -52,11 +52,11 @@
       </div>
 
       <div class="profileRank">
-        <label class="chip">Rank</label>
+        <label class="chip">{% trans %}Rank{% endtrans %}</label>
         {% if account.place %}
         <div class="profileRankNumber">{{ get_rank(account.place[:-2]) }}</div>
         {% else %}
-        <div class="profileRankNumber unranked">Unranked</div>
+        <div class="profileRankNumber unranked">{% trans %}Unranked{% endtrans %}</div>
         {% endif %}
       </div>
     </div>
@@ -93,13 +93,13 @@
     </div>
     #}
 
-    <h3 class="sectionTitle">Solves</h3>
+    <h3 class="sectionTitle">{% trans %}Solves{% endtrans %}</h3>
     {% if solves %}
     {% for solve in solves %}
     <a class="listItem" href="{{ url_for('challenges.listing') }}#{{ solve.challenge.name }}-{{ solve.challenge.id }}">
       <div class="listItemDetails">
         <div class="listItemDetailsPrimary">{{ solve.challenge.name }}</div>
-        <div>{{ solve.challenge.category }}, solved on <time data-time="{{ solve.date | isoformat }}"></time></div>
+        <div>{{ gettext("%(category)s, solved on %(time)s.", category=solve.challenge.category, time=gettext('<time data-time="%(date)s"></time>', date=solve.date | isoformat )) | safe }}</div>
       </div>
       <div class="listItemScore digits5">
         <span>
@@ -109,13 +109,13 @@
     </a>
     {% endfor %}
     {% else %}
-      <div class="info" style="justify-content: center;">No solves yet.</div>
+      <div class="info" style="justify-content: center;">{% trans %}No solves yet.{% endtrans %}</div>
     {% endif %}
 
   </div>
   <div class="totalScore">
     <div class="frameContentWrapper">
-      <span class="totalScorePrompt">Total score</span>
+      <span class="totalScorePrompt">{% trans %}Total score{% endtrans %}</span>
       <span class="totalScoreDisplay">
         <span class="totalScoreValue">{{ account.score }}</span>&nbsp;<span class="totalScoreP">P</span>
       </span>
@@ -127,7 +127,7 @@
     
     {% if solves %}
     <div class="progressBarChart">
-      <h3 class="sectionTitle">Solve percentages</h3>
+      <h3 class="sectionTitle">{% trans %}Solve percentages{% endtrans %}</h3>
       <div class="progress">
         <div class="progress-bar" role="progressbar"
           :style="{ width: `${getSolvePercentage()}%`, 'background-color': 'rgb(0, 209, 64)' }">
@@ -149,7 +149,7 @@
     </div>
 
     <div class="progressBarChart">
-      <h3 class="sectionTitle">Category breakdown</h3>
+      <h3 class="sectionTitle">{% trans %}Category breakdown{% endtrans %}</h3>
       <div class="progress">
         <template x-for="category in getCategoryBreakdown()" :key="category.name">
           <div class="progress-bar" role="progressbar"
@@ -167,7 +167,7 @@
       </template>
     </div>
     {% else %}
-      <div class="info" style="justify-content: center;">No solves yet.</div>
+      <div class="info" style="justify-content: center;">{% trans %}No solves yet.{% endtrans %}</div>
     {% endif %}
 
   </div>
@@ -179,7 +179,7 @@
       Loading...
     </div>
     {% else %}
-    <div class="info" style="justify-content: center;">No solves yet.</div>
+    <div class="info" style="justify-content: center;">{% trans %}No solves yet.{% endtrans %}</div>
     {% endif %}
   </div>
 </div>

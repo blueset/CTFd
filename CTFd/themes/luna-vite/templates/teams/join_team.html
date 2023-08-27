@@ -5,7 +5,7 @@
 {% block plainContent %}
 {% with form = Forms.teams.TeamJoinForm() %}
 <form method="post" accept-charset="utf-8" autocomplete="off" role="form" class="modal centered fit">
-  <h2 class="modalHeader">Join Team</h2>
+  <h2 class="modalHeader">{% trans %}Join Team{% endtrans %}</h2>
 
   <div class="modalBody formFields">
 
@@ -21,7 +21,7 @@
   </div>
   <div class="modalFooter">
     <button class="button textButton shade" type="submit">
-      <span>Join</span>
+      <span>{% trans %}Join{% endtrans %}</span>
     </button>
   </div>
 </form>

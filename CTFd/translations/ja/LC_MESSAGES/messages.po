@@ -1,161 +1,147 @@
-# Translations template for PROJECT.
-# Copyright (C) 2023 ORGANIZATION
-# This file is distributed under the same license as the PROJECT project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
-#
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PROJECT VERSION\n"
+"Project-Id-Version: ctfd-luna\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-08-26 19:38-0700\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2023-08-27 02:41\n"
+"Last-Translator: \n"
+"Language-Team: Japanese\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.12.1\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Crowdin-Project: ctfd-luna\n"
+"X-Crowdin-Project-ID: 610535\n"
+"X-Crowdin-Language: ja\n"
+"X-Crowdin-File: messages.pot\n"
+"X-Crowdin-File-ID: 161\n"
+"Language: ja_JP\n"
 
 #: CTFd/auth.py:45
 msgid "Your confirmation link has expired"
-msgstr ""
+msgstr "確認用リンクの有効期限が切れています。"
 
 #: CTFd/auth.py:49
 msgid "Your confirmation token is invalid"
-msgstr ""
+msgstr "確認用リンクが無効です"
 
 #: CTFd/auth.py:88
 #, python-format
 msgid "Confirmation email sent to %(email_addr)s!"
-msgstr ""
+msgstr "確認メールが %(email_addr)s に送信されました。"
 
 #: CTFd/auth.py:104
-msgid ""
-"This CTF is not configured to send email.<br> Please contact an organizer"
-" to have your password reset."
-msgstr ""
+msgid "This CTF is not configured to send email.<br> Please contact an organizer to have your password reset."
+msgstr "このCTFはメールを送信するように設定されていません。<br> パスワードをリセットするには主催者に連絡してください。"
 
 #: CTFd/auth.py:114
 msgid "Your link has expired"
-msgstr ""
+msgstr "リンクの有効期限が切れています"
 
 #: CTFd/auth.py:118
 msgid "Your reset token is invalid"
-msgstr ""
+msgstr "リセットリンクが無効です"
 
 #: CTFd/auth.py:130
-msgid ""
-"Your account was registered via an authentication provider and does not "
-"have an associated password. Please login via your authentication "
-"provider."
-msgstr ""
+msgid "Your account was registered via an authentication provider and does not have an associated password. Please login via your authentication provider."
+msgstr "あなたのアカウントは認証プロバイダ経由で登録されており、関連付けられたパスワードがありません。認証プロバイダ経由でログインしてください。"
 
 #: CTFd/auth.py:137
 msgid "Please pick a longer password"
-msgstr ""
+msgstr "より長いパスワードを選択してください"
 
 #: CTFd/auth.py:162 CTFd/auth.py:179
 msgid "If that account exists you will receive an email, please check your inbox"
-msgstr ""
+msgstr "そのアカウントが存在する場合は、メールが届きますので、受信トレイを確認してください"
 
 #: CTFd/auth.py:170
-msgid ""
-"The email address associated with this account was registered via an "
-"authentication provider and does not have an associated password. Please "
-"login via your authentication provider."
-msgstr ""
+msgid "The email address associated with this account was registered via an authentication provider and does not have an associated password. Please login via your authentication provider."
+msgstr "このアカウントに関連付けられたメールアドレスは認証プロバイダ経由で登録されており、関連付けられたパスワードがありません。 認証プロバイダからログインしてください。"
 
 #: CTFd/auth.py:231
 msgid "The registration code you entered was incorrect"
-msgstr ""
+msgstr "入力された登録コードが正しくありませんでした"
 
 #: CTFd/auth.py:242
 msgid "Please provide all required fields"
-msgstr ""
+msgstr "すべての必須項目を入力してください"
 
 #: CTFd/auth.py:270 CTFd/views.py:169
 msgid "Please enter a valid email address"
-msgstr ""
+msgstr "有効なメールアドレスを入力してください"
 
 #: CTFd/auth.py:272
 msgid "Your email address is not from an allowed domain"
-msgstr ""
+msgstr "許可されたドメインのメールアドレスではありません"
 
 #: CTFd/auth.py:274 CTFd/views.py:171
 msgid "That user name is already taken"
-msgstr ""
+msgstr "このユーザー名は既に使用されています。"
 
 #: CTFd/auth.py:276 CTFd/views.py:173
 msgid "Your user name cannot be an email address"
-msgstr ""
+msgstr "ユーザー名をメール アドレスにすることはできません"
 
 #: CTFd/auth.py:278 CTFd/views.py:175
 msgid "That email has already been used"
-msgstr ""
+msgstr "このメールアドレスは既に使用されています"
 
 #: CTFd/auth.py:280 CTFd/views.py:177
 msgid "Pick a longer password"
-msgstr ""
+msgstr "より長いパスワードを選択してください"
 
 #: CTFd/auth.py:282 CTFd/views.py:179
 msgid "Pick a shorter password"
-msgstr ""
+msgstr "より短いパスワードを選択してください"
 
 #: CTFd/auth.py:284 CTFd/views.py:181
 msgid "Pick a longer user name"
-msgstr ""
+msgstr "より長いユーザー名を選択してください"
 
 #: CTFd/auth.py:286
 msgid "Websites must be a proper URL starting with http or https"
-msgstr ""
+msgstr "ウェブサイトは、http または https で始まる適切な URL である必要があります"
 
 #: CTFd/auth.py:288
 msgid "Invalid country"
-msgstr ""
+msgstr "無効な国です"
 
 #: CTFd/auth.py:290
 msgid "Please provide a shorter affiliation"
-msgstr ""
+msgstr "より短い所属を入力してください"
 
 #: CTFd/auth.py:380
-msgid ""
-"Your account was registered with a 3rd party authentication provider. "
-"Please try logging in with a configured authentication provider."
-msgstr ""
+msgid "Your account was registered with a 3rd party authentication provider. Please try logging in with a configured authentication provider."
+msgstr "アカウントが第三者認証プロバイダーに登録されている。設定済みの認証プロバイダーでログインしてみてください。"
 
 #: CTFd/auth.py:412
 msgid "Your username or password is incorrect"
-msgstr ""
+msgstr "ユーザー名かパスワードが間違っています"
 
 #: CTFd/views.py:355
 #, python-format
-msgid ""
-"In order to participate you must either <a href=\"%(team_url)s\">join or "
-"create a team</a>."
-msgstr ""
+msgid "In order to participate you must either <a href=\"%(team_url)s\">join or create a team</a>."
+msgstr "参加するには、<a href=\"%(team_url)s\">チームに参加または作成する</a>必要があります。"
 
 #: CTFd/views.py:366
 #, python-format
-msgid ""
-"Your email address isn't confirmed!<br>Please check your email to confirm"
-" your email address.<br><br>To have the confirmation email resent please "
-"<a href=\"%(confirm_url)s\">click here</a>."
-msgstr ""
+msgid "Your email address isn't confirmed!<br>Please check your email to confirm your email address.<br><br>To have the confirmation email resent please <a href=\"%(confirm_url)s\">click here</a>."
+msgstr "メールアドレスが確認されていません!<br>メールアドレスを確認するには、メールを確認してください。<br><br>確認メールを再送信するには、 <a href=\"%(confirm_url)s\">ここをクリック</a>してください。"
 
 #: CTFd/forms/auth.py:19 CTFd/forms/self.py:16
 msgid "User Name"
-msgstr ""
+msgstr "ユーザー名"
 
 #: CTFd/forms/auth.py:21 CTFd/forms/auth.py:53 CTFd/forms/self.py:17
 #: CTFd/forms/teams.py:203
 msgid "Email"
-msgstr ""
+msgstr "メール"
 
 #: CTFd/forms/auth.py:22 CTFd/forms/auth.py:43 CTFd/forms/auth.py:60
 #: CTFd/forms/self.py:19 CTFd/forms/teams.py:204
 msgid "Password"
-msgstr ""
+msgstr "パスワード"
 
 #: CTFd/forms/auth.py:23 CTFd/forms/auth.py:44 CTFd/forms/auth.py:55
 #: CTFd/forms/auth.py:62 CTFd/forms/self.py:24 CTFd/forms/teams.py:127
@@ -163,326 +149,311 @@ msgstr ""
 #: CTFd/themes/luna-vite/templates/reset_password.html:26
 #: CTFd/themes/luna-vite/templates/reset_password.html:46
 msgid "Submit"
-msgstr ""
+msgstr "送信"
 
 #: CTFd/forms/auth.py:39
 msgid "User Name or Email"
-msgstr ""
+msgstr "ユーザー名 / メール"
 
 #: CTFd/forms/auth.py:48
 msgid "Resend Confirmation Email"
-msgstr ""
+msgstr "確認メールを再送信"
 
 #: CTFd/forms/self.py:18 CTFd/forms/users.py:155
 msgid "Language"
-msgstr ""
+msgstr "言語"
 
 #: CTFd/forms/self.py:20
 msgid "Current Password"
-msgstr ""
+msgstr "現在のパスワード"
 
 #: CTFd/forms/self.py:21 CTFd/forms/teams.py:113 CTFd/forms/teams.py:191
 #: CTFd/forms/teams.py:206 CTFd/forms/users.py:138
 msgid "Affiliation"
-msgstr ""
+msgstr "所属"
 
 #: CTFd/forms/self.py:22 CTFd/forms/teams.py:119 CTFd/forms/teams.py:192
 #: CTFd/forms/teams.py:205 CTFd/forms/users.py:139
 msgid "Website"
-msgstr ""
+msgstr "ウェブサイト"
 
 #: CTFd/forms/self.py:23 CTFd/forms/teams.py:123 CTFd/forms/teams.py:207
 msgid "Country"
-msgstr ""
+msgstr "国/地域"
 
 #: CTFd/forms/self.py:52
 msgid "Expiration"
-msgstr ""
+msgstr "有効期限"
 
 #: CTFd/forms/self.py:54 CTFd/themes/luna-vite/templates/settings.html:112
 msgid "Generate"
-msgstr ""
+msgstr "作成"
 
 #: CTFd/forms/setup.py:29
 msgid "Event Name"
-msgstr ""
+msgstr "イベント名"
 
 #: CTFd/forms/setup.py:29
 msgid "The name of your CTF event/workshop"
-msgstr ""
+msgstr "あなたのCTFイベント/ワークショップの名前"
 
 #: CTFd/forms/setup.py:32
 msgid "Event Description"
-msgstr ""
+msgstr "イベントの説明"
 
 #: CTFd/forms/setup.py:32
 msgid "Description for the CTF"
-msgstr ""
+msgstr "CTFの説明"
 
 #: CTFd/forms/setup.py:35 CTFd/forms/setup.py:36
 msgid "User Mode"
-msgstr ""
+msgstr "ユーザー モード"
 
 #: CTFd/forms/setup.py:36
 msgid "Team Mode"
-msgstr ""
+msgstr "チームモード"
 
 #: CTFd/forms/setup.py:38
-msgid ""
-"Controls whether users join together in teams to play (Team Mode) or play"
-" as themselves (User Mode)"
-msgstr ""
+msgid "Controls whether users join together in teams to play (Team Mode) or play as themselves (User Mode)"
+msgstr "ユーザーがチームに参加してプレイするか (チーム モード)、自分でプレイするか (ユーザー モード) を制御します。"
 
 #: CTFd/forms/setup.py:45
 msgid "Admin Username"
-msgstr ""
+msgstr "管理者ユーザー名"
 
 #: CTFd/forms/setup.py:46
 msgid "Your username for the administration account"
-msgstr ""
+msgstr "管理アカウントのユーザー名"
 
 #: CTFd/forms/setup.py:50
 msgid "Admin Email"
-msgstr ""
+msgstr "管理者メールアドレス"
 
 #: CTFd/forms/setup.py:51
 msgid "Your email address for the administration account"
-msgstr ""
+msgstr "管理アカウントのユーザー名"
 
 #: CTFd/forms/setup.py:55
 msgid "Admin Password"
-msgstr ""
+msgstr "管理者パスワード"
 
 #: CTFd/forms/setup.py:56
 msgid "Your password for the administration account"
-msgstr ""
+msgstr "管理アカウントのユーザー名"
 
 #: CTFd/forms/setup.py:61
 msgid "Logo"
-msgstr ""
+msgstr "ロゴ"
 
 #: CTFd/forms/setup.py:62
-msgid ""
-"Logo to use for the website instead of a CTF name. Used as the home page "
-"button. Optional."
-msgstr ""
+msgid "Logo to use for the website instead of a CTF name. Used as the home page button. Optional."
+msgstr "CTF名の代わりにウェブサイトに使用するロゴです。ホームページボタンとして使用します。"
 
 #: CTFd/forms/setup.py:67
 msgid "Banner"
-msgstr ""
+msgstr "バナー"
 
 #: CTFd/forms/setup.py:67
 msgid "Banner to use for the homepage. Optional."
-msgstr ""
+msgstr "ホームページに使用するバナー。任意。"
 
 #: CTFd/forms/setup.py:70
 msgid "Small Icon"
-msgstr ""
+msgstr "小アイコン"
 
 #: CTFd/forms/setup.py:71
-msgid ""
-"favicon used in user's browsers. Only PNGs accepted. Must be 32x32px. "
-"Optional."
-msgstr ""
+msgid "favicon used in user's browsers. Only PNGs accepted. Must be 32x32px. Optional."
+msgstr "ユーザーのブラウザで使用されるファビコン。PNGのみが受け入れられます。32x32px である必要があります。任意。"
 
 #: CTFd/forms/setup.py:76
 msgid "Theme"
-msgstr ""
+msgstr "テーマ"
 
 #: CTFd/forms/setup.py:77
 msgid "CTFd Theme to use. Can be changed later."
-msgstr ""
+msgstr "使用するCTFdテーマ。後で変更できます。"
 
 #: CTFd/forms/setup.py:84
 msgid "Theme Color"
-msgstr ""
+msgstr "テーマカラー"
 
 #: CTFd/forms/setup.py:85
-msgid ""
-"Color used by theme to control aesthetics. Requires theme support. "
-"Optional."
-msgstr ""
+msgid "Color used by theme to control aesthetics. Requires theme support. Optional."
+msgstr "テーマのスタイルをコントロールするために使用する色。テーマのサポートが必要です。オプション。"
 
 #: CTFd/forms/setup.py:91
 msgid "Verify Emails"
-msgstr ""
+msgstr "メールアドレス認証"
 
 #: CTFd/forms/setup.py:143
 msgid "Start Time"
-msgstr ""
+msgstr "開始時間"
 
 #: CTFd/forms/setup.py:144
 msgid "Time when your CTF is scheduled to start. Optional."
-msgstr ""
+msgstr "CTFが開始される予定の時間。任意。"
 
 #: CTFd/forms/setup.py:147
 msgid "End Time"
-msgstr ""
+msgstr "終了時間"
 
 #: CTFd/forms/setup.py:148
 msgid "Time when your CTF is scheduled to end. Optional."
-msgstr ""
+msgstr "CTFが終了する予定の時刻。任意。　"
 
 #: CTFd/forms/setup.py:150
 msgid "Finish"
-msgstr ""
+msgstr "終了"
 
 #: CTFd/forms/teams.py:76 CTFd/forms/teams.py:83 CTFd/forms/teams.py:100
 #: CTFd/forms/teams.py:202
 msgid "Team Name"
-msgstr ""
+msgstr "チーム名"
 
 #: CTFd/forms/teams.py:77 CTFd/forms/teams.py:84
 msgid "Team Password"
-msgstr ""
+msgstr "チームのパスワード"
 
 #: CTFd/forms/teams.py:78 CTFd/forms/teams.py:258
 #: CTFd/themes/luna-vite/templates/teams/invite.html:22
 #: CTFd/themes/luna-vite/templates/teams/join_team.html:24
 msgid "Join"
-msgstr ""
+msgstr "参加"
 
 #: CTFd/forms/teams.py:85
 #: CTFd/themes/luna-vite/templates/teams/new_team.html:29
 msgid "Create"
-msgstr ""
+msgstr "作成"
 
 #: CTFd/forms/teams.py:101
 msgid "Your team's public name shown to other competitors"
-msgstr ""
+msgstr "チームの公開名は他のプレーヤーに表示します"
 
 #: CTFd/forms/teams.py:104
 msgid "New Team Password"
-msgstr ""
+msgstr "チームの新しいパスワード"
 
 #: CTFd/forms/teams.py:104
 msgid "Set a new team join password"
-msgstr ""
+msgstr "新しいチーム参加パスワードを設定"
 
 #: CTFd/forms/teams.py:107
 msgid "Confirm Current Team Password"
-msgstr ""
+msgstr "現在のチームパスワードを確認"
 
 #: CTFd/forms/teams.py:108
-msgid ""
-"Provide your current team password (or your password) to update your "
-"team's password"
-msgstr ""
+msgid "Provide your current team password (or your password) to update your team's password"
+msgstr "チームのパスワードを更新するには、現在のチームのパスワード（またはあなたのパスワード）を入力してください"
 
 #: CTFd/forms/teams.py:114
 msgid "Your team's affiliation publicly shown to other competitors"
-msgstr ""
+msgstr "チームの所属は他のプレーヤーに表示します"
 
 #: CTFd/forms/teams.py:120
 msgid "Your team's website publicly shown to other competitors"
-msgstr ""
+msgstr "チームのウェブサイトは他のプレーヤーに表示します"
 
 #: CTFd/forms/teams.py:125
 msgid "Your team's country publicly shown to other competitors"
-msgstr ""
+msgstr "チームの国は他のプレーヤーに表示します"
 
 #: CTFd/forms/teams.py:165
 msgid "Team Captain"
-msgstr ""
+msgstr "チームキャプテン"
 
 #: CTFd/forms/teams.py:188 CTFd/forms/users.py:135
 msgid "Search Field"
-msgstr ""
+msgstr "検索フィールド"
 
 #: CTFd/forms/teams.py:190 CTFd/forms/users.py:137
 #: CTFd/themes/luna-vite/templates/challenges.html:83
 msgid "Name"
-msgstr ""
+msgstr "名前"
 
 #: CTFd/forms/teams.py:197 CTFd/forms/users.py:145
 msgid "Parameter"
-msgstr ""
+msgstr "パラメータ"
 
 #: CTFd/forms/teams.py:198 CTFd/forms/users.py:149
 msgid "Search"
-msgstr ""
+msgstr "検索"
 
 #: CTFd/forms/teams.py:208
 #: CTFd/themes/luna-vite/templates/teams/private.html:59
 #: CTFd/themes/luna-vite/templates/teams/public.html:43
 msgid "Hidden"
-msgstr ""
+msgstr "非表示"
 
 #: CTFd/forms/teams.py:209
 msgid "Banned"
-msgstr ""
+msgstr "BAN 済み"
 
 #: CTFd/forms/teams.py:254
 msgid "Invite Link"
-msgstr ""
+msgstr "招待リンク"
 
 #: CTFd/forms/users.py:146
 msgid "Search for matching users"
-msgstr ""
+msgstr "一致するユーザーを検索"
 
 #: CTFd/themes/luna-vite/templates/challenge.html:35
 #: CTFd/themes/luna-vite/templates/challenge.html:36
 #: CTFd/themes/luna-vite/templates/components/challengeListEntry.html:9
 #, python-format
 msgid "Difficulty level %(diff)s"
-msgstr ""
+msgstr "難易度 %(diff)s"
 
 #: CTFd/themes/luna-vite/templates/challenge.html:68
 #: CTFd/themes/luna-vite/templates/challenge.html:73
 #, python-format
 msgid "View hint %(id)d"
-msgstr ""
+msgstr "ヒント %(id)d を表示"
 
 #: CTFd/themes/luna-vite/templates/challenge.html:75
 #, python-format
 msgid "Unlock hint %(id)d for %(points)d points"
-msgstr ""
+msgstr "%(points)d ポイントでヒント %(id)d を解放"
 
 #: CTFd/themes/luna-vite/templates/challenge.html:87
 msgid "Download attachment"
-msgstr ""
+msgstr "添付ファイルをダウンロード"
 
 #: CTFd/themes/luna-vite/templates/challenge.html:106
 #, python-format
 msgid "%(attempts)d/%(max)d attempt"
-msgstr ""
+msgstr "残りチャンス：%(attempts)d/%(max)d"
 
 #: CTFd/themes/luna-vite/templates/challenge.html:116
 #, python-format
 msgid "%(solves)s solve"
 msgid_plural "%(solves)s solves"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "クリア数：%(solves)s"
 
 #: CTFd/themes/luna-vite/templates/challenge.html:117
-msgid ""
-"<span x-text=\"(solves && solves.length)\"></span> solve<span "
-"x-text=\"(solves && solves.length !== 1) ? `s` : ``\"></span>"
-msgstr ""
+msgid "<span x-text=\"(solves && solves.length)\"></span> solve<span x-text=\"(solves && solves.length !== 1) ? `s` : ``\"></span>"
+msgstr "クリア数：<span x-text=\"(solves && solves.length)\"></span>"
 
 #: CTFd/themes/luna-vite/templates/challenge.html:128
 msgid "Challenge is already solved"
-msgstr ""
+msgstr "チャレンジは既にクリア済みです"
 
 #: CTFd/themes/luna-vite/templates/challenge.html:128
 msgid "Enter flag"
-msgstr ""
+msgstr "フラグを入力"
 
 #: CTFd/themes/luna-vite/templates/challenge.html:130
 msgid "Already solved."
-msgstr ""
+msgstr "クリア済み"
 
 #: CTFd/themes/luna-vite/templates/challenge.html:136
 msgid "Submit flag"
-msgstr ""
+msgstr "フラグを提出"
 
 #: CTFd/themes/luna-vite/templates/challenge.html:143
 #, python-format
-msgid ""
-"<span x-text=\"solves && solves.length\"></span> solve<span\n"
-"        x-text=\"(solves && solves.length !== 1) ? `s` : ``\"></span> of "
-"%(name)s"
-msgstr ""
+msgid "<span x-text=\"solves && solves.length\"></span> solve<span\n"
+"        x-text=\"(solves && solves.length !== 1) ? `s` : ``\"></span> of %(name)s"
+msgstr "%(name)s、クリア数：<span x-text=\"solves && solves.length\"></span>"
 
 #: CTFd/themes/luna-vite/templates/challenge.html:167
 #: CTFd/themes/luna-vite/templates/challenge.html:184
@@ -492,81 +463,81 @@ msgstr ""
 #: CTFd/themes/luna-vite/templates/teams/private.html:323
 #: CTFd/themes/luna-vite/templates/templates/base.html:130
 msgid "Close"
-msgstr ""
+msgstr "閉じる"
 
 #: CTFd/themes/luna-vite/templates/challenge.html:174
 #, python-format
 msgid "Hint %(id)d"
-msgstr ""
+msgstr "ヒント %(id)d"
 
 #: CTFd/themes/luna-vite/templates/challenges.html:12
 #: CTFd/themes/luna-vite/templates/challenges.html:31
 msgid "Challenges list"
-msgstr ""
+msgstr "チャレンジ一覧"
 
 #: CTFd/themes/luna-vite/templates/challenges.html:20
 msgid "All challenges"
-msgstr ""
+msgstr "すべてのチャレンジ"
 
 #: CTFd/themes/luna-vite/templates/challenges.html:20
 #: CTFd/themes/luna-vite/templates/challenges.html:90
 msgid "All"
-msgstr ""
+msgstr "すべて"
 
 #: CTFd/themes/luna-vite/templates/challenges.html:22
 msgid "category"
-msgstr ""
+msgstr "カテゴリ"
 
 #: CTFd/themes/luna-vite/templates/challenges.html:32
 msgid "No challenges found."
-msgstr ""
+msgstr "チャレンジが見つかりませんでした"
 
 #: CTFd/themes/luna-vite/templates/challenges.html:42
 #: CTFd/themes/luna-vite/templates/components/challengeListEntry.html:3
 #, python-format
 msgid "%(points)s points"
-msgstr ""
+msgstr "%(points)s ポイント"
 
 #: CTFd/themes/luna-vite/templates/challenges.html:42
 #, python-format
 msgid "category %(category)s"
-msgstr ""
+msgstr "カテゴリ %(category)s"
 
 #: CTFd/themes/luna-vite/templates/challenges.html:42
 #, python-format
 msgid "difficulty level %(level)s"
-msgstr ""
+msgstr "難易度 %(level)s"
 
 #: CTFd/themes/luna-vite/templates/challenges.html:42
 #: CTFd/themes/luna-vite/templates/components/challengeListEntry.html:9
 msgid "you are the first solver"
-msgstr ""
+msgstr "初正解"
 
 #: CTFd/themes/luna-vite/templates/challenges.html:42
 #: CTFd/themes/luna-vite/templates/components/challengeListEntry.html:9
 msgid "solved"
-msgstr ""
+msgstr "正解"
 
 #: CTFd/themes/luna-vite/templates/challenges.html:42
 #: CTFd/themes/luna-vite/templates/components/challengeListEntry.html:9
 msgid "unsolved"
-msgstr ""
+msgstr "未解決"
 
 #: CTFd/themes/luna-vite/templates/challenges.html:65
 msgid "Challenges settings"
-msgstr ""
+msgstr "チャレンジ設定"
 
 #: CTFd/themes/luna-vite/templates/challenges.html:67
 msgid "Sort order"
-msgstr ""
+msgstr "並べ替え"
 
 #: CTFd/themes/luna-vite/templates/challenges.html:71
 msgid "Difficulty"
-msgstr ""
+msgstr "難易度順"
 
 #: CTFd/themes/luna-vite/templates/challenges.html:75
 msgid "Score"
-msgstr ""
+msgstr "スコア順"
 
 #: CTFd/themes/luna-vite/templates/challenges.html:79
 #: CTFd/themes/luna-vite/templates/teams/private.html:11
@@ -577,180 +548,177 @@ msgstr ""
 #: CTFd/themes/luna-vite/templates/users/public.html:8
 #: CTFd/themes/luna-vite/templates/users/public.html:96
 msgid "Solves"
-msgstr ""
+msgstr "クリア数"
 
 #: CTFd/themes/luna-vite/templates/challenges.html:86
 msgid "Filter challenges"
-msgstr ""
+msgstr "絞り込み"
 
 #: CTFd/themes/luna-vite/templates/challenges.html:94
 msgid "Unsolved"
-msgstr ""
+msgstr "未クリア"
 
 #: CTFd/themes/luna-vite/templates/challenges.html:98
 msgid "Solved"
-msgstr ""
+msgstr "クリア済み"
 
 #: CTFd/themes/luna-vite/templates/challenges.html:101
 msgid "Accessibility"
-msgstr ""
+msgstr "システム"
 
 #: CTFd/themes/luna-vite/templates/challenges.html:103
 #: CTFd/themes/luna-vite/templates/challenges.html:141
 msgid "Focus mode"
-msgstr ""
+msgstr "フォーカスモード"
 
 #: CTFd/themes/luna-vite/templates/challenges.html:106
 #: CTFd/themes/luna-vite/templates/challenges.html:115
 msgid "On"
-msgstr ""
+msgstr "ON"
 
 #: CTFd/themes/luna-vite/templates/challenges.html:110
 #: CTFd/themes/luna-vite/templates/challenges.html:119
 msgid "Off"
-msgstr ""
+msgstr "OFF"
 
 #: CTFd/themes/luna-vite/templates/challenges.html:112
 msgid "High contrast"
-msgstr ""
+msgstr "ハイコントラスト"
 
 #: CTFd/themes/luna-vite/templates/challenges.html:131
 msgid "Select a style"
-msgstr ""
+msgstr "スタイルを選択"
 
 #: CTFd/themes/luna-vite/templates/challenges.html:136
 msgid "SEKAI mode"
-msgstr ""
+msgstr "SEKAI モード"
 
 #: CTFd/themes/luna-vite/templates/challenges.html:145
 msgid "You can change your selection later in the Settings panel."
-msgstr ""
+msgstr "設定パネルで後から選択を変更できます。"
 
 #: CTFd/themes/luna-vite/templates/confirm.html:6
 msgid "Confirm"
-msgstr ""
+msgstr "確認"
 
 #: CTFd/themes/luna-vite/templates/confirm.html:10
 msgid "We've sent a confirmation email to your email address."
-msgstr ""
+msgstr "ご入力いただいたメールアドレスに確認メールを送信しました。"
 
 #: CTFd/themes/luna-vite/templates/confirm.html:14
 msgid "Please click the link in that email to confirm your account."
-msgstr ""
+msgstr "そのメールに記載されているリンクをクリックして、アカウントを確認してください。"
 
 #: CTFd/themes/luna-vite/templates/confirm.html:18
-msgid ""
-"If the email doesn’t arrive, check your spam folder or\n"
+msgid "If the email doesn’t arrive, check your spam folder or\n"
 "      contact an administrator to manually verify your account."
-msgstr ""
+msgstr "メールが届かない場合は、迷惑メールフォルダを確認するか、\n"
+"      管理者に問い合わせて、アカウントを手動で確認してください。"
 
 #: CTFd/themes/luna-vite/templates/confirm.html:27
 msgid "Change email address"
-msgstr ""
+msgstr "メールアドレスを変更"
 
 #: CTFd/themes/luna-vite/templates/confirm.html:30
 msgid "Resend email"
-msgstr ""
+msgstr "メールを再送信"
 
 #: CTFd/themes/luna-vite/templates/components/menu.html:10
 #: CTFd/themes/luna-vite/templates/index.html:24
 #: CTFd/themes/luna-vite/templates/page.html:4
 msgid "Rules"
-msgstr ""
+msgstr "ルール"
 
 #: CTFd/themes/luna-vite/templates/index.html:29
 msgid "Rankings"
-msgstr ""
+msgstr "ランキング"
 
 #: CTFd/themes/luna-vite/templates/components/menu.html:48
 #: CTFd/themes/luna-vite/templates/index.html:33
 msgid "Challenges"
-msgstr ""
+msgstr "チャレンジ"
 
 #: CTFd/themes/luna-vite/templates/components/menu.html:88
 #: CTFd/themes/luna-vite/templates/index.html:39
 #: CTFd/themes/luna-vite/templates/register.html:9
 #: CTFd/themes/luna-vite/templates/register.html:45
 msgid "Register"
-msgstr ""
+msgstr "登録"
 
 #: CTFd/themes/luna-vite/templates/components/menu.html:94
 #: CTFd/themes/luna-vite/templates/index.html:44
 #: CTFd/themes/luna-vite/templates/login.html:8
 #: CTFd/themes/luna-vite/templates/login.html:26
 msgid "Log in"
-msgstr ""
+msgstr "ログイン"
 
 #: CTFd/themes/luna-vite/templates/index.html:75
 #, python-format
 msgid "%(verb)s to start"
-msgstr ""
+msgstr "%(verb)s to start"
 
 #: CTFd/themes/luna-vite/templates/index.html:75
 msgid "<span class=\"click\">Click</span><span class=\"tap\">Tap</span>"
-msgstr ""
+msgstr "<span class=\"click\">Click</span><span class=\"tap\">Tap</span>"
 
 #: CTFd/themes/luna-vite/templates/login.html:23
 msgid "Forgot password?"
-msgstr ""
+msgstr "パスワードをお忘れですか?"
 
 #: CTFd/themes/luna-vite/templates/components/menu.html:52
 #: CTFd/themes/luna-vite/templates/notifications.html:4
 msgid "Notifications"
-msgstr ""
+msgstr "お知らせ"
 
 #: CTFd/themes/luna-vite/templates/notifications.html:9
 msgid "There are no notifications yet."
-msgstr ""
+msgstr "新しいメッセージはありません。"
 
 #: CTFd/themes/luna-vite/templates/page.html:4
 msgid "Privacy Policy"
-msgstr ""
+msgstr "プライバシーポリシー"
 
 #: CTFd/themes/luna-vite/templates/page.html:4
 msgid "Terms of Service"
-msgstr ""
+msgstr "利用規約"
 
 #: CTFd/themes/luna-vite/templates/register.html:15
 msgid "Your username on the site"
-msgstr ""
+msgstr "サイト上のユーザー名"
 
 #: CTFd/themes/luna-vite/templates/register.html:21
 msgid "Never shown to the public"
-msgstr ""
+msgstr "公開しません"
 
 #: CTFd/themes/luna-vite/templates/register.html:27
 msgid "Password used to log into your account"
-msgstr ""
+msgstr "アカウントへのログインに使用するパスワード"
 
 #: CTFd/themes/luna-vite/templates/register.html:36
 #, python-format
-msgid ""
-"By registering, you agree to the\n"
-"        <a href=\"%(privacy)s\" rel=\"noopener\" "
-"target=\"_blank\">privacy policy</a>\n"
-"        and <a href=\"%(tos)s\" rel=\"noopener\" target=\"_blank\">terms "
-"of service</a>"
-msgstr ""
+msgid "By registering, you agree to the\n"
+"        <a href=\"%(privacy)s\" rel=\"noopener\" target=\"_blank\">privacy policy</a>\n"
+"        and <a href=\"%(tos)s\" rel=\"noopener\" target=\"_blank\">terms of service</a>"
+msgstr "登録することにより、\n"
+"        <a href=\"%(privacy)s\" rel=\"noopener\" target=\"_blank\">プライバシーポリシー</a>\n"
+"        および <a href=\"%(tos)s\" rel=\"noopener\" target=\"_blank\">サービス規約</a> に同意します。"
 
 #: CTFd/themes/luna-vite/templates/reset_password.html:8
 msgid "Reset Password"
-msgstr ""
+msgstr "パスワードをリセット"
 
 #: CTFd/themes/luna-vite/templates/reset_password.html:14
-msgid ""
-"You can now reset the password for your account and log in. Please enter "
-"in a new password below."
-msgstr ""
+msgid "You can now reset the password for your account and log in. Please enter in a new password below."
+msgstr "アカウントのパスワードをリセットしてログインできます。以下に新しいパスワードを入力してください。"
 
 #: CTFd/themes/luna-vite/templates/reset_password.html:34
 msgid "Please provide the email address associated with your account below."
-msgstr ""
+msgstr "アカウントに関連付けられているメールアドレスを以下に入力してください。"
 
 #: CTFd/themes/luna-vite/templates/scoreboard.html:5
 #: CTFd/themes/luna-vite/templates/scoreboard.html:8
 msgid "Scoreboard"
-msgstr ""
+msgstr "スコアボード"
 
 #: CTFd/themes/luna-vite/templates/scoreboard.html:9
 #: CTFd/themes/luna-vite/templates/teams/private.html:13
@@ -758,7 +726,7 @@ msgstr ""
 #: CTFd/themes/luna-vite/templates/users/private.html:10
 #: CTFd/themes/luna-vite/templates/users/public.html:10
 msgid "Timeline"
-msgstr ""
+msgstr "タイムライン"
 
 #: CTFd/themes/luna-vite/templates/scoreboard.html:36
 #: CTFd/themes/luna-vite/templates/scoreboard.html:38
@@ -766,7 +734,7 @@ msgstr ""
 #: CTFd/themes/luna-vite/templates/teams/public.html:32
 #: CTFd/themes/luna-vite/templates/users/private.html:37
 msgid "Official"
-msgstr ""
+msgstr "公式"
 
 #: CTFd/themes/luna-vite/templates/scoreboard.html:42
 #: CTFd/themes/luna-vite/templates/teams/private.html:88
@@ -774,149 +742,145 @@ msgstr ""
 #, python-format
 msgid "%(solves)d solve"
 msgid_plural "%(solves)d solves"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "クリア数：%(solves)d"
 
 #: CTFd/themes/luna-vite/templates/scoreboard.html:52
 msgid "Scoreboard is unavailable."
-msgstr ""
+msgstr "スコアボードは利用できません。"
 
 #: CTFd/themes/luna-vite/templates/settings.html:6
 msgid "User Settings"
-msgstr ""
+msgstr "ユーザー設定"
 
 #: CTFd/themes/luna-vite/templates/components/menu.html:65
 #: CTFd/themes/luna-vite/templates/settings.html:9
 msgid "Profile"
-msgstr ""
+msgstr "プロフィール"
 
 #: CTFd/themes/luna-vite/templates/settings.html:10
 msgid "Access tokens"
-msgstr ""
+msgstr "アクセストークン"
 
 #: CTFd/themes/luna-vite/templates/settings.html:17
 msgid "Basic information"
-msgstr ""
+msgstr "基本情報"
 
 #: CTFd/themes/luna-vite/templates/settings.html:71
 #: CTFd/themes/luna-vite/templates/teams/private.html:247
 #: CTFd/themes/luna-vite/templates/teams/private.html:280
 msgid "Success!"
-msgstr ""
+msgstr "成功！"
 
 #: CTFd/themes/luna-vite/templates/settings.html:72
 msgid "Your profile has been updated"
-msgstr ""
+msgstr "プロフィールを更新しました"
 
 #: CTFd/themes/luna-vite/templates/settings.html:80
 msgid "Error:"
-msgstr ""
+msgstr "エラー："
 
 #: CTFd/themes/luna-vite/templates/settings.html:88
 #: CTFd/themes/luna-vite/templates/teams/private.html:262
 msgid "Update"
-msgstr ""
+msgstr "更新"
 
 #: CTFd/themes/luna-vite/templates/settings.html:94
 msgid "Profile picture"
-msgstr ""
+msgstr "プロフィール画像"
 
 #: CTFd/themes/luna-vite/templates/settings.html:95
-msgid ""
-"We use Gravatar to retrieve profile picture with the email address you "
-"provided to us. To change your profile picture, visit Gravatar and update"
-" the picture assigned to the email address above."
-msgstr ""
+msgid "We use Gravatar to retrieve profile picture with the email address you provided to us. To change your profile picture, visit Gravatar and update the picture assigned to the email address above."
+msgstr "Gravatar を使用して、提供されたメールアドレスでプロフィール画像を取得します。プロフィール画像を変更するには、Gravatar にアクセスして、上記のメールアドレスに割り当てられた画像を更新します。"
 
 #: CTFd/themes/luna-vite/templates/settings.html:97
 msgid "Gravatar"
-msgstr ""
+msgstr "Gravatar"
 
 #: CTFd/themes/luna-vite/templates/settings.html:102
 msgid "Generate token"
-msgstr ""
+msgstr "トークンを生成"
 
 #: CTFd/themes/luna-vite/templates/settings.html:117
 msgid "API Key Generated"
-msgstr ""
+msgstr "API キーを生成しました"
 
 #: CTFd/themes/luna-vite/templates/settings.html:120
 msgid "Please copy your API Key, it won't be shown again!"
-msgstr ""
+msgstr "API キーをコピーしてください。再び表示されません！"
 
 #: CTFd/themes/luna-vite/templates/settings.html:122
 msgid "API Key"
-msgstr ""
+msgstr "API キー"
 
 #: CTFd/themes/luna-vite/templates/settings.html:146
 msgid "Active tokens"
-msgstr ""
+msgstr "有効なトークン"
 
 #: CTFd/themes/luna-vite/templates/settings.html:171
 msgid "Delete token"
-msgstr ""
+msgstr "トークンを削除"
 
 #: CTFd/themes/luna-vite/templates/settings.html:174
 msgid "Are you sure you want to delete this token?"
-msgstr ""
+msgstr "このトークンを削除してもよろしいですか？"
 
 #: CTFd/themes/luna-vite/templates/settings.html:179
 msgid "Keep"
-msgstr ""
+msgstr "保留"
 
 #: CTFd/themes/luna-vite/templates/settings.html:182
 msgid "Delete"
-msgstr ""
+msgstr "削除"
 
 #: CTFd/themes/luna-vite/templates/components/challengeListEntry.html:3
 #, python-format
 msgid "%(solves)s solves"
-msgstr ""
+msgstr "クリア数：%(solves)s"
 
 #: CTFd/themes/luna-vite/templates/components/menu.html:5
 msgid "Menu"
-msgstr ""
+msgstr "メニュー"
 
 #: CTFd/themes/luna-vite/templates/components/menu.html:18
 msgid "Teams"
-msgstr ""
+msgstr "チーム"
 
 #: CTFd/themes/luna-vite/templates/components/menu.html:24
 msgid "Users"
-msgstr ""
+msgstr "ユーザー"
 
 #: CTFd/themes/luna-vite/templates/components/menu.html:31
 msgid "Ranking"
-msgstr ""
+msgstr "ランキング"
 
 #: CTFd/themes/luna-vite/templates/components/menu.html:37
 msgid "Home"
-msgstr ""
+msgstr "ホーム"
 
 #: CTFd/themes/luna-vite/templates/components/menu.html:42
 msgid "Title"
-msgstr ""
+msgstr "タイトル"
 
 #: CTFd/themes/luna-vite/templates/components/menu.html:58
 #: CTFd/themes/luna-vite/templates/teams/private.html:7
 msgid "Your team"
-msgstr ""
+msgstr "あなたのチーム"
 
 #: CTFd/themes/luna-vite/templates/components/menu.html:69
 msgid "Settings"
-msgstr ""
+msgstr "設定"
 
 #: CTFd/themes/luna-vite/templates/components/menu.html:73
 msgid "Log out"
-msgstr ""
+msgstr "ログアウト"
 
 #: CTFd/themes/luna-vite/templates/components/menu.html:79
 msgid "Admin panel"
-msgstr ""
+msgstr "管理パネル"
 
 #: CTFd/themes/luna-vite/templates/components/status.html:7
 msgid "Participating as"
-msgstr ""
+msgstr "参加名義"
 
 #: CTFd/themes/luna-vite/templates/components/status.html:11
 #: CTFd/themes/luna-vite/templates/teams/private.html:104
@@ -926,113 +890,109 @@ msgstr ""
 #: CTFd/themes/luna-vite/templates/users/private.html:118
 #: CTFd/themes/luna-vite/templates/users/public.html:118
 msgid "Total score"
-msgstr ""
+msgstr "総得点"
 
 #: CTFd/themes/luna-vite/templates/components/status.html:15
 msgid "Standing"
-msgstr ""
+msgstr "順位"
 
 #: CTFd/themes/luna-vite/templates/components/status.html:16
 msgid "N/A"
-msgstr ""
+msgstr "なし"
 
 #: CTFd/themes/luna-vite/templates/macros/forms.html:11
 #: CTFd/themes/luna-vite/templates/macros/forms.html:31
 msgid "Optional"
-msgstr ""
+msgstr "任意"
 
 #: CTFd/themes/luna-vite/templates/macros/rank.html:3
 #: CTFd/themes/luna-vite/templates/macros/rank.html:10
 #, python-format
 msgid "Rank %(rank)s"
-msgstr ""
+msgstr "第 %(rank)s 位"
 
 #: CTFd/themes/luna-vite/templates/teams/invite.html:7
 msgid "Join team"
-msgstr ""
+msgstr "チームに参加"
 
 #: CTFd/themes/luna-vite/templates/teams/invite.html:11
 #, python-format
 msgid "Welcome to <strong>%(name)s</strong>!"
-msgstr ""
+msgstr "<strong>%(name)s</strong> へようこそ！"
 
 #: CTFd/themes/luna-vite/templates/teams/invite.html:14
-msgid ""
-"Click “Join” to join the team, or click “Create team” if you’d prefer to "
-"create your own team."
-msgstr ""
+msgid "Click “Join” to join the team, or click “Create team” if you’d prefer to create your own team."
+msgstr "チームに参加するには「参加」をクリックするか、自分のチームを作成したい場合は「チームを作成」をクリックします。"
 
 #: CTFd/themes/luna-vite/templates/teams/invite.html:19
 msgid "Create team"
-msgstr ""
+msgstr "チームを作成"
 
 #: CTFd/themes/luna-vite/templates/teams/join_team.html:8
 #: CTFd/themes/luna-vite/templates/teams/team_enrollment.html:30
 msgid "Join Team"
-msgstr ""
+msgstr "チームに参加"
 
 #: CTFd/themes/luna-vite/templates/teams/new_team.html:8
 #: CTFd/themes/luna-vite/templates/teams/team_enrollment.html:33
 msgid "Create Team"
-msgstr ""
+msgstr "チームを作成"
 
 #: CTFd/themes/luna-vite/templates/teams/new_team.html:19
-msgid ""
-"After creating your team, share the team name and password with your "
-"teammates so they can join your team."
-msgstr ""
+msgid "After creating your team, share the team name and password with your teammates so they can join your team."
+msgstr "チームを作成したら、チームメンバーにチーム名とパスワードを共有し、チームに加わることができます。"
 
 #: CTFd/themes/luna-vite/templates/teams/private.html:10
 #: CTFd/themes/luna-vite/templates/teams/private.html:72
 #: CTFd/themes/luna-vite/templates/teams/public.html:8
 #: CTFd/themes/luna-vite/templates/teams/public.html:56
 msgid "Members"
-msgstr ""
+msgstr "メンバー"
 
 #: CTFd/themes/luna-vite/templates/teams/private.html:12
 #: CTFd/themes/luna-vite/templates/teams/public.html:10
 #: CTFd/themes/luna-vite/templates/users/private.html:9
 #: CTFd/themes/luna-vite/templates/users/public.html:9
 msgid "Breakdown"
-msgstr ""
+msgstr "内訳"
 
 #: CTFd/themes/luna-vite/templates/teams/private.html:40
 msgid "Edit team"
-msgstr ""
+msgstr "チームを編集"
 
 #: CTFd/themes/luna-vite/templates/teams/private.html:43
 #: CTFd/themes/luna-vite/templates/teams/private.html:269
 msgid "Choose captain"
-msgstr ""
+msgstr "キャプテンを選択"
 
 #: CTFd/themes/luna-vite/templates/teams/private.html:46
 #: CTFd/themes/luna-vite/templates/teams/private.html:302
 #: CTFd/themes/luna-vite/templates/templates/base.html:131
 msgid "Invite users"
-msgstr ""
+msgstr "ユーザーを招待"
 
 #: CTFd/themes/luna-vite/templates/teams/private.html:49
 msgid "Disband team"
-msgstr ""
+msgstr "チームを解散"
 
 #: CTFd/themes/luna-vite/templates/teams/private.html:55
 #: CTFd/themes/luna-vite/templates/teams/public.html:39
 #: CTFd/themes/luna-vite/templates/users/private.html:55
 #: CTFd/themes/luna-vite/templates/users/public.html:55
 msgid "Rank"
-msgstr ""
+msgstr "順位"
 
 #: CTFd/themes/luna-vite/templates/teams/private.html:61
 #: CTFd/themes/luna-vite/templates/teams/public.html:45
 #: CTFd/themes/luna-vite/templates/users/private.html:59
 #: CTFd/themes/luna-vite/templates/users/public.html:59
 msgid "Unranked"
-msgstr ""
+msgstr "なし"
 
 #: CTFd/themes/luna-vite/templates/teams/private.html:98
 #: CTFd/themes/luna-vite/templates/teams/public.html:77
 msgid "No members."
-msgstr ""
+msgstr "メンバーがいません"
 
 #: CTFd/themes/luna-vite/templates/teams/private.html:119
 #: CTFd/themes/luna-vite/templates/teams/public.html:98
@@ -1040,7 +1000,7 @@ msgstr ""
 #: CTFd/themes/luna-vite/templates/users/public.html:102
 #, python-format
 msgid "%(category)s, solved on %(time)s."
-msgstr ""
+msgstr "%(category)s、クリア時間：%(time)s"
 
 #: CTFd/themes/luna-vite/templates/teams/private.html:119
 #: CTFd/themes/luna-vite/templates/teams/public.html:98
@@ -1048,7 +1008,7 @@ msgstr ""
 #: CTFd/themes/luna-vite/templates/users/public.html:102
 #, python-format
 msgid "<time data-time=\"%(date)s\"></time>"
-msgstr ""
+msgstr "<time data-time=\"%(date)s\"></time>"
 
 #: CTFd/themes/luna-vite/templates/teams/private.html:129
 #: CTFd/themes/luna-vite/templates/teams/private.html:187
@@ -1062,277 +1022,274 @@ msgstr ""
 #: CTFd/themes/luna-vite/templates/users/public.html:112
 #: CTFd/themes/luna-vite/templates/users/public.html:182
 msgid "No solves yet."
-msgstr ""
+msgstr "まだクリアしてません。"
 
 #: CTFd/themes/luna-vite/templates/teams/private.html:147
 #: CTFd/themes/luna-vite/templates/teams/public.html:126
 #: CTFd/themes/luna-vite/templates/users/private.html:130
 msgid "Solve percentages"
-msgstr ""
+msgstr "クリアの内訳"
 
 #: CTFd/themes/luna-vite/templates/teams/private.html:169
 #: CTFd/themes/luna-vite/templates/teams/public.html:148
 #: CTFd/themes/luna-vite/templates/users/private.html:152
 #: CTFd/themes/luna-vite/templates/users/public.html:152
 msgid "Category breakdown"
-msgstr ""
+msgstr "カテゴリの内訳"
 
 #: CTFd/themes/luna-vite/templates/teams/private.html:247
 msgid "Your team’s profile has been updated."
-msgstr ""
+msgstr "チームのプロフィールが更新されました。"
 
 #: CTFd/themes/luna-vite/templates/teams/private.html:259
 #: CTFd/themes/luna-vite/templates/teams/private.html:341
 msgid "Cancel"
-msgstr ""
+msgstr "キャンセル"
 
 #: CTFd/themes/luna-vite/templates/teams/private.html:280
 msgid "Your captain rights have been transferred."
-msgstr ""
+msgstr "キャプテン権限が譲渡されました。"
 
 #: CTFd/themes/luna-vite/templates/teams/private.html:315
-msgid ""
-"Share this link with your team members for them to join your team.<br>\n"
+msgid "Share this link with your team members for them to join your team.<br>\n"
 "      Invite links can be re-used and expire after one day."
-msgstr ""
+msgstr "このリンクをチームメンバーと共有して、チームメンバーがチームに参加できるようにします。<br>\n"
+"      招待リンクは再利用でき、1日後に有効期限が切れます。"
 
 #: CTFd/themes/luna-vite/templates/teams/private.html:329
 msgid "Disband team?"
-msgstr ""
+msgstr "チームを解散？"
 
 #: CTFd/themes/luna-vite/templates/teams/private.html:331
 msgid "Are you sure you want to disband your team?"
-msgstr ""
+msgstr "本当にチームを解散しますか？"
 
 #: CTFd/themes/luna-vite/templates/teams/private.html:344
 msgid "Disband"
-msgstr ""
+msgstr "解散"
 
 #: CTFd/themes/luna-vite/templates/teams/public.html:26
 #: CTFd/themes/luna-vite/templates/users/private.html:43
 #: CTFd/themes/luna-vite/templates/users/public.html:43
 msgid "Team"
-msgstr ""
+msgstr "チーム"
 
 #: CTFd/themes/luna-vite/templates/teams/team_enrollment.html:10
 #, python-format
 msgid "Welcome to <b>%(name)s</b>!"
-msgstr ""
+msgstr "<b>%(name)s</b> へようこそ！"
 
 #: CTFd/themes/luna-vite/templates/teams/team_enrollment.html:13
 msgid "In order to participate you must either join or create a team."
-msgstr ""
+msgstr "参加するには、チームに参加するか、チームを作成する必要があります。"
 
 #: CTFd/themes/luna-vite/templates/teams/team_enrollment.html:20
 msgid "Play with Official Team"
-msgstr ""
+msgstr "公式チームでプレイ"
 
 #: CTFd/themes/luna-vite/templates/teams/team_enrollment.html:23
 msgid "Join Unofficial Team"
-msgstr ""
+msgstr "非公式チームに参加"
 
 #: CTFd/themes/luna-vite/templates/teams/team_enrollment.html:26
 msgid "Create Unofficial Team"
-msgstr ""
+msgstr "非公式チームを作成"
 
 #: CTFd/themes/luna-vite/templates/teams/teams.html:5
 #: CTFd/themes/luna-vite/templates/users/users.html:5
 msgid "Search result"
-msgstr ""
+msgstr "検索結果"
 
 #: CTFd/themes/luna-vite/templates/teams/teams.html:5
 msgid "Teams list"
-msgstr ""
+msgstr "チーム一覧"
 
 #: CTFd/themes/luna-vite/templates/teams/teams.html:21
 msgid "No team found."
-msgstr ""
+msgstr "チームが見つかりませんでした"
 
 #: CTFd/themes/luna-vite/templates/teams/teams.html:37
 #, python-format
 msgid "%(members)d member"
 msgid_plural "%(members)d members"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(members)d 人"
 
 #: CTFd/themes/luna-vite/templates/teams/teams.html:47
 #, python-format
 msgid "Page %(page)d"
-msgstr ""
+msgstr "ページ %(page)d"
 
 #: CTFd/themes/luna-vite/templates/teams/teams.html:56
 msgid "Previous page"
-msgstr ""
+msgstr "前のページ"
 
 #: CTFd/themes/luna-vite/templates/teams/teams.html:62
 msgid "Next page"
-msgstr ""
+msgstr "次のページ"
 
 #: CTFd/themes/luna-vite/templates/templates/base.html:99
 msgid "The CTF is archived."
-msgstr ""
+msgstr "CTF はアーカイブされました。"
 
 #: CTFd/themes/luna-vite/templates/templates/base.html:100
 msgid "D MMM YYYY, H:mm"
-msgstr ""
+msgstr "YYYY 年 M 月 D 日 H:mm"
 
 #: CTFd/themes/luna-vite/templates/templates/base.html:101
 #, python-format
 msgid "%(time)s until start."
-msgstr ""
+msgstr "開始まであと %(time)s"
 
 #: CTFd/themes/luna-vite/templates/templates/base.html:102
 #, python-format
 msgid "%(time)s until end."
-msgstr ""
+msgstr "終わるまであと %(time)s"
 
 #: CTFd/themes/luna-vite/templates/templates/base.html:103
 #, python-format
 msgid "%(days)sd %(rest)s"
-msgstr ""
+msgstr "%(days)s 日 %(rest)s"
 
 #: CTFd/themes/luna-vite/templates/templates/base.html:104
 #, python-format
 msgid "%(hours)sh %(rest)s"
-msgstr ""
+msgstr "%(hours)s 時間 %(rest)s"
 
 #: CTFd/themes/luna-vite/templates/templates/base.html:105
 msgid "HH[h] mm[m] ss[s]"
-msgstr ""
+msgstr "HH [時間] mm [分] ss [秒]"
 
 #: CTFd/themes/luna-vite/templates/templates/base.html:106
 msgid "mm[m] ss[s]"
-msgstr ""
+msgstr "mm [分] ss [秒]"
 
 #: CTFd/themes/luna-vite/templates/templates/base.html:107
 msgid "The CTF has started."
-msgstr ""
+msgstr "CTF が開始しました。"
 
 #: CTFd/themes/luna-vite/templates/templates/base.html:108
 msgid "The CTF has ended."
-msgstr ""
+msgstr "CTF は終了しました。"
 
 #: CTFd/themes/luna-vite/templates/templates/base.html:109
 msgid "Category Breakdown"
-msgstr ""
+msgstr "カテゴリの内訳"
 
 #: CTFd/themes/luna-vite/templates/templates/base.html:110
 msgid "Top 10 Teams"
-msgstr ""
+msgstr "トップ 10 チーム"
 
 #: CTFd/themes/luna-vite/templates/templates/base.html:111
 msgid "Top 10 Users"
-msgstr ""
+msgstr "トップ 10 ユーザー"
 
 #: CTFd/themes/luna-vite/templates/templates/base.html:112
 msgid "Solve Percentages"
-msgstr ""
+msgstr "クリアの内訳"
 
 #: CTFd/themes/luna-vite/templates/templates/base.html:113
 msgid "Fails"
-msgstr ""
+msgstr "失敗"
 
 #: CTFd/themes/luna-vite/templates/templates/base.html:115
 msgid "Score over Time"
-msgstr ""
+msgstr "スコアの変化"
 
 #: CTFd/themes/luna-vite/templates/templates/base.html:116
 msgid "Clipboard is not available."
-msgstr ""
+msgstr "クリップボードは使用できません。"
 
 #: CTFd/themes/luna-vite/templates/templates/base.html:117
 msgid "Copied!"
-msgstr ""
+msgstr "コピーしました！"
 
 #: CTFd/themes/luna-vite/templates/templates/base.html:118
 #, python-format
 msgid "%(val)s<small>s</small>"
-msgstr ""
+msgstr "%(val)s<small>秒</small>"
 
 #: CTFd/themes/luna-vite/templates/templates/base.html:119
 msgid "1<small>min</small>"
-msgstr ""
+msgstr "1<small>分</small>"
 
 #: CTFd/themes/luna-vite/templates/templates/base.html:120
 #, python-format
 msgid "%(val)s<small>mins</small>"
-msgstr ""
+msgstr "%(val)s<small>秒</small>"
 
 #: CTFd/themes/luna-vite/templates/templates/base.html:121
 msgid "1<small>hr</small>"
-msgstr ""
+msgstr "1<small>時間</small>"
 
 #: CTFd/themes/luna-vite/templates/templates/base.html:122
 #, python-format
 msgid "%(val)s<small>hrs</small>"
-msgstr ""
+msgstr "%(val)s<small>時間</small>"
 
 #: CTFd/themes/luna-vite/templates/templates/base.html:123
 msgid "1<small>d</small>"
-msgstr ""
+msgstr "1<small>日</small>"
 
 #: CTFd/themes/luna-vite/templates/templates/base.html:124
 #, python-format
 msgid "%(val)s<small>d</small>"
-msgstr ""
+msgstr "%(val)s<small>日</small>"
 
 #: CTFd/themes/luna-vite/templates/templates/base.html:125
 msgid "1<small>mth</small>"
-msgstr ""
+msgstr "1<small>か月</small>"
 
 #: CTFd/themes/luna-vite/templates/templates/base.html:126
 #, python-format
 msgid "%(val)s<small>mths</small>"
-msgstr ""
+msgstr "%(val)s<small>か月</small>"
 
 #: CTFd/themes/luna-vite/templates/templates/base.html:127
 msgid "1<small>yr</small>"
-msgstr ""
+msgstr "1<small>年</small>"
 
 #: CTFd/themes/luna-vite/templates/templates/base.html:128
 #, python-format
 msgid "%(val)s<small>yrs</small>"
-msgstr ""
+msgstr "%(val)s<small>年</small>"
 
 #: CTFd/themes/luna-vite/templates/templates/base.html:129
 msgid "Hint is not available."
-msgstr ""
+msgstr "ヒントは利用できません。"
 
 #: CTFd/themes/luna-vite/templates/templates/tabbed.html:7
 msgid "Go back"
-msgstr ""
+msgstr "戻る"
 
 #: CTFd/themes/luna-vite/templates/users/private.html:5
 msgid "Your profile"
-msgstr ""
+msgstr "あなたのプロフィール"
 
 #: CTFd/themes/luna-vite/templates/users/private.html:44
 #: CTFd/themes/luna-vite/templates/users/users.html:37
 msgid "No team"
-msgstr ""
+msgstr "チームなし"
 
 #: CTFd/themes/luna-vite/templates/users/private.html:47
 #: CTFd/themes/luna-vite/templates/users/public.html:47
 msgid "View team"
-msgstr ""
+msgstr "チームの表示"
 
 #: CTFd/themes/luna-vite/templates/users/users.html:5
 msgid "Users list"
-msgstr ""
+msgstr "ユーザー一覧"
 
 #: CTFd/themes/luna-vite/templates/users/users.html:21
 msgid "No user found."
-msgstr ""
+msgstr "ユーザーが見つかりませんでした。"
 
 #: CTFd/utils/modes/__init__.py:35
 msgid "user"
 msgid_plural "users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "名のユーザー"
 
 #: CTFd/utils/modes/__init__.py:37
 msgid "team"
 msgid_plural "teams"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "組のチーム"
 

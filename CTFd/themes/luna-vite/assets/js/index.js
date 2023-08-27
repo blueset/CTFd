@@ -4,6 +4,8 @@ import advancedFormat from 'dayjs/plugin/advancedFormat';
 import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
 import getLyricsContent from './splashData.js';
+import { _ } from './utils/i18n.js';
+
 dayjs.extend(duration);
 dayjs.extend(advancedFormat);
 dayjs.extend(utc);
@@ -25,9 +27,10 @@ function initHomeCountdown() {
     var start = window.init.start && dayjs.unix(window.init.start);
     var end = window.init.end && dayjs.unix(window.init.end);
     var archived = window.init.archived;
+    const dateFormat = _("D MMM YYYY, H:mm");
     if (archived) {
-        countdown.innerText = "The CTF is archived.";
-        localDate.innerText = `${start.format("D MMM YYYY, H:mm")} – ${end.format(`D MMM YYYY, H:mm ${timezoneFormat}`)}`;
+        countdown.innerText = _("The CTF is archived.");
+        localDate.innerText = `${start.format(dateFormat)} – ${end.format(`${dateFormat} ${timezoneFormat}`)}`;
         isoDate.innerText = `${start.toISOString()} + ${dayjs.duration(end.diff(start)).toISOString()}`;
         localDate.dateTime = isoDate.innerText;
         isoDate.dateTime = isoDate.innerText;
@@ -37,15 +40,15 @@ function initHomeCountdown() {
     var prompt = "";
     if (start && now.isBefore(start)) {
         target = start;
-        prompt = " until start.";
+        prompt = _("%(time)s until start.");
     }
     else if (end && now.isBefore(end)) {
         target = end;
-        prompt = " until end.";
+        prompt = _("%(time)s until end.");
     }
     var display = target || end || start;
     if (display) {
-        localDate.innerText = display.format(`D MMM YYYY, H:mm ${timezoneFormat}`);
+        localDate.innerText = display.format(`${dateFormat} ${timezoneFormat}`);
         isoDate.innerText = display.toISOString();
         localDate.dateTime = isoDate.innerText;
         isoDate.dateTime = isoDate.innerText;
@@ -57,8 +60,8 @@ function initHomeCountdown() {
 
     if (target === null) {
         if (start === null) countdown.style.display = "none";
-        else if (end === null) countdown.innerText = "The CTF has started.";
-        else countdown.innerText = "The CTF has ended.";
+        else if (end === null) countdown.innerText = _("The CTF has started.");
+        else countdown.innerText = _("The CTF has ended.");
     } else {
         var countdownInterval = null;
         var countdownIntervalFn = () => {
@@ -69,11 +72,11 @@ function initHomeCountdown() {
                 var diffHours = Math.floor(diff.asHours());
                 var diffStr = 
                     diffDay >= 3 ?
-                    `${diffDay}d ${diff.format(`HH[h] mm[m] ss[s]`)}` : 
+                    _("%(days)sd %(rest)s").replace("%(days)s", diffDay).replace("%(rest)s", diff.format(_("HH[h] mm[m] ss[s]"))) :
                     diff.asHours() >= 1 ?
-                    `${diffHours}h ${diff.format(`mm[m] ss[s]`)}` :
+                    _("%(hours)sh %(rest)s").replace("%(hours)s", diffHours).replace("%(rest)s", diff.format(_("mm[m] ss[s]"))) :
                     diff.format(`mm[m] ss[s]`);
-                countdown.innerText = diffStr + prompt;
+                countdown.innerText = prompt.replace("%(time)s", diffStr);
                 countdown.dateTime = diff.toISOString();
             } else {
                 clearInterval(countdownInterval);

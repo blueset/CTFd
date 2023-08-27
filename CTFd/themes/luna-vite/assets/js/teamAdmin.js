@@ -3,6 +3,7 @@ import CTFd from "./base";
 import { initModal, generateModal } from "./modal";
 import { serializeJSON } from "@ctfdio/ctfd-js/forms";
 import { copyToClipboard } from "./utils/clipboard";
+import { _ } from './utils/i18n.js';
 
 Alpine.data("TeamEditModal", () => ({
     success: null,
@@ -137,7 +138,7 @@ Alpine.data("CaptainMenu", () => ({
             this.teamInviteModal.showModal();
         } else {
             console.log(response);
-            generateModal("Invite users", response.errors[""].join("<br>"));
+            generateModal(_("Invite users"), response.errors[""].join("<br>"));
         }
     },
 

@@ -66,6 +66,7 @@ from CTFd.utils.security.signing import (
 )
 from CTFd.utils.uploads import get_uploader, upload_file
 from CTFd.utils.user import authed, get_current_team, get_current_user, is_admin
+from flask_babel import lazy_gettext as _l
 
 views = Blueprint("views", __name__)
 
@@ -165,19 +166,19 @@ def setup():
             team_name_email_check = validators.validate_email(name)
 
             if not valid_email:
-                errors.append("Please enter a valid email address")
+                errors.append(_l("Please enter a valid email address"))
             if names:
-                errors.append("That user name is already taken")
+                errors.append(_l("That user name is already taken"))
             if team_name_email_check is True:
-                errors.append("Your user name cannot be an email address")
+                errors.append(_l("Your user name cannot be an email address"))
             if emails:
-                errors.append("That email has already been used")
+                errors.append(_l("That email has already been used"))
             if pass_short:
-                errors.append("Pick a longer password")
+                errors.append(_l("Pick a longer password"))
             if pass_long:
-                errors.append("Pick a shorter password")
+                errors.append(_l("Pick a shorter password"))
             if name_len:
-                errors.append("Pick a longer user name")
+                errors.append(_l("Pick a longer user name"))
 
             if len(errors) > 0:
                 return render_template(
@@ -351,7 +352,7 @@ def settings():
         team_url = url_for("teams.private")
         infos.append(
             markup(
-                f'In order to participate you must either <a href="{team_url}">join or create a team</a>.'
+                _l('In order to participate you must either <a href="%(team_url)s">join or create a team</a>.', team_url=team_url)
             )
         )
 
@@ -362,11 +363,10 @@ def settings():
     if get_config("verify_emails") and not user.verified:
         confirm_url = markup(url_for("auth.confirm"))
         infos.append(
-            markup(
+            markup(_l(
                 "Your email address isn't confirmed!<br>"
                 "Please check your email to confirm your email address.<br><br>"
-                f'To have the confirmation email resent please <a href="{confirm_url}">click here</a>.'
-            )
+                'To have the confirmation email resent please <a href="%(confirm_url)s">click here</a>.', confirm_url=confirm_url))
         )
 
     return render_template(

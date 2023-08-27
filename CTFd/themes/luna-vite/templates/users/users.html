@@ -2,7 +2,7 @@
 {% from "macros/input.html" import wtf_input_field %}
 
 {% block title %}Users{% endblock %}
-{% block subtitle %}{% if q and field %}Search result{% else %}Users list{% endif %}{% endblock %}
+{% block subtitle %}{% if q and field %}{% trans %}Search result{% endtrans %}{% else %}{% trans %}Users list{% endtrans %}{% endif %}{% endblock %}
 
 {% block framedContent %}
 <div class="frameContentWrapper">
@@ -18,7 +18,7 @@
   {% endwith %}
 
   {% if users.total == 0 %}
-    <div class="warning" style="justify-content: center;">No user found.</div>
+    <div class="warning" style="justify-content: center;">{% trans %}No user found.{% endtrans %}</div>
   {% else %}
     <div class="grid">
       {% for user in users.items %}
@@ -34,7 +34,7 @@
             <img width="80" height="80" class="cellBodyIcon" src="{{ user.gravatar('404') }}" data-fallback="https://avatars.dicebear.com/api/initials/{{user_name}}.svg?backgroundColorLevel=800" onerror="this.src = this.dataset.fallback;this.onerror='';">
           </div>
           <div class="cellFooter">
-            {% if user.team %}{{user.team.name | truncate(50) }}{% else %}<em>No team</em>{% endif %}
+            {% if user.team %}{{user.team.name | truncate(50) }}{% else %}<em>{% trans %}No team{% endtrans %}</em>{% endif %}
           </div>
         {% if scores_visible() %}</a>{% else %}</div>{% endif %}
       {% endfor %}

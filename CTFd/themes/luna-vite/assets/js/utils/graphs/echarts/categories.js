@@ -1,10 +1,11 @@
 import { colorHash } from "@ctfdio/ctfd-js/ui";
+import { _ } from '../../i18n.js';
 
 export function getOption(solves) {
   let option = {
     title: {
       left: "center",
-      text: "Category Breakdown",
+      text: _("Category Breakdown"),
     },
     tooltip: {
       trigger: "item",
@@ -24,7 +25,7 @@ export function getOption(solves) {
     },
     series: [
       {
-        name: "Category Breakdown",
+        name: _("Category Breakdown"),
         type: "pie",
         radius: ["30%", "50%"],
         avoidLabelOverlap: false,
@@ -68,6 +69,9 @@ export function getOption(solves) {
         data: [],
       },
     ],
+    textStyle: {
+      fontFamily: 'sans-serif'
+    },
   };
   const categories = [];
 

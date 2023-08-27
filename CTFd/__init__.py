@@ -219,6 +219,8 @@ def create_app(config="CTFd.config.Config"):
         babel.locale_selector_func = get_locale
         babel.init_app(app)
 
+        app.jinja_env.globals['get_locale'] = get_locale
+
         # Alembic sqlite support is lacking so we should just create_all anyway
         if url.drivername.startswith("sqlite"):
             # Enable foreign keys for SQLite. This must be before the

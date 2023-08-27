@@ -64,7 +64,7 @@ def update_check(force=False):
                 latest = check["resource"]["tag"]
                 html_url = check["resource"]["html_url"]
                 if StrictVersion(latest) > StrictVersion(app.VERSION):
-                    set_config("version_latest", html_url)
+                    set_config("version_latest", app.VERSION)
                 elif StrictVersion(latest) <= StrictVersion(app.VERSION):
                     set_config("version_latest", None)
                 next_update_check_time = check["resource"].get(

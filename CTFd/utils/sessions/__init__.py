@@ -98,6 +98,9 @@ class CachingSessionInterface(SessionInterface):
                 response.delete_cookie(
                     app.session_cookie_name, domain=domain, path=path
                 )
+                response.delete_cookie(
+                    "session_sid", domain=domain, path=path
+                )
             return
 
         if session.modified:
@@ -126,6 +129,17 @@ class CachingSessionInterface(SessionInterface):
                 session_id,
                 expires=expires,
                 httponly=httponly,
+                domain=domain,
+                path=path,
+                secure=secure,
+                samesite=samesite,
+            )
+
+            response.set_cookie(
+                "session_sid",
+                session.sid,
+                expires=expires,
+                httponly=False,
                 domain=domain,
                 path=path,
                 secure=secure,

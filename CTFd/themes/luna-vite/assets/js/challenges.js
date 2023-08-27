@@ -9,6 +9,7 @@ import { initModal } from "./modal";
 import persist from "@alpinejs/persist";
 import dialogPolyfill from 'dialog-polyfill';
 import Konami from 'konami';
+import { _ } from './utils/i18n.js';
 
 const knm = new Konami(function () {
     /*! SEKAI{→↓↑→→↓→→↑↑↓↓←→←→} */
@@ -24,17 +25,17 @@ dayjs.updateLocale('en', {
     relativeTime: {
       future: "+%s",
       past: "-%s",
-      s: '%d<small>s</small>',
-      m: "1<small>min</small>",
-      mm: "%d<small>mins</small>",
-      h: "1<small>hr</small>",
-      hh: "%d<small>hrs</small>",
-      d: "1<small>d</small>",
-      dd: "%d<small>d</small>",
-      M: "1<small>mth</small>",
-      MM: "%d<small>mths</small>",
-      y: "1<small>yr</small>",
-      yy: "%d<small>yrs</small>"
+      s: _('%d<small>s</small>'),
+      m: _("1<small>min</small>"),
+      mm: _("%d<small>mins</small>"),
+      h: _("1<small>hr</small>"),
+      hh: _("%d<small>hrs</small>"),
+      d: _("1<small>d</small>"),
+      dd: _("%d<small>d</small>"),
+      M: _("1<small>mth</small>"),
+      MM: _("%d<small>mths</small>"),
+      y: _("1<small>yr</small>"),
+      yy: _("%d<small>yrs</small>"),
     }
 });
 
@@ -210,7 +211,7 @@ Alpine.data("Challenge", () => ({
     if (loadFromServer) {
       let response = await CTFd.pages.challenge.loadHint(hintId);
       let hint = response.data;
-      let html = `<div class="warning">Hint is not available.</div>`;
+      let html = `<div class="warning">${_("Hint is not available.")}</div>`;
       if (hint.content) {
         html = addTargetBlank(hint.html);
       } else {

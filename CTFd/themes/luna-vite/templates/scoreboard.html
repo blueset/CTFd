@@ -2,13 +2,12 @@
 {% from "macros/rank.html" import get_rank_int %}
 
 {% block title %}Ranking{% endblock %}
-{% block subtitle %}Scoreboard{% endblock %}
+{% block subtitle %}{% trans %}Scoreboard{% endtrans %}{% endblock %}
 
 {% block tabbedContent %}
-<button class="tab active" data-target="tabScoreboard">Scoreboard</button>
-<button class="tab" data-target="tabTimeline">Timeline</button>
+<button class="tab active" data-target="tabScoreboard">{% trans %}Scoreboard{% endtrans %}</button>
+<button class="tab" data-target="tabTimeline">{% trans %}Timeline{% endtrans %}</button>
 {% endblock %}
-
 
 {% block framedContent %}
 <div class="tabPane" id="tabScoreboard">
@@ -34,13 +33,13 @@
               {{ standing.name | truncate(50) }}
               {% if standing.oauth_id %}
                 {% if Configs.user_mode == 'teams' %}
-                  <a href="https://majorleaguecyber.org/t/{{ standing.name }}" class="chip">Official</a>
+                  <a href="https://majorleaguecyber.org/t/{{ standing.name }}" class="chip">{% trans %}Official{% endtrans %}</a>
                 {% elif Configs.user_mode == 'users' %}
-                  <a href="https://majorleaguecyber.org/u/{{ standing.name }}" class="chip">Official</a>
+                  <a href="https://majorleaguecyber.org/u/{{ standing.name }}" class="chip">{% trans %}Official{% endtrans %}</a>
                 {% endif %}
               {% endif %}
             </div>
-            <div>{{ standing.count }} solve{{ standing.count | pluralize }}</div>
+            <div>{{ ngettext('%(solves)d solve', '%(solves)d solves', standing.count, solves=standing.count) }}</div>
           </div>
           <div class="listItemScore digits5">
             <span>
@@ -50,7 +49,7 @@
         </a>
       {% endfor %}
     {% else %}
-      <div class="info" style="justify-content: center;">Scoreboard is unavailable.</div>
+      <div class="info" style="justify-content: center;">{% trans %}Scoreboard is unavailable.{% endtrans %}</div>
     {% endif %}
     {% endcache %}
 

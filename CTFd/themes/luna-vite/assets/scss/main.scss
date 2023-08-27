@@ -3,26 +3,6 @@
 @import 'dialog-polyfill/dialog-polyfill.css';
 @import 'utils';
 
-@font-face {
-  font-family: "InterVar";
-  font-weight: 100 900;
-  font-display: swap;
-  font-style: normal;
-  src: var(--inter-variable) format("woff2-variations"),
-       var(--inter-variable) format("woff2");
-  src: var(--inter-variable) format("woff2") tech("variations");
-}
-
-@font-face {
-  font-family: "InterVar";
-  font-weight: 100 900;
-  font-display: swap;
-  font-style: italic;
-  src: var(--inter-variable-italic) format("woff2-variations"),
-       var(--inter-variable-italic) format("woff2");
-  src: var(--inter-variable-italic) format("woff2") tech("variations");
-}
-
 @import url('https://rsms.me/inter/inter.css');
 @import url('https://fonts.googleapis.com/css2?family=Recursive:wght,CASL,CRSV,MONO@300..1000,1,0..1,1&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=M+PLUS+1:wght@100..900&display=swap');
@@ -63,8 +43,8 @@ pre, code {
   height: 600px;
 }
 
-[lang=ja], button[lang=ja] {
-  font-family: 'M PLUS 1', sans-serif !important;
+:lang(ja), button:lang(ja) {
+  font-family: 'InterVar', 'Inter var', 'Inter', 'M PLUS 1', sans-serif;
 }
 
 @import 'index';
