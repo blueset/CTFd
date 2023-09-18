@@ -55,6 +55,7 @@ const colorMapping = {
     [window.init.themeSettings.cat_name_pwn]: "#fde2c6",
     [window.init.themeSettings.cat_name_ppc]: "#f8fdc6",
     [window.init.themeSettings.cat_name_web]: "#c6cbfd",
+    [window.init.themeSettings.cat_name_blockchains]: "#c6cbfd",
 };
 
 const sortFunctions = {
@@ -321,6 +322,7 @@ Alpine.data("ChallengeBoard", function () { return {
         mapping[window.init.themeSettings.cat_name_pwn] = window.tagImages.pwn;
         mapping[window.init.themeSettings.cat_name_ppc] = window.tagImages.ppc;
         mapping[window.init.themeSettings.cat_name_web] = window.tagImages.web;
+        mapping[window.init.themeSettings.cat_name_blockchains] = window.tagImages.blockchains;
 
         return this.getCategories().map(v => [v, mapping[v] || null]);
     },
