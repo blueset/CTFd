@@ -25,12 +25,14 @@
 			<ul>
 				<li>Linear: Calculated as <code>Initial - (Decay * SolveCount)</code></li>
 				<li>Logarithmic: Calculated as <code>(((Minimum - Initial) / (Decay^2)) * (SolveCount^2)) + Initial</code></li>
-			</ul>
+                <li>Sekai: Customized calculation logic</li>
+            </ul>
 		</small>
 	</label>
 	<select name="function" class="custom-select">
 		<option value="linear">Linear</option>
 		<option value="logarithmic">Logarithmic</option>
+        <option value="sekai">Sekai</option>
 	</select>
 </div>
 
@@ -42,6 +44,7 @@
 				<li>Linear: The amount of points deducted per solve. Equal deduction per solve.</li>
 				<li>Logarithmic: The amount of solves before the challenge reaches its minimum value. Earlier solves will lose less
 					points. Later solves will lose more points</li>
+                <li>Sekai: Customized calculation logic</li>
 			</ul>
 		</small>
 	</label>

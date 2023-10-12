@@ -69,7 +69,23 @@ def logarithmic(challenge):
     return value
 
 
+def sekai(challenge):
+    solve_count = get_solve_count(challenge)
+
+    # Unlike above algos, this algo will make sure that the first solver gets max point value
+    # Hardcoded gradient
+    gradient = 10
+
+    _min = 1 + ((gradient - 1) / challenge.decay)
+    x = 1 + ((gradient - 1) / challenge.decay) * solve_count
+    ratio = math.log(x / _min) / math.log(gradient / _min)
+    raw_score = math.ceil(challenge.initial - (challenge.initial - challenge.minimum) * ratio)
+    value = max(challenge.minimum, min(challenge.initial, raw_score))
+
+    return value
+
 DECAY_FUNCTIONS = {
     "linear": linear,
     "logarithmic": logarithmic,
+    "sekai": sekai,
 }
