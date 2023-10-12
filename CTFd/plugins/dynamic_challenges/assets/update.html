@@ -26,13 +26,15 @@
 			<ul>
 				<li>Linear: Calculated as <code>Initial - (Decay * SolveCount)</code></li>
 				<li>Logarithmic: Calculated as <code>(((Minimum - Initial) / (Decay^2)) * (SolveCount^2)) + Initial</code></li>
-			</ul>
+                <li>Sekai: Customized calculation logic</li>
+            </ul>
 		</small>
 	</label>
 	<select name="function" class="custom-select">
 		<option value="linear" {% if challenge.function == "linear" %}selected{% endif %}>Linear</option>
 		<option value="logarithmic" {% if challenge.function == "logarithmic" %}selected{% endif %}>Logarithmic</option>
-	</select>
+        <option value="sekai" {% if challenge.function == "sekai" %}selected{% endif %}>Sekai</option>
+    </select>
 </div>
 
 <div class="form-group">
@@ -42,7 +44,8 @@
 			<ul>
 				<li>Linear: The amount of points deducted per solve. Equal deduction per solve.</li>
 				<li>Logarithmic: The amount of solves before the challenge reaches its minimum value. Earlier solves will lose less points. Later solves will lose more points</li>
-			</ul>
+                <li>Sekai: Customized calculation logic</li>
+            </ul>
 		</small>
 	</label>
 	<input type="number" class="form-control chal-decay" min="1" name="decay" value="{{ challenge.decay }}" required>
