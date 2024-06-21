@@ -108,7 +108,7 @@ def get_standings(count=None, admin=False, fields=None):
                 Model.id.label("account_id"),
                 Model.oauth_id.label("oauth_id"),
                 Model.name.label("name"),
-                Model.captain_id.label("captain_id"),
+                *([Model.captain_id.label("captain_id")] if Model is Teams else []),
                 Users.email.label("email"),
                 Users.email.label("gravatar"),
                 sumscores.columns.score,
@@ -116,7 +116,6 @@ def get_standings(count=None, admin=False, fields=None):
                 *fields,
             )
             .join(sumscores, Model.id == sumscores.columns.account_id)
-            .join(Users, Model.captain_id == Users.id)
             .filter(Model.banned == False, Model.hidden == False)
             .order_by(
                 sumscores.columns.score.desc(),
@@ -124,6 +123,8 @@ def get_standings(count=None, admin=False, fields=None):
                 sumscores.columns.id.asc(),
             )
         )
+        if Model is Teams:
+            standings_query = standings_query.join(Users, Model.captain_id == Users.id)
 
     """
     Only select a certain amount of users if asked.
