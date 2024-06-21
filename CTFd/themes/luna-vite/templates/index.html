@@ -54,18 +54,18 @@
     <canvas class="particlesCanvas" id="particlesCanvas" ref="canvasRef"></canvas>
     <div id="sessionSid" class="metadata" data-tippy-lyrics>{{ session.sid }}</div>
     <div class="credit metadata">
-        {{ config.get_config("ctf_version") }}.Luna, Powered by CTFd<br />
-        <small>Theme Luna by 1A23 Studio for Project SEKAI CTF<br />
+        <!-- , Powered by CTFd<br /> -->
+        <small>Theme Luna {{ config.get_config("ctf_version") }} by 1A23 Studio for �<br />
         <small>This website is in no way affiliated with SEGA, Colorful Palette Inc., Crypton Future Media, INC.</small>
         </small>
     </div>
     <div class="sponsors metadata">
-        <a href="https://ctfd.io" target="_blank" rel="noopener noreferrer" onClick="(e)=> e.stopPropagation()">
+        <!-- <a href="https://ctfd.io" target="_blank" rel="noopener noreferrer" onClick="(e)=> e.stopPropagation()">
             <img src="{{ url_for('views.themes', path='img/logos/ctfd.svg') }}" alt="CTFd" />
         </a>
         <a href="https://sekai.1a23.studio" target="_blank" rel="noopener noreferrer" onClick="(e)=> e.stopPropagation()">
             <img src="{{ url_for('views.themes', path='img/logos/team2.svg') }}" style="transform: scale(1.2)" alt="Project SEKAI" />
-        </a>
+        </a> -->
         <a href="https://1a23.com" target="_blank" rel="noopener noreferrer" onClick="(e)=> e.stopPropagation()">
             <img src="{{ url_for('views.themes', path='img/logos/1a23-sq.svg') }}" alt="1A23 Studio" />
         </a>
