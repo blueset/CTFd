@@ -1,16 +1,18 @@
+@import 'colors';
+
 // Plain button
 
 .button {
-    background-color: #fff;
-    border: 5px solid #e1e1e1;
+    background-color: $button-background;
+    border: 5px solid $button-border;
     border-radius: 10px;
-    box-shadow: 0 0 0 3px #555573, 0 3px 0 3px #555573;
+    box-shadow: 0 0 0 3px $button-shadow, 0 3px 0 3px $button-shadow;
     margin: 3px 3px 6px 3px;
     font-weight: 550;
     font-family: $font-family;
     padding: 0;
     text-decoration: none;
-    color: #454367;
+    color: $button-text;
     cursor: default;
 
     &:disabled {
@@ -19,7 +21,7 @@
 
     &:hover:not(:disabled) {
         border-color: $accent-color;
-        box-shadow: 0 0 0 3px #555573;
+        box-shadow: 0 0 0 3px $button-shadow;
     }
 
     &:active:not(:disabled) {
@@ -35,8 +37,8 @@
     }
 
     &.primary {
-        border-color: #fff;
-        background-image: linear-gradient(to bottom, #7AFBCA, #75FBF7);
+        border-color: $primary-button-background-border;
+        background-image: linear-gradient(to bottom, $primary-button-background-top, $primary-button-background-bottom);
         background-position-y: auto;
         background-size: auto;
     }
@@ -44,7 +46,7 @@
     &.primary.shade {
         background-image: 
             var(--halftone-bg-white),
-            linear-gradient(to bottom, #7AFBCA, #75FBF7);
+            linear-gradient(to bottom, $primary-button-background-top, $primary-button-background-bottom);
         background-position-y: -10px, center;
         background-size: auto 40px, 100% 100%;
     }
@@ -72,11 +74,11 @@
             height: 2rem;
             font-size: 1.25rem;
             border-width: 3px;
-            box-shadow: 0 0 0 3px #555573, 0 2px 0 3px #555573;
+            box-shadow: 0 0 0 3px $button-shadow, 0 2px 0 3px $button-shadow;
 
             &:hover:not(:disabled) {
                 border-color: $accent-color;
-                box-shadow: 0 0 0 3px #555573;
+                box-shadow: 0 0 0 3px $button-shadow;
             }
         }
     }
@@ -152,8 +154,8 @@
             right: -0.7em;
             top: -0.7em;
             font-size: 1.3rem;
-            background-color: #ED6289;
-            color: white;
+            background-color: $notification-background;
+            color: $notification-text;
             width: 1.2em;
             height: 1.2em;
             border-radius: 50%;

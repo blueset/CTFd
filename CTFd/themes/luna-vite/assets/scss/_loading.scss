@@ -1,9 +1,9 @@
 .loading {
-    background-color: #444463;
+    background-color: $primary-fg;
     padding: 0.25em 0.75em;
     border-radius: 5px;
     font-weight: 700;
-    color: white;
+    color: $background;
     font-size: 1.25rem;
     text-transform: uppercase;
 

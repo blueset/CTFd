@@ -58,7 +58,7 @@
 
     .contentWrapper {
         flex-grow: 1;
-        background-color: #fff;
+        background-color: $background;
         border-radius: 1rem;
         padding: 1rem;
         height: 0;
@@ -112,12 +112,12 @@
             padding: 0;
             padding-left: 1.5rem;
             padding-right: 1rem;
-            background-color: #444463;
+            background-color: $primary-fg;
             height: 2.2rem;
             width: 15rem;
             font-size: 1.25rem;
             font-weight: 550;
-            color: white;
+            color: $background;
             position: relative;
 
             > span {
@@ -166,7 +166,7 @@
             left: 0;
             bottom: 0;
             width: $tab-width;
-            border-right: 5px solid white;
+            border-right: 5px solid $background;
             flex-direction: column;
             overflow-x: hidden;
             overflow-y: auto;
@@ -178,7 +178,7 @@
             left: 0;
             right: 0;
             height: $tab-height;
-            border-bottom: 5px solid white;
+            border-bottom: 5px solid $background;
             flex-direction: row;
             overflow-y: hidden;
             overflow-x: auto;
@@ -186,7 +186,7 @@
         }
 
         .tab {
-            background-color: #75FBDE;
+            background-color: $accent-color-bright;
             color: $primary-fg;
             min-height: $tab-height;
             min-width: $tab-width;
@@ -202,11 +202,11 @@
             font-size: 1.15rem;
 
             &:hover {
-                background-color: color.scale(#75FBDE, $lightness: -30%);
+                background-color: color.scale($accent-color-bright, $lightness: -30%);
             }
 
             &.active {
-                background: var(--stripe-border), #F9DE6C;
+                background: var(--stripe-border), $active-selection-background;
                 background-repeat: repeat-x;
                 background-size: auto 15px;
             }
@@ -333,9 +333,9 @@
     }
 
     .statusItem {
-        background-color: #444463;
+        background-color: $primary-fg;
         padding: 0.3rem 0.75rem;
-        color: white;
+        color: $background;
         border-radius: 1rem;
         display: inline-flex;
         align-items: center;
@@ -385,7 +385,7 @@
         right: 1.5rem;
         padding: 1px 7px;
         font-size: 0.8em;
-        background-color: #F4B73F;
+        background-color: $countdown-background;
         border-radius: 6px;
         font-variant-numeric: tabular-nums;
     }

@@ -16,8 +16,8 @@
 
         .cellBodyIcon {
             border-radius: 5px;
-            border: 1px solid #fff;
-            box-shadow: 0 0 0 3px #62B8B9;
+            border: 1px solid $background;
+            box-shadow: 0 0 0 3px $cell-icon-shadow;
         }
     }
 
@@ -46,7 +46,7 @@
     }
 
     .profileMetaBox {
-        border: 3px solid #D5EBEF;
+        border: 3px solid $profile-meta-box;
         padding: 0.5rem 0.5rem;
         max-width: 15rem;
         width: 9rem;
@@ -71,7 +71,7 @@
 
     .profileRankNumber {
         width: 2em;
-        color: #5CC9BB;
+        color: $accent-color;
         font-variant-numeric: tabular-nums;
         font-weight: 800;
         font-size: 3.5rem;

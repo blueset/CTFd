@@ -13,7 +13,7 @@ body.titleScreenVisible {
     overflow-x: hidden;
     overflow-y: auto;
     background: var(--low-poly-bg),
-        radial-gradient(circle at center bottom, #ffffff, #ddedfc);
+        radial-gradient(circle at center bottom, $background, $home-gradient-end);
     background-blend-mode: overlay;
     background-position: center, bottom center;
     @include subtle-scroll;
@@ -50,7 +50,7 @@ body.titleScreenVisible {
         margin-top: 3rem;
         font-size: 1.25rem;
         font-weight: 550;
-        background-color: #F4B73F;
+        background-color: $countdown-background;
         border-radius: 0.5rem;
         padding: 0.25rem 0.75rem;
     }
@@ -58,7 +58,7 @@ body.titleScreenVisible {
     #homeLocalDate {
         margin: 0.5rem 0;
         font-weight: 550;
-        color: color.scale(#F4B73F, $lightness: -40%);
+        color: color.scale($countdown-background, $lightness: -40%);
     }
 
     #homeISODate {
@@ -143,7 +143,7 @@ body.titleScreenVisible {
     height: calc(var(--1dvh, 1vh) * 100);
     height: 100dvh;
     background-image: var(--title-bg);
-    background-color: #fff;
+    background-color: $background;
     background-size: cover;
     background-position: center center;
     padding: 0.5em;
@@ -159,7 +159,7 @@ body.titleScreenVisible {
     .metadata {
         color: #fff;
         font-weight: 600;
-        text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.4), 1px -1px 0 rgba(0, 0, 0, 0.4), -1px 1px 0 rgba(0, 0, 0, 0.4), 1px 1px 0 rgba(0, 0, 0, 0.4);
+        text-shadow: -1px -1px 0 $text-shadow, 1px -1px 0 $text-shadow, -1px 1px 0 $text-shadow, 1px 1px 0 $text-shadow;
     }
 
     #sessionSid {
@@ -218,7 +218,7 @@ body.titleScreenVisible {
     .logoBox img {
         width: 100%;
         filter:
-            drop-shadow(0 0 5px #fff) drop-shadow(0 0 5px #fff) drop-shadow(0 0 5px #fff);
+            drop-shadow(0 0 5px $background) drop-shadow(0 0 5px $background) drop-shadow(0 0 5px $background);
     }
 
     .tapToStart {
@@ -230,10 +230,10 @@ body.titleScreenVisible {
         color: #fff;
         text-transform: uppercase;
         background: linear-gradient(to right,
-                rgba(92, 201, 188, 0) 0%,
-                rgba(92, 201, 188, 1) 20%,
-                rgba(92, 201, 188, 1) 80%,
-                rgba(92, 201, 188, 0) 100%);
+                color.change($accent-color, $alpha: 0) 0%,
+                $accent-color 20%,
+                $accent-color 80%,
+                color.change($accent-color, $alpha: 0) 100%);
         animation: blink 2s infinite;
     }
 
@@ -274,7 +274,7 @@ body.titleScreenVisible {
         height: 100%;
         animation-duration: 1000ms;
         animation-name: splashWhiteIn;
-        background-color: #fff;
+        background-color: $background;
         animation-fill-mode: forwards;
     }
 

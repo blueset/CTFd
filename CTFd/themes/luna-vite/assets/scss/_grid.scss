@@ -10,13 +10,13 @@
     
     .gridCell {
         display: block;
-        border: 3px solid #8888A7;
+        border: 3px solid $grid-border;
         border-radius: 0.8rem;
         text-decoration: none;
         box-sizing: border-box;
 
         .cellHeader {
-            background-color: #8888a7;
+            background-color: $grid-border;
             color: white;
             padding: 5px 10px;
             overflow: hidden;
@@ -28,8 +28,8 @@
         }
 
         .cellFooter {
-            background-color: #D2EDED;
-            color: #444463;
+            background-color: $grid-footer;
+            color: $primary-fg;
             padding: 5px 10px;
             overflow: hidden;
             white-space: nowrap;
@@ -45,8 +45,8 @@
 
         .cellBodyIcon {
             border-radius: 5px;
-            border: 1px solid #fff;
-            box-shadow: 0 0 0 3px #62B8B9;
+            border: 1px solid $background;
+            box-shadow: 0 0 0 3px $cell-icon-shadow;
         }
     }
 }

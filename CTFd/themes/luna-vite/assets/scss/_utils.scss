@@ -1,8 +1,5 @@
-$accent-color: #5CC9BB;
-$accent-color-bright: #75FBDE;
-$accent-text-color: color.scale($accent-color, $lightness: -20%);
-$warning-color: #EC6198;
-$primary-fg: #444463;
+@import 'colors';
+
 $font-family: 'InterVar', 'Inter var', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
 sans-serif;

@@ -1,0 +1,56 @@
+
+$accent-color: #5CC9BB;
+$accent-color-bright: #75FBDE;
+$accent-text-color: color.scale($accent-color, $lightness: -20%);
+$warning-color: #EC6198;
+$primary-fg: #444463;
+
+$border: #8989A7;
+$text-on-accent: #fff;
+
+$background: #fff;
+$backdrop: #00000060;
+
+$button-background: $background;
+$button-border: #e1e1e1;
+$button-shadow: #555573;
+$button-text: #454367;
+
+$primary-button-background-border: $background;
+$primary-button-background-top: #7AFBCA;
+$primary-button-background-bottom: #75FBF7;
+
+$sekai-mode-background: #00FFDD;
+$sekai-mode-border: #CBFFF7;
+$focus-mode-background: #FEA48F;
+$focus-mode-border: #FFD1C7;
+
+$notification-background: #ED6289;
+$notification-text: #fff;
+
+$solved-diamond-0: #FFEFB5;
+$solved-diamond-1: #FFD642;
+
+$first-diamond-0: #FB9CF7;
+$first-diamond-1: #9CBFFF;
+$first-diamond-2: #00FCBB;
+
+$list-border: $border;
+$list-label: #953D74;
+
+$input-border: $border;
+$input-shadow: #C5C5D2;
+$input-background: $background;
+$input-background-hover: rgba(0, 0, 0, 0.1);
+
+$grid-border: $border;
+$grid-footer: #D2EDED;
+$cell-icon-shadow: #62B8B9;
+
+$home-gradient-end: #ddedfc;
+$countdown-background: #F4B73F;
+$text-shadow: rgba(0, 0, 0, 0.4);
+
+$profile-meta-box: #D5EBEF;
+
+$active-selection-background: #F9DE6C;
