@@ -1,5 +1,5 @@
 import * as echarts from 'echarts/core';
-import { LineChart } from 'echarts/charts';
+import { LineChart, RadarChart } from 'echarts/charts';
 import {
   TitleComponent,
   TooltipComponent,
@@ -19,6 +19,7 @@ import { CanvasRenderer } from 'echarts/renderers';
 // Register the required components
 echarts.use([
   LineChart,
+  RadarChart,
   TitleComponent,
   TooltipComponent,
   GridComponent,

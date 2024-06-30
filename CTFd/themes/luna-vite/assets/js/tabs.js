@@ -15,9 +15,9 @@ export function initTabs(tabNodes, tabContentNodes) {
             tabContentNode.classList.remove('hidden');
 
             // Resize graphs
-            let graph = document.getElementById("score-graph");
-            if (graph) {
-                resize(graph);
+            let graphs = document.querySelectorAll("[_echarts_instance_]");
+            if (graphs.length > 0) {
+                graphs.forEach(graph => resize(graph));
             }
         });
     });

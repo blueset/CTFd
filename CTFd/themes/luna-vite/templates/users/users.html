@@ -31,7 +31,7 @@
           <div class="cellBody">
             {% set user_name = user.name | urlencode %}
             {% set user_name = user_name.replace('%20', '+') %}
-            <img width="80" height="80" class="cellBodyIcon" src="{{ user.gravatar('404') }}" data-fallback="https://avatars.dicebear.com/api/initials/{{user_name}}.svg?backgroundColorLevel=800" onerror="this.src = this.dataset.fallback;this.onerror='';">
+            <img width="80" height="80" class="cellBodyIcon" src="{{ user.gravatar('404') }}" data-fallback="https://api.dicebear.com/9.x/initials/svg?seed={{user_name}}&backgroundType=gradientLinear" onerror="this.src = this.dataset.fallback;this.onerror='';">
           </div>
           <div class="cellFooter">
             {% if user.team %}{{user.team.name | truncate(50) }}{% else %}<em>{% trans %}No team{% endtrans %}</em>{% endif %}
