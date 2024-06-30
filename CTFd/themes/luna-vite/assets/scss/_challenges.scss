@@ -89,7 +89,7 @@ $challenges-width: max(30vw, calc((100vw - $tab-width) / 5 * 2));
     }
 
     #challengesListWrapper {
-        background-color: color.scale($primary-fg, $alpha: -20%);
+        background-color: $challenge-list-background;
         height: 100%;
         position: relative;
         

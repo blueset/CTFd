@@ -208,10 +208,10 @@ body.titleScreenVisible {
 
     .logoBox {
         position: absolute;
-        top: 65%;
+        top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: clamp(250px, 33vw, 500px);
+        width: clamp(250px, 60vw, 750px);
         text-align: center;
     }
 

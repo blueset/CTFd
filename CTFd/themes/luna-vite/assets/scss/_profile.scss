@@ -149,6 +149,12 @@
     gap: 2rem;
 }
 
+.progressBarChart.chart {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
 .chartContainer {
     display: flex;
     align-items: center;

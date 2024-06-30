@@ -51,11 +51,11 @@
 {# Title screen #}
 
 <div id="titleScreen" class="hidden">
-    <canvas class="particlesCanvas" id="particlesCanvas" ref="canvasRef"></canvas>
+    <!-- <canvas class="particlesCanvas" id="particlesCanvas" ref="canvasRef"></canvas> -->
     <div id="sessionSid" class="metadata" data-tippy-lyrics>{{ session.sid }}</div>
     <div class="credit metadata">
         <!-- , Powered by CTFd<br /> -->
-        <small>Theme Luna {{ config.get_config("ctf_version") }} by 1A23 Studio for �<br />
+        <small>Theme Luna {{ config.get_config("ctf_version") }} by 1A23 Studio for Shef Labs<br />
         <small>This website is in no way affiliated with SEGA, Colorful Palette Inc., Crypton Future Media, INC.</small>
         </small>
     </div>
@@ -71,7 +71,7 @@
         </a>
     </div>
     <div class="logoBox">
-        <img src="{{ url_for('views.files', path=Configs.ctf_logo) if Configs.ctf_logo else url_for('views.themes', path='img/logos/sekai2.svg') }}" alt="Project SEKAI CTF" />
+        <img src="{{ url_for('views.files', path=Configs.ctf_logo) if Configs.ctf_logo else url_for('views.themes', path='img/anim.svg') }}" alt="Shef Labs" />
         <div class="tapToStart">{{ gettext("%(verb)s to start", verb=gettext('<span class="click">Click</span><span class="tap">Tap</span>')) | safe }}</div>
     </div>
 </div>

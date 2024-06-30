@@ -1,31 +1,60 @@
+@use "sass:color";
 
-$accent-color: #5CC9BB;
-$accent-color-bright: #75FBDE;
-$accent-text-color: color.scale($accent-color, $lightness: -20%);
-$warning-color: #EC6198;
-$primary-fg: #444463;
+$color1: #3e609c;
+$color2: #ec672c;
+$color3: #001253;
+$color4: #fd841f;
 
-$border: #8989A7;
+$primary-a10:  #d9ddeb;
+$primary-a20:  #b3bcd7;
+$primary-a30:  #8d9cc3;
+$primary-a40:  #677db0; 
+$primary-a50:  $color1;
+$primary-a60:  #344d7b;
+$primary-a70:  #293a5b;
+$primary-a80:  #1f283d;
+$primary-a90:  $color3;
+
+$accent-a10:  #ffe1d3;
+$accent-a20:  #ffc3a8;
+$accent-a30:  $color4;
+$accent-a40:  #f68756;
+$accent-a50:  $color2;
+$accent-a60:  #b95325;
+$accent-a70:  #883f1f;
+$accent-a80:  #5a2c18;
+$accent-a90:  #301a10;
+
+$accent-color: $color1;
+$accent-color-bright: $primary-a20;
+$accent-text-color: $primary-a90;
+$warning-color: $color2;
+$primary-fg: $color3;
+
+$border: $primary-a30;
 $text-on-accent: #fff;
 
 $background: #fff;
 $backdrop: #00000060;
 
+$background-gradient-top: #dddddd;
+$background-gradient-bottom: $primary-a10;
+
 $button-background: $background;
 $button-border: #e1e1e1;
 $button-shadow: #555573;
-$button-text: #454367;
+$button-text: $color3;
 
 $primary-button-background-border: $background;
-$primary-button-background-top: #7AFBCA;
-$primary-button-background-bottom: #75FBF7;
+$primary-button-background-top: $primary-a10;
+$primary-button-background-bottom: $primary-a20;
 
-$sekai-mode-background: #00FFDD;
-$sekai-mode-border: #CBFFF7;
-$focus-mode-background: #FEA48F;
-$focus-mode-border: #FFD1C7;
+$sekai-mode-background: $primary-a30;
+$sekai-mode-border: $primary-a10;
+$focus-mode-background: $accent-a30;
+$focus-mode-border: $accent-a10;
 
-$notification-background: #ED6289;
+$notification-background: $accent-a50;
 $notification-text: #fff;
 
 $solved-diamond-0: #FFEFB5;
@@ -36,7 +65,7 @@ $first-diamond-1: #9CBFFF;
 $first-diamond-2: #00FCBB;
 
 $list-border: $border;
-$list-label: #953D74;
+$list-label: $primary-a30;
 
 $input-border: $border;
 $input-shadow: #C5C5D2;
@@ -44,13 +73,14 @@ $input-background: $background;
 $input-background-hover: rgba(0, 0, 0, 0.1);
 
 $grid-border: $border;
-$grid-footer: #D2EDED;
-$cell-icon-shadow: #62B8B9;
+$grid-footer: $primary-a10;
+$cell-icon-shadow: $primary-a40;
 
-$home-gradient-end: #ddedfc;
-$countdown-background: #F4B73F;
+$home-gradient-end: $primary-a10;
+$countdown-background: $accent-a50;
 $text-shadow: rgba(0, 0, 0, 0.4);
 
-$profile-meta-box: #D5EBEF;
+$profile-meta-box: $primary-a10;
 
-$active-selection-background: #F9DE6C;
+$active-selection-background: $accent-a20;
+$challenge-list-background: $primary-a40;

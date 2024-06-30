@@ -1,5 +1,7 @@
+@import 'colors';
+
 :root {
-    --background-gradient: linear-gradient(to bottom, #dddddd, #C6FDF1);
+    --background-gradient: linear-gradient(to bottom, #{$background-gradient-top}, #{$background-gradient-bottom});
 }
 
 .triangleContainer {
@@ -88,7 +90,7 @@
             }
 
             margin-left: -1rem;
-            filter: drop-shadow(3px 3px 0px $accent-color);
+            filter: drop-shadow(3px 3px 0px $accent-a50);
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -97,7 +99,7 @@
         .title {
             margin: 0;
             line-height: 0.7em;
-            color: #444463;
+            color: $primary-fg;
             text-transform: uppercase;
             letter-spacing: -0.05em;
             margin-left: 1.5rem;
@@ -202,7 +204,7 @@
             font-size: 1.15rem;
 
             &:hover {
-                background-color: color.scale($accent-color-bright, $lightness: -30%);
+                background-color: color.scale($accent-color-bright, $lightness: -10%);
             }
 
             &.active {
@@ -343,7 +345,7 @@
         margin-right: 0.25rem;
         
         > iconify-icon {
-            color: $accent-color;
+            color: $accent-a30;
             font-size: 1.1em;
         }
     }
