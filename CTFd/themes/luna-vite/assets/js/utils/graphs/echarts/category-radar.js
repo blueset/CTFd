@@ -20,9 +20,6 @@ export function getOption(id, name, solves, challenges) {
     const max = Math.max(...Object.values(breakdown));
 
     return {
-        title: {
-            text: _('Category breakdown')
-        },
         radar: {
             indicator: Object.keys(breakdown).map(name => ({ name, max })),
         },

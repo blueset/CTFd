@@ -1,6 +1,6 @@
 {
   "assets/js/base.js": {
-    "file": "assets/base.c0196df1.js",
+    "file": "assets/base.566e0342.js",
     "src": "assets/js/base.js",
     "isEntry": true,
     "imports": [
@@ -20,7 +20,7 @@
     ]
   },
   "assets/js/settings.js": {
-    "file": "assets/settings.479d1378.js",
+    "file": "assets/settings.3d014235.js",
     "src": "assets/js/settings.js",
     "isEntry": true,
     "imports": [
@@ -35,35 +35,35 @@
     ]
   },
   "assets/js/userProfile.js": {
-    "file": "assets/user_profile.49aa3438.js",
+    "file": "assets/user_profile.19398e82.js",
     "src": "assets/js/userProfile.js",
     "isEntry": true,
     "imports": [
       "_module.esm.860ebcbd.js",
       "assets/js/base.js",
-      "_category-radar.b814b75c.js",
+      "_category-radar.e46a3bdd.js",
       "_duration.21bcce5f.js",
       "_echarts.eea77e6b.js",
       "_notificationCounter.4f4e1e9f.js",
-      "_scoreboard.abce5870.js"
+      "_scoreboard.b2aab010.js"
     ]
   },
   "assets/js/teamProfile.js": {
-    "file": "assets/team_profile.787cba74.js",
+    "file": "assets/team_profile.4de02eed.js",
     "src": "assets/js/teamProfile.js",
     "isEntry": true,
     "imports": [
       "_module.esm.860ebcbd.js",
       "assets/js/base.js",
-      "_category-radar.b814b75c.js",
+      "_category-radar.e46a3bdd.js",
       "_duration.21bcce5f.js",
       "_echarts.eea77e6b.js",
       "_notificationCounter.4f4e1e9f.js",
-      "_scoreboard.abce5870.js"
+      "_scoreboard.b2aab010.js"
     ]
   },
   "assets/js/teamAdmin.js": {
-    "file": "assets/team_admin.ef6f1161.js",
+    "file": "assets/team_admin.3178de18.js",
     "src": "assets/js/teamAdmin.js",
     "isEntry": true,
     "imports": [
@@ -78,13 +78,13 @@
     ]
   },
   "assets/js/scoreboard.js": {
-    "file": "assets/scoreboard.8a6687a7.js",
+    "file": "assets/scoreboard.ecc225e0.js",
     "src": "assets/js/scoreboard.js",
     "isEntry": true,
     "imports": [
       "_module.esm.860ebcbd.js",
       "assets/js/base.js",
-      "_scoreboard.abce5870.js",
+      "_scoreboard.b2aab010.js",
       "_duration.21bcce5f.js",
       "_echarts.eea77e6b.js",
       "_notificationCounter.4f4e1e9f.js"
@@ -99,7 +99,7 @@
     ]
   },
   "assets/js/challenges.js": {
-    "file": "assets/challenges.719dfa17.js",
+    "file": "assets/challenges.e9261df1.js",
     "src": "assets/js/challenges.js",
     "isEntry": true,
     "imports": [
@@ -113,8 +113,8 @@
       "_tippy.esm.67f4ecc9.js"
     ]
   },
-  "_echarts.4cc66d9c.js": {
-    "file": "assets/echarts.4cc66d9c.js"
+  "_echarts.eea77e6b.js": {
+    "file": "assets/echarts.eea77e6b.js"
   },
   "_duration.21bcce5f.js": {
     "file": "assets/duration.21bcce5f.js"
@@ -144,219 +144,24 @@
       "_duration.21bcce5f.js"
     ]
   },
-  "_userscore.91901217.js": {
-    "file": "assets/userscore.91901217.js",
+  "_category-radar.e46a3bdd.js": {
+    "file": "assets/category-radar.e46a3bdd.js",
     "imports": [
       "assets/js/base.js",
-      "_scoreboard.326bd4d6.js",
+      "_scoreboard.b2aab010.js",
       "_duration.21bcce5f.js"
     ]
   },
-  "_scoreboard.326bd4d6.js": {
-    "file": "assets/scoreboard.326bd4d6.js",
+  "_scoreboard.b2aab010.js": {
+    "file": "assets/scoreboard.b2aab010.js",
     "imports": [
       "assets/js/base.js",
       "_duration.21bcce5f.js"
     ]
   },
   "assets/scss/main.scss": {
-    "file": "assets/main.fc937667.css",
+    "file": "assets/main.7d287442.css",
     "src": "assets/scss/main.scss",
     "isEntry": true
-  },
-  "_category-radar.eadd1f3b.js": {
-    "file": "assets/category-radar.eadd1f3b.js",
-    "imports": [
-      "assets/js/base.js",
-      "_scoreboard.326bd4d6.js",
-      "_duration.21bcce5f.js"
-    ]
-  },
-  "_category-radar.16b620af.js": {
-    "file": "assets/category-radar.16b620af.js",
-    "imports": [
-      "assets/js/base.js",
-      "_scoreboard.326bd4d6.js",
-      "_duration.21bcce5f.js"
-    ]
-  },
-  "_category-radar.e42a4d0b.js": {
-    "file": "assets/category-radar.e42a4d0b.js",
-    "imports": [
-      "assets/js/base.js",
-      "_scoreboard.326bd4d6.js",
-      "_duration.21bcce5f.js"
-    ]
-  },
-  "_category-radar.bd0645f3.js": {
-    "file": "assets/category-radar.bd0645f3.js",
-    "imports": [
-      "assets/js/base.js",
-      "_scoreboard.326bd4d6.js",
-      "_duration.21bcce5f.js"
-    ]
-  },
-  "_category-radar.7bb9f79d.js": {
-    "file": "assets/category-radar.7bb9f79d.js",
-    "imports": [
-      "assets/js/base.js",
-      "_scoreboard.326bd4d6.js",
-      "_duration.21bcce5f.js"
-    ]
-  },
-  "_echarts.0cb61042.js": {
-    "file": "assets/echarts.0cb61042.js"
-  },
-  "_category-radar.8e660f0c.js": {
-    "file": "assets/category-radar.8e660f0c.js",
-    "imports": [
-      "assets/js/base.js",
-      "_scoreboard.b8f95b7e.js",
-      "_duration.21bcce5f.js"
-    ]
-  },
-  "_scoreboard.b8f95b7e.js": {
-    "file": "assets/scoreboard.b8f95b7e.js",
-    "imports": [
-      "assets/js/base.js",
-      "_duration.21bcce5f.js"
-    ]
-  },
-  "_echarts.eea77e6b.js": {
-    "file": "assets/echarts.eea77e6b.js"
-  },
-  "_category-radar.53b03c1e.js": {
-    "file": "assets/category-radar.53b03c1e.js",
-    "imports": [
-      "assets/js/base.js",
-      "_scoreboard.a65f8565.js",
-      "_duration.21bcce5f.js"
-    ]
-  },
-  "_scoreboard.a65f8565.js": {
-    "file": "assets/scoreboard.a65f8565.js",
-    "imports": [
-      "assets/js/base.js",
-      "_duration.21bcce5f.js"
-    ]
-  },
-  "_category-radar.5bc90f4c.js": {
-    "file": "assets/category-radar.5bc90f4c.js",
-    "imports": [
-      "assets/js/base.js",
-      "_scoreboard.a65f8565.js",
-      "_duration.21bcce5f.js"
-    ]
-  },
-  "_category-radar.05ebc007.js": {
-    "file": "assets/category-radar.05ebc007.js",
-    "imports": [
-      "assets/js/base.js",
-      "_scoreboard.a65f8565.js",
-      "_duration.21bcce5f.js"
-    ]
-  },
-  "_category-radar.42bc588b.js": {
-    "file": "assets/category-radar.42bc588b.js",
-    "imports": [
-      "assets/js/base.js",
-      "_scoreboard.a65f8565.js",
-      "_duration.21bcce5f.js"
-    ]
-  },
-  "_category-radar.bdac3d4c.js": {
-    "file": "assets/category-radar.bdac3d4c.js",
-    "imports": [
-      "assets/js/base.js",
-      "_scoreboard.a65f8565.js",
-      "_duration.21bcce5f.js"
-    ]
-  },
-  "_category-radar.15ecbb57.js": {
-    "file": "assets/category-radar.15ecbb57.js",
-    "imports": [
-      "assets/js/base.js",
-      "_scoreboard.a65f8565.js",
-      "_duration.21bcce5f.js"
-    ]
-  },
-  "_category-radar.f8c65dd0.js": {
-    "file": "assets/category-radar.f8c65dd0.js",
-    "imports": [
-      "assets/js/base.js",
-      "_scoreboard.a65f8565.js",
-      "_duration.21bcce5f.js"
-    ]
-  },
-  "_category-radar.9375e7c6.js": {
-    "file": "assets/category-radar.9375e7c6.js",
-    "imports": [
-      "assets/js/base.js",
-      "_scoreboard.a65f8565.js",
-      "_duration.21bcce5f.js"
-    ]
-  },
-  "_category-radar.426e3243.js": {
-    "file": "assets/category-radar.426e3243.js",
-    "imports": [
-      "assets/js/base.js",
-      "_scoreboard.a65f8565.js",
-      "_duration.21bcce5f.js"
-    ]
-  },
-  "_category-radar.022f7f8b.js": {
-    "file": "assets/category-radar.022f7f8b.js",
-    "imports": [
-      "assets/js/base.js",
-      "_scoreboard.a65f8565.js",
-      "_duration.21bcce5f.js"
-    ]
-  },
-  "_category-radar.79a8af2e.js": {
-    "file": "assets/category-radar.79a8af2e.js",
-    "imports": [
-      "assets/js/base.js",
-      "_scoreboard.a65f8565.js",
-      "_duration.21bcce5f.js"
-    ]
-  },
-  "_category-radar.72f8166b.js": {
-    "file": "assets/category-radar.72f8166b.js",
-    "imports": [
-      "assets/js/base.js",
-      "_scoreboard.a65f8565.js",
-      "_duration.21bcce5f.js"
-    ]
-  },
-  "_category-radar.6fa41d42.js": {
-    "file": "assets/category-radar.6fa41d42.js",
-    "imports": [
-      "assets/js/base.js",
-      "_scoreboard.a65f8565.js",
-      "_duration.21bcce5f.js"
-    ]
-  },
-  "_category-radar.5b8fdd42.js": {
-    "file": "assets/category-radar.5b8fdd42.js",
-    "imports": [
-      "assets/js/base.js",
-      "_scoreboard.a65f8565.js",
-      "_duration.21bcce5f.js"
-    ]
-  },
-  "_category-radar.b814b75c.js": {
-    "file": "assets/category-radar.b814b75c.js",
-    "imports": [
-      "assets/js/base.js",
-      "_scoreboard.abce5870.js",
-      "_duration.21bcce5f.js"
-    ]
-  },
-  "_scoreboard.abce5870.js": {
-    "file": "assets/scoreboard.abce5870.js",
-    "imports": [
-      "assets/js/base.js",
-      "_duration.21bcce5f.js"
-    ]
   }
 }

@@ -95,7 +95,7 @@
 .totalScore {
     position: sticky;
     bottom: -1rem;
-    background: $primary-fg;
+    background: $list-footer-bg;
     margin: 0 -1rem -1rem -1rem;
     padding: 0.5rem 1rem;
     color: white;
@@ -114,7 +114,7 @@
 
     .totalScoreValue {
         font-size: 1.3em;
-        color: $warning-color;
+        color: $list-footer-fg;
         font-variant-numeric: tabular-nums;
     }
 }

@@ -157,14 +157,21 @@ body {
 </style>
 <script>
   window.tagImages = {
-    "misc": "{{ url_for('views.themes', path='img/categories/Misc.svg') }}",
-    "crypto": "{{ url_for('views.themes', path='img/categories/Crypto.svg') }}",
-    "forensics": "{{ url_for('views.themes', path='img/categories/Forensics.svg') }}",
-    "reverse": "{{ url_for('views.themes', path='img/categories/Reverse.svg') }}",
-    "pwn": "{{ url_for('views.themes', path='img/categories/Pwn.svg') }}",
-    "ppc": "{{ url_for('views.themes', path='img/categories/PPC.png') }}",
-    "web": "{{ url_for('views.themes', path='img/categories/Web.svg') }}",
-    "blockchains": "{{ url_for('views.themes', path='img/categories/Blockchains.svg') }}",
+    // "misc": "{{ url_for('views.themes', path='img/categories/Misc.svg') }}",
+    // "crypto": "{{ url_for('views.themes', path='img/categories/Crypto.svg') }}",
+    // "forensics": "{{ url_for('views.themes', path='img/categories/Forensics.svg') }}",
+    // "reverse": "{{ url_for('views.themes', path='img/categories/Reverse.svg') }}",
+    // "pwn": "{{ url_for('views.themes', path='img/categories/Pwn.svg') }}",
+    // "ppc": "{{ url_for('views.themes', path='img/categories/PPC.png') }}",
+    // "web": "{{ url_for('views.themes', path='img/categories/Web.svg') }}",
+    // "blockchains": "{{ url_for('views.themes', path='img/categories/Blockchains.svg') }}",
+    "crypto": "{{ url_for('views.themes', path='img/categories/cryptography.png') }}",
+    "email": "{{ url_for('views.themes', path='img/categories/Email security.png') }}",
+    "malware": "{{ url_for('views.themes', path='img/categories/Malware analysis.png') }}",
+    "misc": "{{ url_for('views.themes', path='img/categories/misc.png') }}",
+    "network": "{{ url_for('views.themes', path='img/categories/network security.png') }}",
+    "coding": "{{ url_for('views.themes', path='img/categories/secure coding practice.png') }}",
+    "web": "{{ url_for('views.themes', path='img/categories/web app security.png') }}",
   };
   window.rankIcons = [
     "{{ url_for('views.themes', path='img/ranks/rank-1.svg') }}",

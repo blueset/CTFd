@@ -1,7 +1,8 @@
 @import 'colors';
 
 :root {
-    --background-gradient: linear-gradient(to bottom, #{$background-gradient-top}, #{$background-gradient-bottom});
+    // --background-gradient: linear-gradient(to bottom, #{$background-gradient-top}, #{$background-gradient-bottom});
+    --background-gradient: radial-gradient(circle at center bottom, #{$background}, #{$home-gradient-end});
 }
 
 .triangleContainer {
@@ -14,8 +15,10 @@
     padding: 1.5rem;
     box-sizing: border-box;
     position: relative;
-    background-image: var(--triangular-bg), var(--background-gradient);
-    background-size: 3.5rem, auto;
+    background-image: var(--low-poly-bg), var(--background-gradient);
+    // background-size: 3.5rem, auto;
+    background-blend-mode: overlay;
+    background-position: center, bottom center;
     // animation: marquee 20s infinite linear;
     display: flex;
     flex-direction: column;
@@ -90,7 +93,7 @@
             }
 
             margin-left: -1rem;
-            filter: drop-shadow(3px 3px 0px $accent-a50);
+            filter: drop-shadow(3px 3px 0px $title-shadow);
             display: flex;
             flex-direction: column;
             justify-content: center;

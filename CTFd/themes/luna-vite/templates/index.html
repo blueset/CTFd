@@ -4,7 +4,7 @@
 <div id="homeWrapper">
     <div class="homeContent">
         <div class="homeScreen">
-            <img class="logo" src="{{ url_for('views.files', path=Configs.ctf_logo) if Configs.ctf_logo else url_for('views.themes', path='img/logos/sekai2.svg') }}" alt="Project SEKAI CTF" />
+            <img class="logo" src="{{ url_for('views.files', path=Configs.ctf_logo) if Configs.ctf_logo else url_for('views.themes', path='img/logos/combi.svg') }}" alt="Project SEKAI CTF" />
             <time id="homeCountdown">...</time>
             <time id="homeLocalDate">...</time>
             <code><time id="homeISODate">...</time></code>
@@ -56,7 +56,7 @@
     <div class="credit metadata">
         <!-- , Powered by CTFd<br /> -->
         <small>Theme Luna {{ config.get_config("ctf_version") }} by 1A23 Studio for Shef Labs<br />
-        <small>This website is in no way affiliated with SEGA, Colorful Palette Inc., Crypton Future Media, INC.</small>
+        <!-- <small>This website is in no way affiliated with SEGA, Colorful Palette Inc., Crypton Future Media, INC.</small> -->
         </small>
     </div>
     <div class="sponsors metadata">
@@ -71,7 +71,7 @@
         </a>
     </div>
     <div class="logoBox">
-        <img src="{{ url_for('views.files', path=Configs.ctf_logo) if Configs.ctf_logo else url_for('views.themes', path='img/anim.svg') }}" alt="Shef Labs" />
+        <img src="{{ url_for('views.files', path=Configs.ctf_logo) if Configs.ctf_logo else url_for('views.themes', path='img/logos/combi.svg') }}" alt="{{ Configs.ctf_name }}" />
         <div class="tapToStart">{{ gettext("%(verb)s to start", verb=gettext('<span class="click">Click</span><span class="tap">Tap</span>')) | safe }}</div>
     </div>
 </div>

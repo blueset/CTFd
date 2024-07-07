@@ -505,8 +505,10 @@ $challenges-width: max(30vw, calc((100vw - $tab-width) / 5 * 2));
             }
 
             @include media-sm {
-                background-image: var(--triangular-bg), var(--background-gradient);
-                background-size: 3.5rem, auto;
+                background-image: var(--low-poly-bg), var(--background-gradient);
+                // background-size: 3.5rem, auto;
+                background-blend-mode: overlay;
+                background-position: center, bottom center;
                 padding-bottom: 0;
                 min-height: 100%;
                 display: flex;

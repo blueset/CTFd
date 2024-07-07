@@ -6,7 +6,7 @@ import advancedFormat from "dayjs/plugin/advancedFormat";
 
 import MainMenuInit from "./mainMenu";
 import BackButtonInit from "./backButton";
-import IconWallCanvasInit from "./backgroundCanvas";
+// import IconWallCanvasInit from "./backgroundCanvas";
 import TabPageInit from "./tabs";
 import CountdownInit from "./countdown";
 import events from "./events";
@@ -21,7 +21,7 @@ CTFd.init(window.init);
 (() => {
     MainMenuInit();
     BackButtonInit();
-    IconWallCanvasInit();
+    // IconWallCanvasInit();
     TabPageInit();
     CountdownInit();
     times();

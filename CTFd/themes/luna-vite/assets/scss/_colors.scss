@@ -5,33 +5,33 @@ $color2: #ec672c;
 $color3: #001253;
 $color4: #fd841f;
 
-$primary-a10:  #d9ddeb;
-$primary-a20:  #b3bcd7;
-$primary-a30:  #8d9cc3;
-$primary-a40:  #677db0; 
-$primary-a50:  $color1;
-$primary-a60:  #344d7b;
-$primary-a70:  #293a5b;
-$primary-a80:  #1f283d;
-$primary-a90:  $color3;
+$accent-a10:  #d9ddeb;
+$accent-a20:  #b3bcd7;
+$accent-a30:  #8d9cc3;
+$accent-a40:  #677db0; 
+$accent-a50:  $color1;
+$accent-a60:  #344d7b;
+$accent-a70:  #293a5b;
+$accent-a80:  #1f283d;
+$accent-a90:  $color3;
 
-$accent-a10:  #ffe1d3;
-$accent-a20:  #ffc3a8;
-$accent-a30:  $color4;
-$accent-a40:  #f68756;
-$accent-a50:  $color2;
-$accent-a60:  #b95325;
-$accent-a70:  #883f1f;
-$accent-a80:  #5a2c18;
-$accent-a90:  #301a10;
+$primary-a10:  #ffe1d3;
+$primary-a20:  #ffc3a8;
+$primary-a30:  $color4;
+$primary-a40:  #f68756;
+$primary-a50:  $color2;
+$primary-a60:  #b95325;
+$primary-a70:  #883f1f;
+$primary-a80:  #5a2c18;
+$primary-a90:  #301a10;
 
-$accent-color: $color1;
+$accent-color: $primary-a50;
 $accent-color-bright: $primary-a20;
 $accent-text-color: $primary-a90;
-$warning-color: $color2;
-$primary-fg: $color3;
+$warning-color: $accent-a50;
+$primary-fg: $accent-a90;
 
-$border: $primary-a30;
+$border: $primary-a50;
 $text-on-accent: #fff;
 
 $background: #fff;
@@ -65,7 +65,10 @@ $first-diamond-1: #9CBFFF;
 $first-diamond-2: #00FCBB;
 
 $list-border: $border;
-$list-label: $primary-a30;
+$list-item-frame: $border;
+$list-label: $primary-a70;
+$list-footer-bg: $primary-a70;
+$list-footer-fg: $accent-a10;
 
 $input-border: $border;
 $input-shadow: #C5C5D2;
@@ -77,10 +80,12 @@ $grid-footer: $primary-a10;
 $cell-icon-shadow: $primary-a40;
 
 $home-gradient-end: $primary-a10;
-$countdown-background: $accent-a50;
+$countdown-background: $accent-a20;
 $text-shadow: rgba(0, 0, 0, 0.4);
 
 $profile-meta-box: $primary-a10;
 
 $active-selection-background: $accent-a20;
-$challenge-list-background: $primary-a40;
+$challenge-list-background: $primary-a30;
+
+$title-shadow: $accent-a30;
